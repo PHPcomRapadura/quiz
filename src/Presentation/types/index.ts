@@ -1,10 +1,10 @@
 import DependencyContainer from 'tsyringe/dist/typings/types/dependency-container'
+import { AuthContract, Session } from './auth.ts'
 
-export type User = { username: string, abilities: string[] } | null
+export type { AuthContract, Session }
 
-export interface AppContextType {
+export interface AppContextContract {
     container: DependencyContainer
-    user: User
-    signIn: (username: string, password: string) => Promise<User>
-    signOut: () => Promise<boolean>
+    session: Session
+    auth: AuthContract
 }

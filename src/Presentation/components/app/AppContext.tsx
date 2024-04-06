@@ -1,4 +1,4 @@
 import { createContext } from "react";
-import { AppContextType } from "../../types";
+import { AppContextContract } from "../../types";
 
-export const AppContext = createContext<AppContextType>(null!)
+export const AppContext = createContext<AppContextContract>(null!)

@@ -1,0 +1,11 @@
+export enum Status {
+  success = 'success',
+  error = 'error',
+  fail = 'fail'
+}
+
+export interface Content {
+  status: Status
+  data?: Record<string, unknown>
+  message?: string
+}

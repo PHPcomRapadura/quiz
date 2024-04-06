@@ -1,5 +1,5 @@
 import AuthRepository from '../../Domain/Auth/AuthRepository.ts'
-import SupabaseClientFactory from './Drivers/SupabaseClientFactory.ts'
+import SupabaseClientFactory from './SupabaseClientFactory.ts'
 import { AuthOtpResponse, SupabaseClient } from '@supabase/supabase-js'
 import { Content, Status } from '../../Domain/Contracts.ts'
 import type { AuthTokenResponsePassword } from '@supabase/auth-js/dist/module/lib/types.ts'
