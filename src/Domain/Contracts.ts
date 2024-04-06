@@ -6,6 +6,8 @@ export enum Status {
 
 export interface Content {
   status: Status
-  data?: Record<string, unknown>
+  data?: Data
   message?: string
 }
+
+export type Data = Record<string, unknown>

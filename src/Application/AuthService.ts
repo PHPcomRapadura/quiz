@@ -1,6 +1,6 @@
 import { inject, injectable } from 'tsyringe'
 import type AuthRepository from '../Domain/Auth/AuthRepository.ts'
-import { Content, Status } from '../Domain/Contracts.ts'
+import { Content } from '../Domain/Contracts.ts'
 
 @injectable()
 export class AuthService {
@@ -14,9 +14,6 @@ export class AuthService {
   }
 
   async signOut (): Promise<Content> {
-    return {
-      status: Status.fail,
-      message: 'Not implemented'
-    }
+    return this.authRepository.signOut()
   }
 }

@@ -12,7 +12,7 @@ export function LoginPage () {
         const form = new FormData(event.currentTarget)
         const username = form.get('username') as string
         const password = form.get('password') as string
-        const signed = await app.signIn(username, password)
+        const signed = await app.auth.signIn(username, password)
         if (!signed) {
             setError('Usuário e/ou senha inválidos')
             return
@@ -32,6 +32,6 @@ export function LoginPage () {
             <div>{error}</div>
         )}
     </form>
-    
+
     </>
 }

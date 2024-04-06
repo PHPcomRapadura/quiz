@@ -6,6 +6,7 @@ import type { AuthTokenResponsePassword } from '@supabase/auth-js/dist/module/li
 
 export default class SupabaseAuthRepository implements AuthRepository {
   private driver: SupabaseClient
+
   constructor () {
     this.driver = SupabaseClientFactory()
   }
@@ -26,5 +27,9 @@ export default class SupabaseAuthRepository implements AuthRepository {
       data: response.data,
       message: response.error?.message
     }
+  }
+
+  signOut (): Promise<Content> {
+    throw new Error('Method not implemented.')
   }
 }
