@@ -1,7 +1,7 @@
 import 'reflect-metadata'
 import { container } from 'tsyringe'
-import { AuthService } from '../src/Application/AuthService'
-import JsonHttpAuthRepository from '../src/Infrastructure/Http/JsonHttpAuthRepository'
+import { AuthService } from '../app/Application/AuthService.ts'
+import JsonHttpAuthRepository from '../app/Infrastructure/Http/JsonHttpAuthRepository.ts'
 
 export default function () {
   container.register('AuthService', { useClass: AuthService })

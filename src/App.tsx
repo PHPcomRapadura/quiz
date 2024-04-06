@@ -2,14 +2,14 @@ import 'reflect-metadata'
 
 import { Route, Routes } from 'react-router-dom'
 
-import { AppProvider } from './Presentation/providers/AppProvider'
+import { AppProvider } from './app/Presentation/providers/AppProvider'
 
-import { Layout } from './Presentation/layouts/Layout'
+import { Layout } from './app/Presentation/layouts/Layout'
 
-import { PublicPage } from './Presentation/pages/PublicPage'
-import { PrivatePage } from './Presentation/pages/PrivatePage'
-import { ProtectPage } from './Presentation/components/auth/ProtectPage'
-import { LoginPage } from './Presentation/pages/LoginPage'
+import { PublicPage } from './app/Presentation/pages/PublicPage'
+import { PrivatePage } from './app/Presentation/pages/PrivatePage'
+import { ProtectPage } from './app/Presentation/components/auth/ProtectPage'
+import { LoginPage } from './app/Presentation/pages/LoginPage'
 
 import './App.css'
 
