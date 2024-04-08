@@ -23,7 +23,10 @@ export default function App () {
   return (
     <AppProvider>
       <Routes>
-        <Route element={<Layout />}>
+        <Route
+          path="/"
+          element={<Layout />}
+        >
           <Route
             index
             element={<HomePage />}
@@ -40,11 +43,6 @@ export default function App () {
             path="/game/:id/end"
             element={<GameEndPage />}
           />
-          <Route
-            path="/"
-            element={<HomePage />}
-          >
-          </Route>
           <Route
             path="/sign-in"
             element={<SignInPage />}

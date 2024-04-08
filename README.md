@@ -1,7 +1,7 @@
 
-# Super Quiz
+# Super Quizz
 
-O Super Quiz é um projeto que permite que sejam inseridos jogos de forma simples e rápida em backend e que o mesmo alimente de forma eficiente um frontend.
+O Super Quizz é um projeto que permite que sejam inseridos jogos de forma simples e rápida em backend e que o mesmo alimente de forma eficiente um frontend.
 
 
 ## Tecnologias

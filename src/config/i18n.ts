@@ -9,14 +9,14 @@ const resources = {
     default: {
       layouts: {
         root: {
-          brand: 'Quiz',
+          brand: 'Super Quizzz',
           play: 'Jogar',
           signIn: 'Entrar'
         }
       },
       pages: {
         home: {
-          title: 'Quiz',
+          title: 'Super Quizz',
           description: 'O melhor jogo de perguntas e respostas para jogar com os amigos!\n' +
             'Reúna sua galera e divirta-se com moderação! 🍻',
           contributing: 'Não se esqueça de contribuir com o projeto no link abaixo! 😉',
