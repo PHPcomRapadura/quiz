@@ -9,11 +9,13 @@ import SupabaseGameRepository from '../app/Infrastructure/Supabase/SupabaseGameR
 export default function () {
   container.register('AuthService', { useClass: AuthService })
   container.register('AuthRepository', { useClass: JsonHttpAuthRepository })
-  if (process.env.NODE_ENV === 'production') {
+  if (process.env.NODE_ENV === 'development') {
     container.register('GameRepository', { useClass: InMemoryGameRepository })
     return container
   }
-  container.register('GameRepository', { useClass: SupabaseGameRepository })
+  container.register('GameRepository', {
+    useFactory: () => SupabaseGameRepository.build()
+  })
 
   return container
 }

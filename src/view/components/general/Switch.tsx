@@ -1,5 +1,5 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
-import { ReactElement, ReactNode } from 'react'
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { ReactNode } from 'react'
 
 export type CaseProps = {
   value: unknown
@@ -17,6 +17,5 @@ export type SwitchProps = {
 
 export function Switch (props: SwitchProps) {
   const { condition, children } = props
-  // @ts-ignore
-  return children.find((child: ReactElement) => child.props.value === condition)
+  return children.find((child: any) => child.props.value === condition)
 }

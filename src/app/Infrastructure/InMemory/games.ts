@@ -271,7 +271,15 @@ export default function (): Game[] {
               text: '`__construct()` e `__destruct()`'
             }
           ]
-        },
+        }
+      ]
+    }, {
+      id: 2,
+      description: 'Avançado',
+      author: 'william@phpcomrapadura.org.br',
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      questions: [
         {
           id: 10,
           text: 'O que a keyword `final` faz?',

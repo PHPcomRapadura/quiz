@@ -38,13 +38,17 @@ export function Layout () {
         </div>
       </nav>
 
-      <main className="container">
-        <div className="mt-5">
-          <div className="pt-2">
-            <Outlet />
-          </div>
+      <main className="flex-shrink-0">
+        <div className="container">
+          <Outlet />
         </div>
       </main>
+
+      <footer className="footer mt-auto p-2 bg-body-tertiary">
+        <div className="container text-center">
+          <small className="text-light-emphasis">{t('copyright')}</small>
+        </div>
+      </footer>
     </>
   )
 }

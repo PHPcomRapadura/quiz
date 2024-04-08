@@ -74,7 +74,7 @@ export function GamePage () {
       }
     }
     fetchGame()
-  }, [initialized, gameId, gameRepository])
+  }, [navigate, initialized, gameId, gameRepository])
 
   return game ?
     (

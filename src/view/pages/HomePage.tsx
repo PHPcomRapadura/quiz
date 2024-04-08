@@ -8,7 +8,7 @@ export function HomePage () {
     { keyPrefix: 'pages.home' }
   )
   return (
-    <div className="bg-body-tertiary text-light-emphasis p-4 rounded">
+    <div className="card bg-secondary py-3 px-4 rounded">
       <h1>{t('title')}</h1>
       <p className="lead mb-3">{t('description')}</p>
       <p className="lead mb-1">

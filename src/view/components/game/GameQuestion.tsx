@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import Answer from '../../../app/Domain/Game/Answer.ts'
 import AnswerStatus from '../../../app/Domain/Game/AnswerStatus.ts'
-import { Case, Switch } from '../general/Switch.ts'
+import { Case, Switch } from '../general/Switch.tsx'
 import { GameWrongAnswer } from './GameWrongAnswer.tsx'
 import { GameCorrectAnswer } from './GameCorrectAnswer.tsx'
 import { GameTimeExpired } from './GameTimeExpired.tsx'

@@ -11,7 +11,8 @@ const resources = {
         root: {
           brand: 'Super Quizzz',
           play: 'Jogar',
-          signIn: 'Entrar'
+          signIn: 'Entrar',
+          copyright: '© PHP com Rapadura'
         }
       },
       pages: {
@@ -24,11 +25,13 @@ const resources = {
         },
         game: {
           welcome: {
-            title: 'PHPinga',
-            description: 'Cada um na mesa deve responder a uma pergunta sobre PHP.\n' +
+            title: 'Escolha um Jogo',
+            description: 'Depois de selecionar um jogo cada um na mesa deve responder a uma pergunta.\n' +
               'Caso acerte, pode escolher uma pessoa para beber, caso erre tem de beber.\n' +
               'Ao terminar, passa-se para o jogador da esquerda.',
-            callToAction: 'Ir para o Jogo'
+            pending: 'Carregando jogos ...',
+            rejected: 'Não foi possível carregar os jogos',
+            error: 'Oh snap!'
           },
           play: {
             title: 'O jogo já vai começar!',
@@ -43,6 +46,14 @@ const resources = {
             title: 'O jogo acabou!',
             description: 'Não está bêbado suficiente? Clique em "Começar de novo"!',
             restart: 'Começar de novo'
+          }
+        }
+      },
+      components: {
+        game: {
+          list: {
+            title: 'Jogos Disponíveis',
+            empty: 'Não há nenhum jogo disponível no momento'
           }
         }
       }
