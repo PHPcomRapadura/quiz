@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useApp } from '../hooks'
 
-export function LoginPage () {
+export function SignInPage () {
     const app = useApp()
     const navigate = useNavigate()
     const [error, setError] = useState('')

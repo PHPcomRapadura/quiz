@@ -7,7 +7,21 @@ import { initReactI18next } from 'react-i18next'
 const resources = {
   'ptBR': {
     default: {
+      layouts: {
+        root: {
+          brand: 'Quiz',
+          play: 'Jogar',
+          signIn: 'Entrar'
+        }
+      },
       pages: {
+        home: {
+          title: 'Quiz',
+          description: 'O melhor jogo de perguntas e respostas para jogar com os amigos!\n' +
+            'Reúna sua galera e divirta-se com moderação! 🍻',
+          contributing: 'Não se esqueça de contribuir com o projeto no link abaixo! 😉',
+          callToAction: 'Jogar agora »'
+        },
         game: {
           welcome: {
             title: 'PHPinga',

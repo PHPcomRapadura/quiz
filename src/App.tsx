@@ -17,7 +17,7 @@ import { GamePage } from './view/pages/game/GamePage.tsx'
 import { GameEndPage } from './view/pages/game/GameEndPage.tsx'
 // session
 import { PrivatePage } from './view/pages/PrivatePage'
-import { LoginPage } from './view/pages/LoginPage'
+import { SignInPage } from './view/pages/SignInPage.tsx'
 
 export default function App () {
   return (
@@ -25,29 +25,29 @@ export default function App () {
       <Routes>
         <Route element={<Layout />}>
           <Route
+            index
+            element={<HomePage />}
+          />
+          <Route
+            path="/game"
+            element={<GameWelcomePage />}
+          />
+          <Route
+            path="/game/:id/play"
+            element={<GamePage />}
+          />
+          <Route
+            path="/game/:id/end"
+            element={<GameEndPage />}
+          />
+          <Route
             path="/"
             element={<HomePage />}
           >
-            <Route
-              index
-              element={<GameWelcomePage />}
-            />
-            <Route
-              path="/game"
-              element={<GameWelcomePage />}
-            />
-            <Route
-              path="/game/:id/play"
-              element={<GamePage />}
-            />
-            <Route
-              path="/game/:id/end"
-              element={<GameEndPage />}
-            />
           </Route>
           <Route
-            path="/login"
-            element={<LoginPage />}
+            path="/sign-in"
+            element={<SignInPage />}
           />
           <Route
             element={<ProtectPage />}
