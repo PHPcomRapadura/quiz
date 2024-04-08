@@ -1,5 +1,6 @@
 import { useNavigate, useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+import { image } from '../../../config/assets.ts'
 
 export function GameEndPage () {
   const params = useParams()
@@ -16,7 +17,7 @@ export function GameEndPage () {
       <img
         style={{ width: '80%' }}
         className="center-block"
-        src="/assets/images/phpinga.png"
+        src={image('/phpinga.png')}
         alt="PHPinga"
       />
       <h1 className="text-center">{t('title')}</h1>

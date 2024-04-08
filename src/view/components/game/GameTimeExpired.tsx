@@ -1,4 +1,5 @@
 import { GameQuestionComponentsProps } from './GameQuestion.tsx'
+import { image } from '../../../config/assets.ts'
 
 export function GameTimeExpired ({ finishQuestion }: GameQuestionComponentsProps) {
   return (
@@ -6,7 +7,7 @@ export function GameTimeExpired ({ finishQuestion }: GameQuestionComponentsProps
       <img
         style={{ width: '80%' }}
         className="center-block"
-        src="/assets/images/phpinga.png"
+        src={image('/phpinga.png')}
         alt="PHPinga"
       />
       <h1 className="text-center">Acabou o tempo!</h1>

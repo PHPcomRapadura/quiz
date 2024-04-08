@@ -1,4 +1,5 @@
 import { GameQuestionComponentsProps } from './GameQuestion.tsx'
+import { image } from '../../../config/assets.ts'
 
 export function GameCorrectAnswer ({ finishQuestion }: GameQuestionComponentsProps) {
   return (
@@ -6,7 +7,7 @@ export function GameCorrectAnswer ({ finishQuestion }: GameQuestionComponentsPro
       <img
         style={{ width: '80%' }}
         className="center-block"
-        src="/assets/images/phpinga.png"
+        src={image('/phpinga.png')}
         alt="PHPinga"
       />
       <h1 className="text-center">Certa a resposta!</h1>
