@@ -4,9 +4,7 @@ export function HomePage () {
   return (
     <>
       <div className="container">
-        <div
-          className="app col-md-6 col-md-offset-3"
-        >
+        <div className="app">
           <Outlet />
         </div>
       </div>

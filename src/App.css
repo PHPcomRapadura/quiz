@@ -1,0 +1,19 @@
+.pergunta {
+    padding: 0 12px 12px 12px;
+    background: #ffffff;
+    color: #51575b;
+    border-radius: 6px;
+}
+
+.pergunta .radio p {
+    display: inline-block;
+    padding-left: 5px;
+}
+
+.pergunta .radio code {
+    padding: 2px 4px;
+    font-size: 90%;
+    color: #c7254e;
+    background-color: #f9f2f4;
+    border-radius: 4px;
+}

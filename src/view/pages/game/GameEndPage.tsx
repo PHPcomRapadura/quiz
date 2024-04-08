@@ -1,4 +1,9 @@
+import { useNavigate, useParams } from 'react-router-dom'
+
 export function GameEndPage () {
+  const params = useParams()
+  const gameId = Number(params.id)
+  const navigate = useNavigate()
   return (
     <div
       className="end"
@@ -16,7 +21,9 @@ export function GameEndPage () {
       <button
         style={{ width: '100%', marginTop: '50px' }}
         className="center-block btn btn-lg btn-primary"
-      >Começar de novo
+        onClick={() => navigate(`/game/${gameId}/play`)}
+      >
+        Começar de novo
       </button>
     </div>
   )

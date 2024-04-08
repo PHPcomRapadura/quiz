@@ -15,7 +15,10 @@ export function GameInstruction (props: GameInstructionProps) {
   )
   return (
     <div>
-      <h1 className="text-center">{t('title', { name: game.description })}</h1>
+      <h1 className="text-center">{t('title')}</h1>
+      <div className="alert alert-primary">
+        {t('selected')} <strong>{game.description}</strong>
+      </div>
       <p className="text-center">
         {t('description', { timeout, total: game.questions.length })}
       </p>

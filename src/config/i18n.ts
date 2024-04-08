@@ -17,9 +17,11 @@ const resources = {
             callToAction: 'Ir para o Jogo'
           },
           play: {
-            title: 'O jogo {{name}} já vai começar!',
+            title: 'O jogo já vai começar!',
+            selected: 'Jogo Selecionado: ',
             description: 'Certifique-se de que todos estão prontos para começar e clique em Começar!\n' +
-              'Lembrando que este jogo tem um tempo limite de {{timeout}} segundos para responder cada pergunta e {{total}} perguntas ao todo',
+              'Lembrando que este jogo tem um tempo limite de {{timeout}} segundos para responder ' +
+              'cada pergunta e {{total}} perguntas ao todo',
             greetings: 'Boa sorte!',
             start: 'Começar'
           }

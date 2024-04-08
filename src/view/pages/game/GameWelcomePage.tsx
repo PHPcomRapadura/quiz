@@ -12,12 +12,6 @@ export function GameWelcomePage () {
     <div
       className="welcome"
     >
-      <img
-        style={{ width: '80%' }}
-        className="center-block"
-        src="/assets/images/phpinga.png"
-        alt="PHPinga"
-      />
       <h1 className="text-center">{t('title')}</h1>
       <p className="text-center">{t('description')}</p>
       <button
