@@ -3,5 +3,5 @@ export function base (): string {
 }
 
 export function image (path: string): string {
-  return (base() + '/assets/images/' + path).replace(/([^:]\/)\/+/g, '$1')
+  return (base() + '/assets/images/' + path).replace(/(?<!:)\/+/g, '/')
 }
