@@ -20,6 +20,7 @@ import { PrivatePage } from './view/pages/PrivatePage'
 import { LoginPage } from './view/pages/LoginPage'
 
 export default function App () {
+  console.log('App')
   return (
     <AppProvider>
       <Routes>
