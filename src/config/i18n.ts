@@ -24,6 +24,11 @@ const resources = {
               'cada pergunta e {{total}} perguntas ao todo',
             greetings: 'Boa sorte!',
             start: 'Começar'
+          },
+          end: {
+            title: 'O jogo acabou!',
+            description: 'Não está bêbado suficiente? Clique em "Começar de novo"!',
+            restart: 'Começar de novo'
           }
         }
       }

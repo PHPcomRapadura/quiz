@@ -36,7 +36,7 @@ export function GamePage () {
   }
 
   const answerQuestion: GameQuestionAnswerQuestion = (status) => {
-    // TODO: prepare actions for each result
+    // TODO: improve actions for each result
     const actions = {
       [AnswerStatus.CORRECT]: () => {
         console.log('Correct!')

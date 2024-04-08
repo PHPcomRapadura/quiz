@@ -1,9 +1,14 @@
 import { useNavigate, useParams } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
 export function GameEndPage () {
   const params = useParams()
   const gameId = Number(params.id)
   const navigate = useNavigate()
+  const { t } = useTranslation(
+    'default',
+    { keyPrefix: 'pages.game.end' }
+  )
   return (
     <div
       className="end"
@@ -14,16 +19,14 @@ export function GameEndPage () {
         src="/assets/images/phpinga.png"
         alt="PHPinga"
       />
-      <h1 className="text-center">O jogo acabou!</h1>
-      <p className="text-center">
-        Não está bêbado suficiente? Clique em "Começar de novo"!
-      </p>
+      <h1 className="text-center">{t('title')}</h1>
+      <p className="text-center">{t('description')}</p>
       <button
         style={{ width: '100%', marginTop: '50px' }}
         className="center-block btn btn-lg btn-primary"
         onClick={() => navigate(`/game/${gameId}/play`)}
       >
-        Começar de novo
+        {t('restart')}
       </button>
     </div>
   )
