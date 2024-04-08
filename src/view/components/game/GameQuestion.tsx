@@ -37,8 +37,8 @@ export function GameQuestion (props: GameQuestionProps) {
   const [options, setOptions] = useState<Answer[]>([])
 
   useEffect(() => {
-    if (options.length === 0) {
-      setOptions(shuffle(answers))
+    if (options.length === 0 && answers.length > 0) {
+      setOptions(shuffle((answers)))
     }
 
     const tick = () => {
@@ -72,7 +72,6 @@ export function GameQuestion (props: GameQuestionProps) {
 
   return (
     <div className="pergunta">
-
       <Switch condition={status}>
         <Case
           value={AnswerStatus.UNANSWERED}

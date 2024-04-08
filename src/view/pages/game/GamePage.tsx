@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from 'react-router-dom'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 import GameRepository from '../../../app/Domain/Game/GameRepository.ts'
 import Game from '../../../app/Domain/Game/Game.ts'
@@ -19,7 +19,8 @@ export function GamePage () {
   const navigate = useNavigate()
 
   const [game, setGame] = useState<Game | null>(null)
-  const [fetched, setFetched] = useState(false)
+  const [initialized, setInitialized] = useState(false)
+  const fetched = useRef(false)
   const gameRepository = container.resolve<GameRepository>('GameRepository')
 
   const [questions, setQuestions] = useState<Question[]>([])
@@ -31,8 +32,9 @@ export function GamePage () {
       navigate(`/game/${gameId}/end`)
       return
     }
-    const current = Math.floor(Math.random() * questions.length)
-    setQuestion(questions[current])
+    const randomIndex = Math.floor(Math.random() * questions.length)
+    const newQuestion = questions[randomIndex]
+    setQuestion(newQuestion)
   }
 
   const answerQuestion: GameQuestionAnswerQuestion = (status) => {
@@ -42,7 +44,6 @@ export function GamePage () {
         console.log('Correct!')
         const current = questions.findIndex((q) => q === question)
         const newQuestions = questions.filter((_, index) => index !== current)
-        console.log('newQuestions', newQuestions)
         setQuestions(shuffle<Question>(newQuestions))
       },
       [AnswerStatus.WRONG]: () => console.log('Wrong!'),
@@ -53,18 +54,27 @@ export function GamePage () {
   }
 
   useEffect(() => {
-    if (fetched) {
+    if (initialized) {
       return
     }
 
     const fetchGame = async () => {
-      const game = await gameRepository.findById(gameId)
-      setGame(game)
-      setFetched(true)
-      setQuestions(JSON.parse(JSON.stringify(game.questions)))
+      if (fetched.current) {
+        return
+      }
+      try {
+        fetched.current = true
+        const game = await gameRepository.findById(gameId)
+        setGame(game)
+        setInitialized(true)
+        setQuestions(JSON.parse(JSON.stringify(game.questions)))
+      } catch (e) {
+        console.error(e)
+        return navigate(`/game/${gameId}/not-found`)
+      }
     }
     fetchGame()
-  }, [fetched, gameId, gameRepository])
+  }, [initialized, gameId, gameRepository])
 
   return game ?
     (
@@ -91,7 +101,7 @@ export function GamePage () {
     :
     (
       // TODO: add loading and error states
-      fetched ?
+      initialized ?
         <div>Error fetching game {gameId} ...</div>
         :
         <div>Fetching game {gameId} ...</div>
