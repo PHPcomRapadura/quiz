@@ -2,32 +2,55 @@ import 'reflect-metadata'
 
 import { Route, Routes } from 'react-router-dom'
 
-import { AppProvider } from './app/Presentation/providers/AppProvider'
+import { AppProvider } from './view/providers/AppProvider'
 
-import { Layout } from './app/Presentation/layouts/Layout'
-
-import { PublicPage } from './app/Presentation/pages/PublicPage'
-import { PrivatePage } from './app/Presentation/pages/PrivatePage'
-import { ProtectPage } from './app/Presentation/components/auth/ProtectPage'
-import { LoginPage } from './app/Presentation/pages/LoginPage'
+import { Layout } from './view/layouts/Layout'
 
 import './App.css'
+// components
+import { ProtectPage } from './view/components/auth/ProtectPage'
+// pages
+import { HomePage } from './view/pages/HomePage.tsx'
+// game
+import { GameWelcomePage } from './view/pages/game/GameWelcomePage.tsx'
+import { GamePage } from './view/pages/game/GamePage.tsx'
+import { GameEndPage } from './view/pages/game/GameEndPage.tsx'
+// session
+import { PrivatePage } from './view/pages/PrivatePage'
+import { LoginPage } from './view/pages/LoginPage'
 
 export default function App () {
   return (
     <AppProvider>
       <Routes>
-        <Route element={<Layout/>}>
+        <Route element={<Layout />}>
           <Route
             path="/"
-            element={<PublicPage />}
-          />
+            element={<HomePage />}
+          >
+            <Route
+              index
+              element={<GameWelcomePage />}
+            />
+            <Route
+              path="/game"
+              element={<GameWelcomePage />}
+            />
+            <Route
+              path="/game/:id/play"
+              element={<GamePage />}
+            />
+            <Route
+              path="/game/:id/end"
+              element={<GameEndPage />}
+            />
+          </Route>
           <Route
             path="/login"
             element={<LoginPage />}
           />
           <Route
-            element={<ProtectPage/>}
+            element={<ProtectPage />}
           >
             <Route
               path="/private"

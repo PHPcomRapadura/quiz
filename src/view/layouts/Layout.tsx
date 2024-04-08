@@ -8,7 +8,6 @@ export function Layout() {
             &nbsp;|&nbsp;
             <Link to="/private">Privada</Link>
         </div>
-
         <Outlet />
     </div>
   )

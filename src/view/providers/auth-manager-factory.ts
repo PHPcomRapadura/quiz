@@ -1,6 +1,6 @@
 import { Session } from '../types'
 import { container } from 'tsyringe'
-import { AuthService } from '../../Application/AuthService.ts'
+import { AuthService } from '../../app/Application/AuthService.ts'
 
 export function authManagerFactory (setSession: (session: Session) => void) {
   const authService = container.resolve<AuthService>('AuthService')
