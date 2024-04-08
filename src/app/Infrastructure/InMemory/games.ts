@@ -4,7 +4,7 @@ export default function (): Game[] {
   return [
     {
       id: 1,
-      description: 'Jogo Padrão',
+      description: 'Básico',
       author: 'william@phpcomrapadura.org.br',
       createdAt: new Date(),
       updatedAt: new Date(),

@@ -8,8 +8,11 @@ import Question from '../../../app/Domain/Game/Question.ts'
 import { useApp } from '../../hooks'
 import { GameQuestion, GameQuestionAnswerQuestion } from '../../components/game/GameQuestion.tsx'
 import AnswerStatus from '../../../app/Domain/Game/AnswerStatus.ts'
+import { GameInstruction } from '../../components/game/GameInstruction.tsx'
+import { shuffle } from '../../../app/Domain/Util.ts'
 
 export function GamePage () {
+  const timeout = 30
   const params = useParams()
   const gameId = Number(params.id)
   const { container } = useApp()
@@ -27,13 +30,17 @@ export function GamePage () {
     }
     const current = Math.floor(Math.random() * questions.length)
     setQuestion(questions[current])
-    setQuestions(questions.filter((_, index) => index !== current))
   }
 
   const answerQuestion: GameQuestionAnswerQuestion = (status) => {
     // TODO: prepare actions for each result
     const actions = {
-      [AnswerStatus.CORRECT]: () => console.log('Correct!'),
+      [AnswerStatus.CORRECT]: () => {
+        console.log('Correct!')
+        const current = questions.findIndex((q) => q === question)
+        const newQuestions = questions.filter((_, index) => index !== current)
+        setQuestions(shuffle<Question>(newQuestions))
+      },
       [AnswerStatus.WRONG]: () => console.log('Wrong!'),
       [AnswerStatus.UNANSWERED]: () => console.log('Unanswered!'),
       [AnswerStatus.TIME_EXPIRED]: () => console.log('Time expired!'),
@@ -58,30 +65,28 @@ export function GamePage () {
   return game ?
     (
       question ?
-        <GameQuestion
-          timeout={30}
-          text={question.text}
-          answers={question.answers}
-          answerQuestion={answerQuestion}
+        <>
+          <GameQuestion
+            timeout={timeout}
+            text={question.text}
+            answers={question.answers}
+            answerQuestion={answerQuestion}
+            nextQuestion={nextQuestion}
+          />
+          <div style={{ paddingTop: '20px' }}>
+            <small>{game.questions.length} / {questions.length}</small>
+          </div>
+        </>
+        :
+        <GameInstruction
+          timeout={timeout}
+          game={game}
           nextQuestion={nextQuestion}
         />
-        :
-        <div>
-          <h1 className="text-center">Agora o bicho vai pegar!</h1>
-          <p className="text-center">
-            Certifique-se de que todos estão prontos para começar e clique em Começar!
-          </p>
-          <button
-            onClick={nextQuestion}
-            style={{ width: '100%', marginTop: '50px' }}
-            className="center-block btn btn-lg btn-primary"
-          >
-            Começar
-          </button>
-        </div>
     )
     :
     (
+      // TODO: add loading and error states
       fetched ?
         <div>Error fetching game {gameId} ...</div>
         :

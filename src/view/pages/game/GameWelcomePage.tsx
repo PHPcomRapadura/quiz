@@ -1,7 +1,13 @@
 import { useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
 export function GameWelcomePage () {
   const navigate = useNavigate()
+  const { t } = useTranslation(
+    'default',
+    { keyPrefix: 'pages.game.welcome' }
+  )
+  // TODO: request the games list from the backend
   return (
     <div
       className="welcome"
@@ -12,18 +18,14 @@ export function GameWelcomePage () {
         src="/assets/images/phpinga.png"
         alt="PHPinga"
       />
-      <h1 className="text-center">PHPinga</h1>
-      <p className="text-center">
-        Cada um na mesa deve responder a uma pergunta sobre PHP.
-        Caso acerte, pode escolher uma pessoa pra beber, caso erre tem de beber.
-        Ao terminar, passa-se para o jogador da esquerda.
-      </p>
+      <h1 className="text-center">{t('title')}</h1>
+      <p className="text-center">{t('description')}</p>
       <button
         onClick={() => navigate('/game/1/play')}
         style={{ width: '100%', marginTop: '50px' }}
         className="center-block btn btn-lg btn-primary"
       >
-        Ir para o Jogo
+        {t('callToAction')}
       </button>
     </div>
   )

@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react'
 import Answer from '../../../app/Domain/Game/Answer.ts'
-import { Markdown } from '../general/Markdown.tsx'
 import AnswerStatus from '../../../app/Domain/Game/AnswerStatus.ts'
 import { Case, Switch } from '../general/Switch.ts'
 import { GameWrongAnswer } from './GameWrongAnswer.tsx'
 import { GameCorrectAnswer } from './GameCorrectAnswer.tsx'
+import { GameTimeExpired } from './GameTimeExpired.tsx'
+import { shuffle } from '../../../app/Domain/Util.ts'
+import { GamePlay } from './GamePlay.tsx'
 
 export type GameQuestionComponentsProps = {
   finishQuestion: () => void
@@ -17,32 +19,44 @@ export type GameQuestionProps = {
   answers: Answer[]
   answerQuestion: GameQuestionAnswerQuestion
   nextQuestion: () => void
-  timeout?: number
+  timeout: number
 }
 
 export function GameQuestion (props: GameQuestionProps) {
-  let { timeout, } = props
-  const { text, answers, answerQuestion, nextQuestion } = props
-  if (!timeout) {
-    timeout = 30
-  }
+  const {
+    timeout,
+    text,
+    answers,
+    answerQuestion,
+    nextQuestion
+  } = props
+
   const [timer, setTimer] = useState(timeout)
   const [selected, setSelected] = useState<Answer | null>(null)
   const [status, setStatus] = useState<AnswerStatus>(AnswerStatus.UNANSWERED)
+  const [options, setOptions] = useState<Answer[]>([])
 
   useEffect(() => {
+    if (options.length === 0) {
+      setOptions(shuffle(answers))
+    }
+
     const tick = () => {
-      if (timer <= 0) {
-        clearInterval(interval)
+      if (timer > 0) {
+        setTimer(timer - 1)
         return
       }
-      setTimer(timer - 1)
+      if (status === AnswerStatus.UNANSWERED) {
+        setStatus(AnswerStatus.TIME_EXPIRED)
+        answerQuestion(AnswerStatus.TIME_EXPIRED)
+      }
+      clearInterval(interval)
     }
     const interval = setInterval(tick, 1000)
     return () => clearInterval(interval)
-  }, [timer])
+  }, [options, timer, answers, status, answerQuestion])
 
-  const answer = () => {
+  const confirmSelection = () => {
     const newStatus = selected?.correct ? AnswerStatus.CORRECT : AnswerStatus.WRONG
     setStatus(newStatus)
     answerQuestion(newStatus)
@@ -52,6 +66,7 @@ export function GameQuestion (props: GameQuestionProps) {
     setStatus(AnswerStatus.UNANSWERED)
     setSelected(null)
     setTimer(timeout)
+    setOptions([])
     nextQuestion()
   }
 
@@ -62,51 +77,21 @@ export function GameQuestion (props: GameQuestionProps) {
         <Case
           value={AnswerStatus.UNANSWERED}
         >
-          <h4
-            style={{ paddingTop: '20px', paddingBottom: '20px' }}
-          >
-            <Markdown
-              text={text}
-              tag="div"
-            />
-          </h4>
-          {
-            answers.map((answer, index) => (
-              <div
-                className="radio"
-                key={index}
-              >
-                <label>
-                  <input
-                    value={index}
-                    type="radio"
-                    name="question"
-                    onChange={() => setSelected(answer)}
-                  />
-                  <Markdown text={answer.text} />
-                </label>
-              </div>
-            ))
-          }
-          <h2
-            onClick={() => setTimer(timeout)}
-            style={{ cursor: 'pointer' }}
-          >
-            Tempo restante: {timer}
-          </h2>
-          <button
-            style={{ width: '100%', marginTop: '50px' }}
-            className="center-block btn btn-lg btn-primary"
-            onClick={answer}
-          >
-            Responder
-          </button>
+          <GamePlay
+            text={text}
+            options={options}
+            timer={timer}
+            timeout={timeout}
+            setSelected={setSelected}
+            setTimer={setTimer}
+            confirmSelection={confirmSelection}
+          />
         </Case>
         <Case value={AnswerStatus.WRONG}>
           <GameWrongAnswer finishQuestion={finishQuestion} />
         </Case>
         <Case value={AnswerStatus.TIME_EXPIRED}>
-          <GameWrongAnswer finishQuestion={finishQuestion} />
+          <GameTimeExpired finishQuestion={finishQuestion} />
         </Case>
         <Case value={AnswerStatus.CORRECT}>
           <GameCorrectAnswer finishQuestion={finishQuestion} />
