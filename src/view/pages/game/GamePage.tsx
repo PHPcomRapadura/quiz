@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 
 import GameRepository from '../../../app/Domain/Game/GameRepository.ts'
@@ -16,6 +16,7 @@ export function GamePage () {
   const params = useParams()
   const gameId = Number(params.id)
   const { container } = useApp()
+  const navigate = useNavigate()
 
   const [game, setGame] = useState<Game | null>(null)
   const [fetched, setFetched] = useState(false)
@@ -26,6 +27,8 @@ export function GamePage () {
 
   const nextQuestion = () => {
     if (questions.length === 0) {
+      setQuestion(null)
+      navigate(`/game/${gameId}/end`)
       return
     }
     const current = Math.floor(Math.random() * questions.length)
@@ -39,6 +42,7 @@ export function GamePage () {
         console.log('Correct!')
         const current = questions.findIndex((q) => q === question)
         const newQuestions = questions.filter((_, index) => index !== current)
+        console.log('newQuestions', newQuestions)
         setQuestions(shuffle<Question>(newQuestions))
       },
       [AnswerStatus.WRONG]: () => console.log('Wrong!'),
@@ -73,8 +77,8 @@ export function GamePage () {
             answerQuestion={answerQuestion}
             nextQuestion={nextQuestion}
           />
-          <div style={{ paddingTop: '20px' }}>
-            <small>{game.questions.length} / {questions.length}</small>
+          <div style={{ paddingTop: '14px' }}>
+            <small>{game.questions.length - questions.length} / {game.questions.length}</small>
           </div>
         </>
         :
