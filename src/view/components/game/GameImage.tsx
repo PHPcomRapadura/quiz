@@ -26,3 +26,15 @@ export function Celebrate () {
   )
 }
 
+export function Done () {
+  return (
+    <div className="d-flex justify-content-center justify-content-center">
+      <img
+        className="img-fluid"
+        src={image('/status/done.png')}
+        alt="PHPinga"
+        style={{ maxHeight: '40vh' }}
+      />
+    </div>
+  )
+}

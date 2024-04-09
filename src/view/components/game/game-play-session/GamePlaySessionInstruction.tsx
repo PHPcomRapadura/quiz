@@ -15,21 +15,24 @@ export function GamePlaySessionInstruction (props: GameInstructionProps) {
   )
   return (
     <div>
-      <h1 className="text-center">{t('title')}</h1>
-      <div className="alert alert-primary">
-        {t('selected')} <strong>{game.description}</strong>
+      <div className="pt-1 pb-2">
+        <h1 className="text-center">{t('title')}</h1>
+        <div className="alert alert-primary">
+          {t('selected')} <strong>{game.description}</strong>
+        </div>
+        <p className="text-center">
+          {t('description', { timeout, total: game.questions.length })}
+        </p>
+        <h4>{t('greetings')}</h4>
       </div>
-      <p className="text-center">
-        {t('description', { timeout, total: game.questions.length })}
-      </p>
-      <h4>{t('greetings')}</h4>
-      <button
-        onClick={nextQuestion}
-        style={{ width: '100%', marginTop: '50px' }}
-        className="center-block btn btn-lg btn-primary"
-      >
-        {t('start')}
-      </button>
+      <div className="d-grid">
+        <button
+          onClick={nextQuestion}
+          className="btn btn-lg btn-primary"
+        >
+          {t('start')}
+        </button>
+      </div>
     </div>
   )
 }

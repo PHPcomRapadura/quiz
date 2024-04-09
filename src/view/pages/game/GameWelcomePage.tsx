@@ -5,7 +5,7 @@ import GameRepository from '../../../app/Domain/Game/GameRepository.ts'
 import Game from '../../../app/Domain/Game/Game.ts'
 
 import { useApp } from '../../hooks'
-import { Hydrated, Pending, Rejected, Resolved } from '../../components/general/Hydrated.tsx'
+import { Hydrated, HydratedStatus, On } from '../../components/general/Hydrated.tsx'
 import { Loading } from '../../components/general/Loading.tsx'
 import { Warning } from '../../components/general/Alert.tsx'
 
@@ -28,22 +28,22 @@ export function GameWelcomePage () {
         hidrate={() => gameRepository.paginate(1, 10)}
         onResolve={setGames}
       >
-        <Pending>
+        <On status={HydratedStatus.Pending}>
           <div className="py-3">
             <Loading label={t('pending')} />
           </div>
-        </Pending>
-        <Resolved>
+        </On>
+        <On status={HydratedStatus.Resolved}>
           <GameList games={games} />
-        </Resolved>
-        <Rejected>
+        </On>
+        <On status={HydratedStatus.Rejected}>
           <div className="py-2">
             <Warning
               strong={t('error')}
               message={t('rejected')}
             />
           </div>
-        </Rejected>
+        </On>
       </Hydrated>
     </div>
   )

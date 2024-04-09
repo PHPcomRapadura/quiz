@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { image } from '../../../config/assets.ts'
+import { Done } from '../../components/game/GameImage.tsx'
 
 export function GameEndPage () {
   const params = useParams()
@@ -11,24 +11,20 @@ export function GameEndPage () {
     { keyPrefix: 'pages.game.end' }
   )
   return (
-    <div
-      className="end"
-    >
-      <img
-        style={{ width: '80%' }}
-        className="center-block"
-        src={image('/phpinga.png')}
-        alt="PHPinga"
-      />
-      <h1 className="text-center">{t('title')}</h1>
-      <p className="text-center">{t('description')}</p>
-      <button
-        style={{ width: '100%', marginTop: '50px' }}
-        className="center-block btn btn-lg btn-primary"
-        onClick={() => navigate(`/game/${gameId}/play`)}
-      >
-        {t('restart')}
-      </button>
-    </div>
+    <>
+      <Done />
+      <div className="pt-1 pb-2">
+        <h1 className="text-center">{t('title')}</h1>
+        <p className="text-center">{t('description')}</p>
+      </div>
+      <div className="d-grid">
+        <button
+          className="btn btn-lg btn-primary"
+          onClick={() => navigate(`/game/${gameId}/play`)}
+        >
+          {t('restart')}
+        </button>
+      </div>
+    </>
   )
 }

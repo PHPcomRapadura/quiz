@@ -10,15 +10,18 @@ export function GamePlaySessionQuestionWrong ({ finishQuestion }: GameQuestionCo
   return (
     <>
       <Drink />
-      <h1 className="text-center"> {t('wrong.title')}</h1>
-      <p className="text-center">{t('wrong.description')}</p>
-      <button
-        style={{ width: '100%', marginTop: '50px' }}
-        className="center-block btn btn-lg btn-primary"
-        onClick={finishQuestion}
-      >
-        {t('next')}
-      </button>
+      <div className="pt-1 pb-2">
+        <h1 className="text-center"> {t('wrong.title')}</h1>
+        <p className="text-center">{t('wrong.description')}</p>
+      </div>
+      <div className="d-grid">
+        <button
+          className="btn btn-lg btn-primary"
+          onClick={finishQuestion}
+        >
+          {t('next')}
+        </button>
+      </div>
     </>
   )
 }

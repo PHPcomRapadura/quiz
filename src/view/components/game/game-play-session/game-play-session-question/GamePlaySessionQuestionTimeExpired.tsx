@@ -10,15 +10,18 @@ export function GamePlaySessionQuestionTimeExpired ({ finishQuestion }: GameQues
   return (
     <>
       <Drink />
-      <h1 className="text-center"> {t('expired.title')}</h1>
-      <p className="text-center">{t('expired.description')}</p>
-      <button
-        style={{ width: '100%', marginTop: '50px' }}
-        className="center-block btn btn-lg btn-primary"
-        onClick={finishQuestion}
-      >
-        {t('next')}
-      </button>
+      <div className="pt-1 pb-2">
+        <h1 className="text-center"> {t('expired.title')}</h1>
+        <p className="text-center">{t('expired.description')}</p>
+      </div>
+      <div className="d-grid">
+        <button
+          className="btn btn-lg btn-primary"
+          onClick={finishQuestion}
+        >
+          {t('next')}
+        </button>
+      </div>
     </>
   )
 }

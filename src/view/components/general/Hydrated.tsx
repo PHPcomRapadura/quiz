@@ -3,6 +3,7 @@ import { ReactNode, useEffect, useRef, useState } from 'react'
 
 export type HydrateElementProps = {
   children: ReactNode | ReactNode[]
+  status: HydratedStatus
 }
 
 export type HydrateProps = {
@@ -12,27 +13,21 @@ export type HydrateProps = {
   children: ReactNode | ReactNode[]
 }
 
-enum Status {
-  PENDING = 'Pending',
-  RESOLVED = 'Resolved',
-  REJECTED = 'Rejected'
+// eslint-disable-next-line react-refresh/only-export-components
+export enum HydratedStatus {
+  Pending = 'Pending',
+  Resolved = 'Resolved',
+  Rejected = 'Rejected'
 }
 
-export function Pending ({ children }: HydrateElementProps) {
-  return children
-}
-
-export function Resolved ({ children }: HydrateElementProps) {
-  return children
-}
-
-export function Rejected ({ children }: HydrateElementProps) {
+export function On ({ children }: HydrateElementProps) {
   return children
 }
 
 export function Hydrated ({ hidrate, onResolve, onReject, children }: HydrateProps) {
   const fetched = useRef(false)
-  const [status, setStatus] = useState(Status.PENDING)
+  const [status, setStatus] = useState(HydratedStatus.Pending)
+
   useEffect(() => {
     if (fetched.current) {
       return
@@ -42,22 +37,23 @@ export function Hydrated ({ hidrate, onResolve, onReject, children }: HydratePro
       try {
         const data = await hidrate()
         onResolve(data)
-        setStatus(Status.RESOLVED)
+        setStatus(HydratedStatus.Resolved)
       } catch (e) {
         console.error(e)
-        setStatus(Status.REJECTED)
+        setStatus(HydratedStatus.Rejected)
         if (onReject) {
           onReject(e)
         }
       }
     }
     fetchData()
-  }, [hidrate, onResolve])
+  }, [fetched, hidrate, onReject, onResolve])
+
   if (!children) {
     return null
   }
   if (Array.isArray(children)) {
-    return children.filter((child: any) => child.type.name === status)
+    return children.filter((child: any) => child.props.status === status)
   }
-  return (children as any).type.name === status ? children : null
+  return (children as any).props.status === status ? children : null
 }
