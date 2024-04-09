@@ -69,6 +69,7 @@ const resources = {
           end: {
             title: 'O jogo acabou!',
             description: 'Não está bêbado suficiente? Clique em "Começar de novo"!',
+            waiting: 'Recomeçar em {{timer}} segundos',
             restart: 'Começar de novo'
           }
         }

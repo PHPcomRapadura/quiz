@@ -41,6 +41,62 @@ export default function (): Game[] {
               text: '`isInteger`'
             }
           ]
+        },
+        {
+          id: 12,
+          text: 'Indique o resultado da seguinte expressão: \n\n block```$var = \'0\'; echo empty($var) ? \'Vazio\' : \'Tem conteúdo\';```block',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+          answers: [
+            {
+              correct: false,
+              createdAt: new Date(),
+              text: 'Dá erro: String to Integer convertion error'
+            },
+            {
+              correct: false,
+              createdAt: new Date(),
+              text: '`\'Tem conteúdo\'`'
+            },
+            {
+              correct: true,
+              createdAt: new Date(),
+              text: '`\'Vazio\'`'
+            },
+            {
+              correct: false,
+              createdAt: new Date(),
+              text: '`\'0\'`'
+            }
+          ]
+        },
+        {
+          id: 13,
+          text: 'Indique o resultado da seguinte expressão: \n\n block```$var = \'2015PHPinga\'; echo $var == 2015 ? \'Igual\' : \'Diferente\';```block',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+          answers: [
+            {
+              correct: false,
+              createdAt: new Date(),
+              text: 'Dá erro: String to Integer convertion error'
+            },
+            {
+              correct: true,
+              createdAt: new Date(),
+              text: '`\'Igual\'`'
+            },
+            {
+              correct: false,
+              createdAt: new Date(),
+              text: '`\'Diferente\'`'
+            },
+            {
+              correct: false,
+              createdAt: new Date(),
+              text: '`\'2015PHPinga\'`'
+            }
+          ]
         }
       ]
     }, {
@@ -333,62 +389,6 @@ export default function (): Game[] {
               correct: false,
               createdAt: new Date(),
               text: 'Com PHP Global Databases'
-            }
-          ]
-        },
-        {
-          id: 12,
-          text: 'Indique o resultado da seguinte expressão: \n\n block```$var = \'0\'; echo empty($var) ? \'Vazio\' : \'Tem conteúdo\';```block',
-          createdAt: new Date(),
-          updatedAt: new Date(),
-          answers: [
-            {
-              correct: false,
-              createdAt: new Date(),
-              text: 'Dá erro: String to Integer convertion error'
-            },
-            {
-              correct: false,
-              createdAt: new Date(),
-              text: '`\'Tem conteúdo\'`'
-            },
-            {
-              correct: true,
-              createdAt: new Date(),
-              text: '`\'Vazio\'`'
-            },
-            {
-              correct: false,
-              createdAt: new Date(),
-              text: '`\'0\'`'
-            }
-          ]
-        },
-        {
-          id: 13,
-          text: 'Indique o resultado da seguinte expressão: \n\n block```$var = \'2015PHPinga\'; echo $var == 2015 ? \'Igual\' : \'Diferente\';```block',
-          createdAt: new Date(),
-          updatedAt: new Date(),
-          answers: [
-            {
-              correct: false,
-              createdAt: new Date(),
-              text: 'Dá erro: String to Integer convertion error'
-            },
-            {
-              correct: true,
-              createdAt: new Date(),
-              text: '`\'Igual\'`'
-            },
-            {
-              correct: false,
-              createdAt: new Date(),
-              text: '`\'Diferente\'`'
-            },
-            {
-              correct: false,
-              createdAt: new Date(),
-              text: '`\'2015PHPinga\'`'
             }
           ]
         },

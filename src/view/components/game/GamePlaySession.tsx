@@ -29,6 +29,7 @@ export function GamePlaySession ({ game, onStart, onFinish }: GamePlaySessionPro
   const [status, setStatus] = useState<GamePlaySessionStatus>(GamePlaySessionStatus.WAITING)
   const [questions, setQuestions] = useState<Question[]>([])
   const [currentQuestion, setCurrentQuestion] = useState<Question | null>(null)
+  const [interaction, setInteraction] = useState<number>(0)
 
   const nextQuestion = () => {
     if (questions.length === 0) {
@@ -66,6 +67,7 @@ export function GamePlaySession ({ game, onStart, onFinish }: GamePlaySessionPro
       [AnswerStatus.TIME_EXPIRED]: () => console.log('Time expired!'),
     }
     actions[status]()
+    setInteraction(interaction + 1)
   }
 
   useEffect(() => {
@@ -96,8 +98,23 @@ export function GamePlaySession ({ game, onStart, onFinish }: GamePlaySessionPro
           answerQuestion={answerQuestion}
           nextQuestion={nextQuestion}
         />
-        <div className="pt-1">
-          <small>{game.questions.length - questions.length} / {game.questions.length}</small>
+        <div className="py-1">
+          <small>{game.questions.length - questions.length} / {game.questions.length} ({interaction})</small>
+          &nbsp;
+          {
+            game.questions.length - questions.length === game.questions.length ?
+              <span className="badge bg-success">&hearts;</span> :
+              interaction > (game.questions.length - questions.length) ?
+                <span className="badge bg-warning">&lambda;</span> :
+                ''
+          }
+        </div>
+        <div className="progress opacity-50">
+          <div
+            className="progress-bar bg-warning"
+            role="progressbar"
+            style={{ width: `${((game.questions.length - questions.length) / game.questions.length) * 100}%` }}
+          />
         </div>
       </Case>
       <Case value={GamePlaySessionStatus.FINISHED}>
