@@ -100,7 +100,7 @@ Muita gente correu pra gente chegar até aqui :heart:
 [![AGPL License](https://img.shields.io/badge/license-AGPL-blue.svg)](http://www.gnu.org/licenses/agpl-3.0)
 
 
-## 🚨 License
+## 🚨 Licença
 
 [MIT](https://choosealicense.com/licenses/mit/)
 
