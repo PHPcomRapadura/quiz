@@ -77,7 +77,7 @@ export default class HttpClient implements HttpClientContract {
     return headers
   }
 
-  protected configureBody (data: Data | null): Data | null {
+  protected configureBody (data: Data | null): unknown {
     return data
   }
 }

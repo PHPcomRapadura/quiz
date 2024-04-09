@@ -20,7 +20,7 @@ export default class JsonHttpClient extends HttpClient {
     return headers
   }
 
-  protected configureBody (data: Data | null): Data | null {
+  protected configureBody (data: Data | null): unknown {
     return JSON.stringify(data)
   }
 }

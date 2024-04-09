@@ -1,9 +1,9 @@
 export type Session = {
   username: string
   credential?: {
-    token: string,
-    refresh: string,
-    expiresAt: number | string | undefined,
+    token: string
+    refresh: string
+    expiresAt: number | string | undefined
     type: string
   }
   abilities?: string[]
