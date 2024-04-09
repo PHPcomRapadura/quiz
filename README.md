@@ -8,7 +8,7 @@ O Super Quizz é um projeto que permite que sejam inseridos jogos de forma simpl
 
 - [🎮 Super Quizz](#-super-quizz)
   - [📌 Conteúdo](#-conteúdo)
-  - [🗣 Introdução](#-introdução)
+  - [🍿 Introdução](#-introdução)
   - [✨ Tecnologias](#-tecnologias)
   - [🚀 Como começar](#-como-começar)
     - [🖥 Como contribuir](#-como-contribuir)
@@ -16,7 +16,7 @@ O Super Quizz é um projeto que permite que sejam inseridos jogos de forma simpl
   - [🗣 Escudos](#-escudos)
   - [🚨 Licença](#-licença)
 
-## 🗣 Introdução
+## 🍿 Introdução
 
 Bem-vindo ao Super Quizz: o jogo de perguntas definitivo!
 
@@ -38,7 +38,7 @@ Dê um toque especial à sua partida com uma variedade de modos de jogo emociona
 
 Junte-se a uma comunidade vibrante de jogadores dedicados e entusiastas do conhecimento. Compartilhe dicas, desafie amigos e participe de torneios emocionantes. No Super Quizz, o aprendizado é uma jornada coletiva, e cada partida é uma oportunidade para expandir horizontes e conectar-se com pessoas de todo o mundo.
 
-#### Pronto para o Desafio?
+#### 🗣 Pronto para o Desafio?
 
 Prepare-se para uma aventura intelectual como nenhuma outra. Com o Super Quizz, a diversão está sempre garantida, seja sozinho, com amigos ou em competições épicas. Você tem o que é preciso para se tornar o mestre das perguntas? Aventure-se agora e descubra!
 
