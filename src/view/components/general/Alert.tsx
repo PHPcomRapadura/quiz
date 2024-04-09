@@ -1,7 +1,7 @@
-export function Warning ({ strong = '', messsage = ''}) {
+export function Warning ({ strong = '', message = 'Whops!'}) {
   return (
     <div className="alert alert-dismissible alert-warning">
-      <strong>{strong}</strong> {messsage}
+      {strong && (<strong>{strong}</strong>)} {message}
     </div>
   )
 }

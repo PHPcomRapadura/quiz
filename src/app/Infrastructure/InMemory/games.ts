@@ -41,7 +41,15 @@ export default function (): Game[] {
               text: '`isInteger`'
             }
           ]
-        },
+        }
+      ]
+    }, {
+      id: 2,
+      description: 'Avançado',
+      author: 'william@phpcomrapadura.org.br',
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      questions: [
         {
           id: 2,
           text: 'Qual método pode-se usar como construtor de uma classe?',
@@ -69,15 +77,7 @@ export default function (): Game[] {
               text: '`construtor__`'
             }
           ]
-        }
-      ]
-    }, {
-      id: 2,
-      description: 'Avançado',
-      author: 'william@phpcomrapadura.org.br',
-      createdAt: new Date(),
-      updatedAt: new Date(),
-      questions: [
+        },
         {
           id: 3,
           text: 'Utilizando banco de dados MySQL, qual a função para enviar uma consulta SQL ao banco de dados ativo?',

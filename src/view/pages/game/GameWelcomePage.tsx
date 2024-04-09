@@ -40,7 +40,7 @@ export function GameWelcomePage () {
           <div className="py-2">
             <Warning
               strong={t('error')}
-              messsage={t('rejected')}
+              message={t('rejected')}
             />
           </div>
         </Rejected>

@@ -7,6 +7,9 @@ import Game from '../../../app/Domain/Game/Game.ts'
 
 import { GamePlaySessionInstruction } from './game-play-session/GamePlaySessionInstruction.tsx'
 import { GamePlaySessionQuestion, GameQuestionAnswerQuestion } from './game-play-session/GamePlaySessionQuestion.tsx'
+import { Case, Switch } from '../general/Switch.tsx'
+import { Loading } from '../general/Loading.tsx'
+import { Warning } from '../general/Alert.tsx'
 
 export type GamePlaySessionProps = {
   game: Game,
@@ -14,8 +17,16 @@ export type GamePlaySessionProps = {
   onFinish?: () => void
 }
 
+enum GamePlaySessionStatus {
+  WAITING,
+  READY,
+  STARTED,
+  FINISHED,
+}
+
 export function GamePlaySession ({ game, onStart, onFinish }: GamePlaySessionProps) {
-  const timeout = 1000000
+  const timeout = Number(import.meta.env.VITE_GAME_QUESTION_TIMEOUT || 30)
+  const [status, setStatus] = useState<GamePlaySessionStatus>(GamePlaySessionStatus.WAITING)
   const [questions, setQuestions] = useState<Question[]>([])
   const [currentQuestion, setCurrentQuestion] = useState<Question | null>(null)
 
@@ -30,13 +41,15 @@ export function GamePlaySession ({ game, onStart, onFinish }: GamePlaySessionPro
   }
 
   const startGame = () => {
-    nextQuestion()
     onStart && onStart()
+    nextQuestion()
+    setStatus(GamePlaySessionStatus.STARTED)
   }
 
   const finishGame = () => {
     setCurrentQuestion(null)
     onFinish && onFinish()
+    setStatus(GamePlaySessionStatus.FINISHED)
   }
 
   const answerQuestion: GameQuestionAnswerQuestion = (status) => {
@@ -56,28 +69,37 @@ export function GamePlaySession ({ game, onStart, onFinish }: GamePlaySessionPro
   }
 
   useEffect(() => {
-    if (questions.length > 0) {
+    if (status !== GamePlaySessionStatus.WAITING) {
       return
     }
     setQuestions(shuffle<Question>(game.questions))
-  }, [game, questions])
+    setStatus(GamePlaySessionStatus.READY)
+  }, [status, game, questions])
 
-  return !currentQuestion ?
-    <GamePlaySessionInstruction
-      timeout={timeout}
-      game={game}
-      nextQuestion={startGame}
-    /> :
-    <>
-      <GamePlaySessionQuestion
-        timeout={timeout}
-        text={currentQuestion.text}
-        answers={currentQuestion.answers}
-        answerQuestion={answerQuestion}
-        nextQuestion={nextQuestion}
-      />
-      <div className="pt-1">
-        <small>{game.questions.length - questions.length} / {game.questions.length}</small>
-      </div>
-    </>
+  return (
+    <Switch condition={status}>
+      <Case value={GamePlaySessionStatus.WAITING}>
+        <Loading />
+      </Case>
+      <Case value={GamePlaySessionStatus.READY}>
+        <GamePlaySessionInstruction
+          timeout={timeout}
+          game={game}
+          nextQuestion={startGame}
+        />
+      </Case>
+      <Case value={GamePlaySessionStatus.STARTED}>
+        <GamePlaySessionQuestion
+          timeout={timeout}
+          text={currentQuestion?.text || ''}
+          answers={currentQuestion?.answers || []}
+          answerQuestion={answerQuestion}
+          nextQuestion={nextQuestion}
+        />
+      </Case>
+      <Case value={GamePlaySessionStatus.FINISHED}>
+        <Warning />
+      </Case>
+    </Switch>
+  )
 }
