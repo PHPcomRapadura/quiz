@@ -7,6 +7,71 @@
     "updatedAt": "2024-04-05 04:14:13.951247+00",
     "questions": [
       {
+        "id": 5,
+        "text": "Com relação as funções `str_replace()`, `str_ireplace()` e `str_casereplace()`, marque a alternativa correta?",
+        "createdAt": "2024-04-05 04:14:13.951247+00",
+        "updatedAt": "2024-04-05 04:14:13.951247+00",
+        "answers": [
+          {
+            "correct": false,
+            "createdAt": "2024-04-05 04:14:13.951247+00",
+            "text": "Não há diferença entre elas"
+          },
+          {
+            "correct": false,
+            "createdAt": "2024-04-05 04:14:13.951247+00",
+            "text": "`str_ireplace` e `str_casereplace` não existem"
+          },
+          {
+            "correct": false,
+            "createdAt": "2024-04-05 04:14:13.951247+00",
+            "text": "`str_ireplace` e `str_casereplace` são para substituir caracteres em strings com case insensitive"
+          },
+          {
+            "correct": true,
+            "createdAt": "2024-04-05 04:14:13.951247+00",
+            "text": "`str_ireplace` é para substituir caracteres em strings com case insensitive e `str_casereplace` não existe"
+          }
+        ]
+      },
+      {
+        "id": 13,
+        "text": "Indique o resultado da seguinte expressão: \n\n block```$var = '2015PHPinga'; echo $var == 2015 ? 'Igual' : 'Diferente';```block",
+        "createdAt": "2024-04-05 04:14:13.951247+00",
+        "updatedAt": "2024-04-05 04:14:13.951247+00",
+        "answers": [
+          {
+            "correct": false,
+            "createdAt": "2024-04-05 04:14:13.951247+00",
+            "text": "Dá erro: String to Integer convertion error"
+          },
+          {
+            "correct": true,
+            "createdAt": "2024-04-05 04:14:13.951247+00",
+            "text": "`'Igual'`"
+          },
+          {
+            "correct": false,
+            "createdAt": "2024-04-05 04:14:13.951247+00",
+            "text": "`'Diferente'`"
+          },
+          {
+            "correct": false,
+            "createdAt": "2024-04-05 04:14:13.951247+00",
+            "text": "`'2015PHPinga'`"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "description": "Avançado",
+    "author": "william@phpcomrapadura.org.br",
+    "createdAt": "2024-04-05 04:14:13.951247+00",
+    "updatedAt": "2024-04-05 04:14:13.951247+00",
+    "questions": [
+      {
         "id": 1,
         "text": "Qual das funções pode ser usada para verificar se um número é inteiro?",
         "createdAt": "2024-04-05 04:14:13.951247+00",
@@ -67,43 +132,6 @@
           }
         ]
       },
-      {
-        "id": 13,
-        "text": "Indique o resultado da seguinte expressão: \n\n block```$var = '2015PHPinga'; echo $var == 2015 ? 'Igual' : 'Diferente';```block",
-        "createdAt": "2024-04-05 04:14:13.951247+00",
-        "updatedAt": "2024-04-05 04:14:13.951247+00",
-        "answers": [
-          {
-            "correct": false,
-            "createdAt": "2024-04-05 04:14:13.951247+00",
-            "text": "Dá erro: String to Integer convertion error"
-          },
-          {
-            "correct": true,
-            "createdAt": "2024-04-05 04:14:13.951247+00",
-            "text": "`'Igual'`"
-          },
-          {
-            "correct": false,
-            "createdAt": "2024-04-05 04:14:13.951247+00",
-            "text": "`'Diferente'`"
-          },
-          {
-            "correct": false,
-            "createdAt": "2024-04-05 04:14:13.951247+00",
-            "text": "`'2015PHPinga'`"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": 2,
-    "description": "Avançado",
-    "author": "william@phpcomrapadura.org.br",
-    "createdAt": "2024-04-05 04:14:13.951247+00",
-    "updatedAt": "2024-04-05 04:14:13.951247+00",
-    "questions": [
       {
         "id": 2,
         "text": "Qual método pode-se usar como construtor de uma classe?",
@@ -185,34 +213,6 @@
             "correct": false,
             "createdAt": "2024-04-05 04:14:13.951247+00",
             "text": "`stricmp()`"
-          }
-        ]
-      },
-      {
-        "id": 5,
-        "text": "Com relação as funções `str_replace()`, `str_ireplace()` e `str_casereplace()`, marque a alternativa correta?",
-        "createdAt": "2024-04-05 04:14:13.951247+00",
-        "updatedAt": "2024-04-05 04:14:13.951247+00",
-        "answers": [
-          {
-            "correct": false,
-            "createdAt": "2024-04-05 04:14:13.951247+00",
-            "text": "Não há diferença entre elas"
-          },
-          {
-            "correct": false,
-            "createdAt": "2024-04-05 04:14:13.951247+00",
-            "text": "`str_ireplace` e `str_casereplace` não existem"
-          },
-          {
-            "correct": false,
-            "createdAt": "2024-04-05 04:14:13.951247+00",
-            "text": "`str_ireplace` e `str_casereplace` são para substituir caracteres em strings com case insensitive"
-          },
-          {
-            "correct": true,
-            "createdAt": "2024-04-05 04:14:13.951247+00",
-            "text": "`str_ireplace` é para substituir caracteres em strings com case insensitive e `str_casereplace` não existe"
           }
         ]
       },

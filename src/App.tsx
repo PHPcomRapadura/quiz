@@ -16,7 +16,7 @@ import { GameWelcomePage } from './view/pages/game/GameWelcomePage.tsx'
 import { GamePlayPage } from './view/pages/game/GamePlayPage.tsx'
 import { GameEndPage } from './view/pages/game/GameEndPage.tsx'
 // session
-import { PrivatePage } from './view/pages/PrivatePage'
+import { DashboardPage } from './view/pages/DashboardPage.tsx'
 import { SignInPage } from './view/pages/SignInPage.tsx'
 
 export default function App () {
@@ -51,8 +51,8 @@ export default function App () {
             element={<ProtectPage />}
           >
             <Route
-              path="/private"
-              element={<PrivatePage />}
+              path="/dashboard"
+              element={<DashboardPage />}
             />
           </Route>
         </Route>
