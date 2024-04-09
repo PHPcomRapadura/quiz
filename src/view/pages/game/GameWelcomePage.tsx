@@ -5,7 +5,7 @@ import GameRepository from '../../../app/Domain/Game/GameRepository.ts'
 import Game from '../../../app/Domain/Game/Game.ts'
 
 import { useApp } from '../../hooks'
-import { Hydrated, HydratedStatus, On } from '../../components/general/Hydrated.tsx'
+import { Async, AsyncStatus, On } from '../../components/general/Async.tsx'
 import { Loading } from '../../components/general/Loading.tsx'
 import { Warning } from '../../components/general/Alert.tsx'
 
@@ -24,19 +24,19 @@ export function GameWelcomePage () {
     <div className="py-3 px-4 rounded">
       <h1 className="text-center">{t('title')}</h1>
       <p className="text-center">{t('description')}</p>
-      <Hydrated
-        hidrate={() => gameRepository.paginate(1, 10)}
+      <Async
+        using={() => gameRepository.paginate(1, 10)}
         onResolve={setGames}
       >
-        <On status={HydratedStatus.Pending}>
+        <On status={AsyncStatus.Pending}>
           <div className="py-3">
             <Loading label={t('pending')} />
           </div>
         </On>
-        <On status={HydratedStatus.Resolved}>
+        <On status={AsyncStatus.Resolved}>
           <GameList games={games} />
         </On>
-        <On status={HydratedStatus.Rejected}>
+        <On status={AsyncStatus.Rejected}>
           <div className="py-2">
             <Warning
               strong={t('error')}
@@ -44,7 +44,7 @@ export function GameWelcomePage () {
             />
           </div>
         </On>
-      </Hydrated>
+      </Async>
     </div>
   )
 }

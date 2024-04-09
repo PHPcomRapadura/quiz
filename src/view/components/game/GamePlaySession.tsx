@@ -96,6 +96,9 @@ export function GamePlaySession ({ game, onStart, onFinish }: GamePlaySessionPro
           answerQuestion={answerQuestion}
           nextQuestion={nextQuestion}
         />
+        <div className="pt-1">
+          <small>{game.questions.length - questions.length} / {game.questions.length}</small>
+        </div>
       </Case>
       <Case value={GamePlaySessionStatus.FINISHED}>
         <Warning />

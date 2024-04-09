@@ -30,7 +30,7 @@ export function GamePlaySessionQuestionUnanswered (props: GameQuestionOptionsPro
 
   return (
     <div className="GamePlaySessionQuestionUnanswered">
-      <div className="card pb-2">
+      <div className="card mb-2">
         <div className="card-header">
           <h4>
             <Markdown
@@ -72,6 +72,7 @@ export function GamePlaySessionQuestionUnanswered (props: GameQuestionOptionsPro
           </span>
         </div>
       </div>
+
       <div className="d-grid">
         <button
           className="btn btn-lg btn-primary"

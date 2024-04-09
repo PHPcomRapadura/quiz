@@ -3,18 +3,18 @@ import { ReactNode, useEffect, useRef, useState } from 'react'
 
 export type HydrateElementProps = {
   children: ReactNode | ReactNode[]
-  status: HydratedStatus
+  status: AsyncStatus
 }
 
 export type HydrateProps = {
-  hidrate: () => Promise<any>
+  using: () => Promise<any>
   onResolve: (data: any) => void
   onReject?: (data: any) => void
   children: ReactNode | ReactNode[]
 }
 
 // eslint-disable-next-line react-refresh/only-export-components
-export enum HydratedStatus {
+export enum AsyncStatus {
   Pending = 'Pending',
   Resolved = 'Resolved',
   Rejected = 'Rejected'
@@ -24,9 +24,9 @@ export function On ({ children }: HydrateElementProps) {
   return children
 }
 
-export function Hydrated ({ hidrate, onResolve, onReject, children }: HydrateProps) {
+export function Async ({ using, onResolve, onReject, children }: HydrateProps) {
   const fetched = useRef(false)
-  const [status, setStatus] = useState(HydratedStatus.Pending)
+  const [status, setStatus] = useState(AsyncStatus.Pending)
 
   useEffect(() => {
     if (fetched.current) {
@@ -35,19 +35,19 @@ export function Hydrated ({ hidrate, onResolve, onReject, children }: HydratePro
     const fetchData = async () => {
       fetched.current = true
       try {
-        const data = await hidrate()
+        const data = await using()
         onResolve(data)
-        setStatus(HydratedStatus.Resolved)
+        setStatus(AsyncStatus.Resolved)
       } catch (e) {
         console.error(e)
-        setStatus(HydratedStatus.Rejected)
+        setStatus(AsyncStatus.Rejected)
         if (onReject) {
           onReject(e)
         }
       }
     }
     fetchData()
-  }, [fetched, hidrate, onReject, onResolve])
+  }, [fetched, using, onReject, onResolve])
 
   if (!children) {
     return null
