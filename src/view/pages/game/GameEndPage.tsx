@@ -35,7 +35,7 @@ export function GameEndPage () {
       <div className="d-grid">
         <button
           className="btn btn-lg btn-primary"
-          onClick={() => navigate(`/game/${gameId}/play`)}
+          onClick={() => navigate(`/games/${gameId}/play`)}
           disabled={timer > 0}
         >
           {timer > 0 ? t('waiting', { timer }) : t('restart')}

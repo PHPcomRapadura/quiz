@@ -18,7 +18,7 @@ export function GameList ({ games }: { games: Game[] }) {
           <div className={styles.GameList}>
             {games.map((game: Game) => (
               <AlertPrimary key={game.id}>
-                <Link to={`/game/${game.id}/play`}>
+                <Link to={`/games/${game.id}/play`}>
                   {game.description}
                 </Link>
               </AlertPrimary>

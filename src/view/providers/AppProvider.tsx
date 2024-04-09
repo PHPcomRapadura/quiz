@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 import { AppContext } from '../components/app/AppContext'
-import { AppContextContract, Session } from '../types'
+import { AppContextContract, Session } from '../contracts.ts'
 import { authManagerFactory } from './auth-manager-factory.ts'
 import dependencies from '../../config/dependencies.ts'
 
@@ -10,7 +10,11 @@ export function AppProvider ({ children }: { children: React.ReactNode }) {
 
   const [session, setSession] = useState<Session>(null)
 
-  const auth = authManagerFactory(setSession)
+  const updateAuthSession = (session: Session) => {
+    setSession(session)
+  }
+
+  const auth = authManagerFactory(updateAuthSession)
 
   const value: AppContextContract = { container, session, auth }
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>

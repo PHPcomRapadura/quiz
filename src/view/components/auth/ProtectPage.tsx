@@ -1,5 +1,5 @@
 import { Navigate, Outlet, useLocation } from 'react-router-dom'
-import { useApp } from '../../hooks'
+import { useApp } from '../../hooks/useApp.ts'
 import { ReactNode } from 'react'
 
 export function ProtectPage ({ children }: { children?: ReactNode | ReactNode[] }) {
@@ -9,7 +9,7 @@ export function ProtectPage ({ children }: { children?: ReactNode | ReactNode[] 
     return children ? children : <Outlet />
   }
   return <Navigate
-    to="/login"
+    to="/auth/sign-in"
     state={{ from }}
     replace
   />

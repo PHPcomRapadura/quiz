@@ -1,30 +1,28 @@
-import { Session } from '../types'
+import { Session } from '../contracts.ts'
 import { container } from 'tsyringe'
 import { AuthService } from '../../app/Application/AuthService.ts'
 
-export function authManagerFactory (setSession: (session: Session) => void) {
+export function authManagerFactory (updateAuthSession: (session: Session) => void) {
   const authService = container.resolve<AuthService>('AuthService')
   return {
     async signIn (username: string, password: string): Promise<Session> {
-      const content = await authService.signIn(username, password)
-      const data = content.data as Session
-      if (content.status !== 'success' || !data) {
-        return null
-      }
-      const user: Session = {
-        abilities: data.abilities,
-        username: username,
-      }
-      setSession(user)
-      return user
+      const session = await authService.signIn(username, password)
+      updateAuthSession(session)
+      return session
     },
     async signOut (): Promise<boolean> {
-      const content = await authService.signOut()
-      if (content.status !== 'success') {
+      const done = await authService.signOut()
+      if (!done) {
         return false
       }
-      setSession(null)
+      updateAuthSession(null)
       return true
+    },
+    async restore (): Promise<Session> {
+      const session = await authService.restore()
+      console.log(session)
+      updateAuthSession(session)
+      return session
     }
   }
 }

@@ -1,9 +1,11 @@
-import { Content } from '../Contracts.ts'
+import { Session } from './Auth.ts'
 
 export default interface AuthRepository {
-  signInWithOtp (email: string): Promise<Content>
+  signInWithOtp (email: string): Promise<Session>
 
-  signIn (email: string, password: string): Promise<Content>
+  signIn (email: string, password: string): Promise<Session>
 
-  signOut (): Promise<Content>
+  signOut (): Promise<boolean>
+
+  restore (): Promise<Session>
 }

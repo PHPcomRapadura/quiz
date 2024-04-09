@@ -1,13 +1,17 @@
 import AuthRepository from '../../Domain/Auth/AuthRepository.ts'
 import { Content } from '../../Domain/Contracts.ts'
-import { HttpClientDriverContract } from './Contracts.ts'
-import HttpClientFactory from './HttpClientFactory.ts'
+import { HttpClientDriverContract } from '../Http/Contracts.ts'
+import HttpClientFactory from '../Http/HttpClientFactory.ts'
 
-export default class JsonHttpAuthRepository implements AuthRepository {
+export default class HttpAuthRepository implements AuthRepository {
   private http: HttpClientDriverContract
 
-  constructor () {
-    this.http = HttpClientFactory()
+  constructor (factory: HttpClientFactory) {
+    this.http = factory.make()
+  }
+
+  static build () {
+    return new this(new HttpClientFactory())
   }
 
   async signInWithOtp (email: string): Promise<Content> {

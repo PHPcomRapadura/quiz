@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 import GameRepository from '../../../app/Domain/Game/GameRepository.ts'
 import Game from '../../../app/Domain/Game/Game.ts'
 
-import { useApp } from '../../hooks'
+import { useApp } from '../../hooks/useApp.ts'
 import { Async, AsyncStatus, On } from '../../components/general/Async.tsx'
 import { Loading } from '../../components/general/Loading.tsx'
 import { AlertWarning } from '../../components/general/Alert.tsx'

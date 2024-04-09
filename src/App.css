@@ -13,10 +13,10 @@
 
 .GamePlaySessionQuestionUnanswered > .card pre {
     overflow: visible;
-    white-space: pre-wrap;       /* css-3 */
-    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
-    white-space: -o-pre-wrap;    /* Opera 7 */
-    word-wrap: break-word;       /* Internet Explorer 5.5+ */
+    white-space: pre-wrap; /* css-3 */
+    white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+    white-space: -o-pre-wrap; /* Opera 7 */
+    word-wrap: break-word; /* Internet Explorer 5.5+ */
 }
 
 .GamePlaySessionQuestionUnanswered > .card > .card-header code {
@@ -29,4 +29,19 @@
 
 main .btn.btn-primary {
     box-shadow: rgba(64, 60, 67, 0.4) 1px 2px 4px 1px !important;
+}
+
+main input[type="text"], input[type="password"] {
+    background-color: #ffffff;
+    color: #5c5c5c;
+}
+
+input[type="text"]:focus, input[type="password"]:focus {
+    color: #5c5c5c;
+    background-color: #ffffff;
+    border: 1px solid #a8a8a8;
+}
+
+input[type="text"]::placeholder, input[type="password"]::placeholder {
+    color: #c5c5c5;
 }

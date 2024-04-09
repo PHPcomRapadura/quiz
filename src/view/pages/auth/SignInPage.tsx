@@ -1,25 +1,45 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useApp } from '../hooks'
-import { AlertDanger } from '../components/general/Alert.tsx'
+import { useApp } from '../../hooks/useApp.ts'
+import { AlertDanger } from '../../components/general/Alert.tsx'
+import { mode } from '../../../config/env.ts'
 
 export function SignInPage () {
-  const app = useApp()
+  const { auth, session } = useApp()
   const navigate = useNavigate()
+
   const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
+
+  if (session) {
+    navigate('/dashboard')
+    return
+  }
+
+  const type = mode() === 'supabase' ? 'otp' : 'password'
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     setError('')
+    setLoading(true)
     const form = new FormData(event.currentTarget)
     const username = form.get('username') as string
     const password = form.get('password') as string
-    const signed = await app.auth.signIn(username, password)
-    if (!signed) {
-      setError('Usuário e/ou senha inválidos')
-      return
+    try {
+      const signed = await auth.signIn(username, type === 'password' ? password : null)
+      if (signed?.credential) {
+        navigate('/dashboard')
+        return
+      }
+      navigate('/auth/otp')
+    } catch (error) {
+        setError('Usuário e/ou senha inválidos')
+        return
+    } finally {
+      setLoading(false)
     }
-    navigate('/dashboard')
   }
+
   return <>
     <h4>Entrar</h4>
 
@@ -48,25 +68,29 @@ export function SignInPage () {
           </small>
         </div>
 
-        <div>
-          <label
-            htmlFor="password"
-            className="form-label mt-2"
-          >
-            Senha
-          </label>
-          <input
-            type="password"
-            name="password"
-            className="form-control"
-            id="password"
-            placeholder="Password"
-            autoComplete="off"
-          />
-        </div>
+        {
+          type === 'password' &&
+          <div>
+            <label
+              htmlFor="password"
+              className="form-label mt-2"
+            >
+              Senha
+            </label>
+            <input
+              type="password"
+              name="password"
+              className="form-control"
+              id="password"
+              placeholder="Password"
+              autoComplete="off"
+            />
+          </div>
+        }
 
         <div className="my-3">
           <button
+            disabled={loading}
             type="submit"
             className="btn btn-primary"
           >

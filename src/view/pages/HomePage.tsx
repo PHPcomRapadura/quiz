@@ -30,7 +30,7 @@ export function HomePage () {
       </p>
       <Link
         className="btn btn-lg btn-primary"
-        to="/game"
+        to="/games"
         role="button"
       >
         {t('callToAction')}

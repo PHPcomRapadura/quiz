@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next'
 import GameRepository from '../../../app/Domain/Game/GameRepository.ts'
 import Game from '../../../app/Domain/Game/Game.ts'
 
-import { useApp } from '../../hooks'
+import { useApp } from '../../hooks/useApp.ts'
 import { Async, AsyncStatus, On } from '../../components/general/Async.tsx'
 import { Loading } from '../../components/general/Loading.tsx'
 import { AlertWarning } from '../../components/general/Alert.tsx'
@@ -38,7 +38,7 @@ export function GamePlayPage () {
 
   const onReject = (error: Error) => {
     console.error(error)
-    return navigate(`/game/${gameId}/not-found`)
+    return navigate(`/games/${gameId}/not-found`)
   }
 
   return (
@@ -55,7 +55,7 @@ export function GamePlayPage () {
       <On status={AsyncStatus.Resolved}>
         <GamePlaySession
           game={game}
-          onFinish={() => navigate(`/game/${gameId}/end`)}
+          onFinish={() => navigate(`/games/${gameId}/end`)}
         />
       </On>
       <On status={AsyncStatus.Rejected}>

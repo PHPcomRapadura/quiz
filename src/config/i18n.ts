@@ -9,9 +9,10 @@ const resources = {
     default: {
       layouts: {
         root: {
-          brand: 'Super Quizzz',
+          brand: 'Super Quizz',
           play: 'Jogar',
           signIn: 'Entrar',
+          myAccount: 'Minha Conta',
           copyright: '© PHP com Rapadura'
         }
       },

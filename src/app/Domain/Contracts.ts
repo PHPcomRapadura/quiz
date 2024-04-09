@@ -10,4 +10,4 @@ export interface Content {
   message?: string
 }
 
-export type Data = Record<string, unknown>
+export type Data = Record<string, unknown> | string | null

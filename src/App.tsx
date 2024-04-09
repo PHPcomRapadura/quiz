@@ -17,7 +17,8 @@ import { GamePlayPage } from './view/pages/game/GamePlayPage.tsx'
 import { GameEndPage } from './view/pages/game/GameEndPage.tsx'
 // session
 import { DashboardPage } from './view/pages/DashboardPage.tsx'
-import { SignInPage } from './view/pages/SignInPage.tsx'
+import { SignInPage } from './view/pages/auth/SignInPage.tsx'
+import { WaitOneTimePassword } from './view/pages/auth/WaitOneTimePassword.tsx'
 
 export default function App () {
   return (
@@ -32,20 +33,24 @@ export default function App () {
             element={<HomePage />}
           />
           <Route
-            path="/game"
+            path="/games"
             element={<GameWelcomePage />}
           />
           <Route
-            path="/game/:id/play"
+            path="/games/:id/play"
             element={<GamePlayPage />}
           />
           <Route
-            path="/game/:id/end"
+            path="/games/:id/end"
             element={<GameEndPage />}
           />
           <Route
-            path="/sign-in"
+            path="/auth/sign-in"
             element={<SignInPage />}
+          />
+          <Route
+            path="/auth/otp"
+            element={<WaitOneTimePassword />}
           />
           <Route
             element={<ProtectPage />}
