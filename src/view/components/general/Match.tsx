@@ -15,7 +15,7 @@ export type SwitchProps = {
   children: ReactNode[]
 }
 
-export function Switch (props: SwitchProps) {
+export function Match (props: SwitchProps) {
   const { condition, children } = props
   return children.find((child: any) => child.props.value === condition)
 }

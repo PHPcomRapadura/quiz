@@ -7,7 +7,7 @@ import Game from '../../../app/Domain/Game/Game.ts'
 
 import { GamePlaySessionInstruction } from './game-play-session/GamePlaySessionInstruction.tsx'
 import { GamePlaySessionQuestion, GameQuestionAnswerQuestion } from './game-play-session/GamePlaySessionQuestion.tsx'
-import { Case, Switch } from '../general/Switch.tsx'
+import { Case, Match } from '../general/Match.tsx'
 import { Loading } from '../general/Loading.tsx'
 import { AlertWarning } from '../general/Alert.tsx'
 
@@ -79,7 +79,7 @@ export function GamePlaySession ({ game, onStart, onFinish }: GamePlaySessionPro
   }, [status, game, questions])
 
   return (
-    <Switch condition={status}>
+    <Match condition={status}>
       <Case value={GamePlaySessionStatus.WAITING}>
         <Loading />
       </Case>
@@ -120,6 +120,6 @@ export function GamePlaySession ({ game, onStart, onFinish }: GamePlaySessionPro
       <Case value={GamePlaySessionStatus.FINISHED}>
         <AlertWarning />
       </Case>
-    </Switch>
+    </Match>
   )
 }

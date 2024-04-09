@@ -4,7 +4,7 @@ import Answer from '../../../../app/Domain/Game/Answer.ts'
 import { shuffle } from '../../../../app/Domain/Util.ts'
 import AnswerStatus from '../../../../app/Domain/Game/AnswerStatus.ts'
 
-import { Case, Switch } from '../../general/Switch.tsx'
+import { Case, Match } from '../../general/Match.tsx'
 
 import {
   GamePlaySessionQuestionCorrect,
@@ -77,10 +77,8 @@ export function GamePlaySessionQuestion (props: GameQuestionProps) {
 
   return (
     <>
-      <Switch condition={status}>
-        <Case
-          value={AnswerStatus.UNANSWERED}
-        >
+      <Match condition={status}>
+        <Case value={AnswerStatus.UNANSWERED}>
           <GamePlaySessionQuestionUnanswered
             text={text}
             options={options}
@@ -100,7 +98,7 @@ export function GamePlaySessionQuestion (props: GameQuestionProps) {
         <Case value={AnswerStatus.CORRECT}>
           <GamePlaySessionQuestionCorrect finishQuestion={finishQuestion} />
         </Case>
-      </Switch>
+      </Match>
     </>
   )
 }

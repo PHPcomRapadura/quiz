@@ -57,14 +57,14 @@ export default function App () {
             path="/auth/otp"
             element={<WaitOneTimePassword />}
           />
+        </Route>
+        <Route
+          element={<ProtectPage />}
+        >
           <Route
-            element={<ProtectPage />}
-          >
-            <Route
-              path="/dashboard"
-              element={<DashboardPage />}
-            />
-          </Route>
+            path="/dashboard"
+            element={<DashboardPage />}
+          />
         </Route>
       </Routes>
     </AppProvider>
