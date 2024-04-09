@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import Game from '../../../../app/Domain/Game/Game.ts'
+import { AlertPrimary } from '../../general/Alert.tsx'
 
 export type GameInstructionProps = {
   timeout: number,
@@ -17,9 +18,9 @@ export function GamePlaySessionInstruction (props: GameInstructionProps) {
     <div>
       <div className="pt-1 pb-2">
         <h1 className="text-center">{t('title')}</h1>
-        <div className="alert alert-primary">
+        <AlertPrimary>
           {t('selected')} <strong>{game.description}</strong>
-        </div>
+        </AlertPrimary>
         <p className="text-center">
           {t('description', { timeout, total: game.questions.length })}
         </p>

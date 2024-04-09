@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useApp } from '../hooks'
+import { AlertDanger } from '../components/general/Alert.tsx'
 
 export function SignInPage () {
   const app = useApp()
@@ -73,9 +74,9 @@ export function SignInPage () {
           </button>
         </div>
         {error && (
-          <div className="alert alert-danger text-light-emphasis">
-            {error}
-          </div>
+          <AlertDanger>
+            <span className="text-light-emphasis">{error}</span>
+          </AlertDanger>
         )}
       </form>
     </div>

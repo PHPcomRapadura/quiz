@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
 import styles from './game-list/index.module.css'
+import { AlertPrimary } from '../general/Alert.tsx'
 
 export function GameList ({ games }: { games: Game[] }) {
   const { t } = useTranslation(
@@ -16,17 +17,14 @@ export function GameList ({ games }: { games: Game[] }) {
         games.length > 0 ?
           <div className={styles.GameList}>
             {games.map((game: Game) => (
-              <div
-                key={game.id}
-                className="alert alert-primary"
-              >
+              <AlertPrimary key={game.id}>
                 <Link
                   className="text-light-emphasis"
                   to={`/game/${game.id}/play`}
                 >
                   {game.description}
                 </Link>
-              </div>
+              </AlertPrimary>
             ))}
           </div> :
           <small className="fw-lighter">{t('empty')}</small>

@@ -9,7 +9,7 @@ import { GamePlaySessionInstruction } from './game-play-session/GamePlaySessionI
 import { GamePlaySessionQuestion, GameQuestionAnswerQuestion } from './game-play-session/GamePlaySessionQuestion.tsx'
 import { Case, Switch } from '../general/Switch.tsx'
 import { Loading } from '../general/Loading.tsx'
-import { Warning } from '../general/Alert.tsx'
+import { AlertWarning } from '../general/Alert.tsx'
 
 export type GamePlaySessionProps = {
   game: Game,
@@ -118,7 +118,7 @@ export function GamePlaySession ({ game, onStart, onFinish }: GamePlaySessionPro
         </div>
       </Case>
       <Case value={GamePlaySessionStatus.FINISHED}>
-        <Warning />
+        <AlertWarning />
       </Case>
     </Switch>
   )
