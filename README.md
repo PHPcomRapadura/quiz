@@ -6,15 +6,15 @@ O Super Quizz é um projeto que permite que sejam inseridos jogos de forma simpl
 
 ## 📌 Conteúdo
 
-- [🎮 Super Quizz](#super-quizz-️)
-  - [📌 Conteúdo](#-table-of-contents)
-  - [🗣 Introdução](#-introduction)
-  - [✨ Tecnologias](#-features)
-  - [🚀 Como começar](#-get-started)
-    - [🖥 Como contribuir](#-installation)
-  - [👋 Sobre o ombro de gigantes](#-)
-  - [🗣 Escudos](#-)
-  - [🚨 License](#-license)
+- [🎮 Super Quizz](#-super-quizz)
+  - [📌 Conteúdo](#-conteúdo)
+  - [🗣 Introdução](#-introdução)
+  - [✨ Tecnologias](#-tecnologias)
+  - [🚀 Como começar](#-como-começar)
+    - [🖥 Como contribuir](#-como-contribuir)
+  - [👋 Sobre o ombro de gigantes](#-sobre-o-ombro-de-gigantes)
+  - [🗣 Escudos](#-escudos)
+  - [🚨 Licença](#-licença)
 
 ## 🗣 Introdução
 
