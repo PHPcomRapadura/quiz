@@ -11,7 +11,9 @@ export function AppProvider ({ children }: { children: React.ReactNode }) {
   const [session, setSession] = useState<Session>(null)
 
   const updateAuthSession = (session: Session) => {
-    setSession(session)
+    if (session?.credential) {
+      setSession(session)
+    }
   }
 
   const auth = authManagerFactory(updateAuthSession)

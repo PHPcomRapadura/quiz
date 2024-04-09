@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { useApp } from '../../hooks/useApp.ts'
 import { AlertDanger } from '../../components/general/Alert.tsx'
 import { mode } from '../../../config/env.ts'
+import { Loading } from '../../components/general/Loading.tsx'
 
 export function SignInPage () {
   const { auth, session } = useApp()
@@ -97,6 +98,11 @@ export function SignInPage () {
             Entrar
           </button>
         </div>
+        {
+          loading && (
+            <Loading />
+          )
+        }
         {error && (
           <AlertDanger>
             <span className="text-light-emphasis">{error}</span>

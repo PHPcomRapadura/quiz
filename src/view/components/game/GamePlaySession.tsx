@@ -91,6 +91,13 @@ export function GamePlaySession ({ game, onStart, onFinish }: GamePlaySessionPro
         />
       </Case>
       <Case value={GamePlaySessionStatus.STARTED}>
+        <div className="progress opacity-50 mb-1">
+          <div
+            className="progress-bar bg-primary"
+            role="progressbar"
+            style={{ width: `${((game.questions.length - questions.length) / game.questions.length) * 100}%` }}
+          />
+        </div>
         <GamePlaySessionQuestion
           timeout={timeout}
           text={currentQuestion?.text || ''}
@@ -98,7 +105,7 @@ export function GamePlaySession ({ game, onStart, onFinish }: GamePlaySessionPro
           answerQuestion={answerQuestion}
           nextQuestion={nextQuestion}
         />
-        <div className="py-1">
+        <div className="mt-1">
           <small>{game.questions.length - questions.length} / {game.questions.length} ({interaction})</small>
           &nbsp;
           {
@@ -108,13 +115,6 @@ export function GamePlaySession ({ game, onStart, onFinish }: GamePlaySessionPro
                 <span className="badge bg-warning">&lambda;</span> :
                 ''
           }
-        </div>
-        <div className="progress opacity-50">
-          <div
-            className="progress-bar bg-warning"
-            role="progressbar"
-            style={{ width: `${((game.questions.length - questions.length) / game.questions.length) * 100}%` }}
-          />
         </div>
       </Case>
       <Case value={GamePlaySessionStatus.FINISHED}>
