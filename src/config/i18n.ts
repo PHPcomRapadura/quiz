@@ -4,12 +4,14 @@ import { initReactI18next } from 'react-i18next'
 // the translations
 // (tip move them in a JSON file and import them,
 // or even better, manage them separated from your code: https://react.i18next.com/guides/multiple-translation-files)
+export const name = '🎮 Super Quizz'
+
 const resources = {
   'ptBR': {
     default: {
       layouts: {
-        root: {
-          brand: 'Super Quizz',
+        public: {
+          brand: name,
           play: 'Jogar',
           signIn: 'Entrar',
           myAccount: 'Minha Conta',
@@ -18,7 +20,7 @@ const resources = {
       },
       pages: {
         home: {
-          title: 'Super Quizz',
+          title: name,
           description: 'O melhor jogo de perguntas e respostas para jogar com os amigos!\n' +
             'Reúna sua galera e divirta-se com moderação! 🍻',
           contributing: 'Não se esqueça de contribuir com o projeto no link abaixo! 😉',

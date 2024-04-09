@@ -4,7 +4,7 @@ import { Route, Routes } from 'react-router-dom'
 
 import { AppProvider } from './view/providers/AppProvider'
 
-import { Layout } from './view/layouts/Layout'
+import { PublicLayout } from './view/layouts/PublicLayout.tsx'
 
 import './App.css'
 // components
@@ -19,14 +19,19 @@ import { GameEndPage } from './view/pages/game/GameEndPage.tsx'
 import { DashboardPage } from './view/pages/DashboardPage.tsx'
 import { SignInPage } from './view/pages/auth/SignInPage.tsx'
 import { WaitOneTimePassword } from './view/pages/auth/WaitOneTimePassword.tsx'
+import { useRunOnce } from './view/hooks/useRunOnce.ts'
+
+import { name } from './config/i18n.ts'
 
 export default function App () {
+  useRunOnce(() => document.title = name)
+
   return (
     <AppProvider>
       <Routes>
         <Route
           path="/"
-          element={<Layout />}
+          element={<PublicLayout />}
         >
           <Route
             index

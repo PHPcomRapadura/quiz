@@ -1,12 +1,20 @@
 import { useEffect, useRef } from 'react'
 
-export type useRunOnceProps = {
-  effect: () => unknown;
-  key?: string;
-};
+type explicit = {
+  effect: () => unknown
+  key?: string
+}
 
-export function useRunOnce ({ effect, key = 'global' }: useRunOnceProps) {
+type implicit = () => unknown
+
+export type useRunOnceParameters = explicit | implicit
+
+export function useRunOnce (parameters: useRunOnceParameters) {
   const triggered = useRef<boolean>(false)
+
+  const { effect, key } = typeof parameters === 'function'
+    ? { effect: parameters, key: undefined }
+    : parameters
 
   useEffect(() => {
     const hasBeenTriggered = key

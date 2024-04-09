@@ -3,11 +3,11 @@ import { useTranslation } from 'react-i18next'
 import { useApp } from '../hooks/useApp.ts'
 import { useRunOnce } from '../hooks/useRunOnce.ts'
 
-export function Layout () {
+export function PublicLayout () {
   const navigate = useNavigate()
   const { t } = useTranslation(
     'default',
-    { keyPrefix: 'layouts.root' }
+    { keyPrefix: 'layouts.public' }
   )
 
   const { session, auth } = useApp()
