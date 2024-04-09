@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import Game from '../../../app/Domain/Game/Game.ts'
+import Game from '../../../../app/Domain/Game/Game.ts'
 
 export type GameInstructionProps = {
   timeout: number,
@@ -7,11 +7,11 @@ export type GameInstructionProps = {
   nextQuestion: () => void
 }
 
-export function GameInstruction (props: GameInstructionProps) {
+export function GamePlaySessionInstruction (props: GameInstructionProps) {
   const { timeout, game, nextQuestion } = props
   const { t } = useTranslation(
     'default',
-    { keyPrefix: 'pages.game.play' }
+    { keyPrefix: 'pages.game.play.instructions' }
   )
   return (
     <div>

@@ -13,7 +13,7 @@ import { ProtectPage } from './view/components/auth/ProtectPage'
 import { HomePage } from './view/pages/HomePage.tsx'
 // game
 import { GameWelcomePage } from './view/pages/game/GameWelcomePage.tsx'
-import { GamePage } from './view/pages/game/GamePage.tsx'
+import { GamePlayPage } from './view/pages/game/GamePlayPage.tsx'
 import { GameEndPage } from './view/pages/game/GameEndPage.tsx'
 // session
 import { PrivatePage } from './view/pages/PrivatePage'
@@ -37,7 +37,7 @@ export default function App () {
           />
           <Route
             path="/game/:id/play"
-            element={<GamePage />}
+            element={<GamePlayPage />}
           />
           <Route
             path="/game/:id/end"

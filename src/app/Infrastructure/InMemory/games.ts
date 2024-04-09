@@ -69,7 +69,15 @@ export default function (): Game[] {
               text: '`construtor__`'
             }
           ]
-        },
+        }
+      ]
+    }, {
+      id: 2,
+      description: 'Avançado',
+      author: 'william@phpcomrapadura.org.br',
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      questions: [
         {
           id: 3,
           text: 'Utilizando banco de dados MySQL, qual a função para enviar uma consulta SQL ao banco de dados ativo?',
@@ -271,15 +279,7 @@ export default function (): Game[] {
               text: '`__construct()` e `__destruct()`'
             }
           ]
-        }
-      ]
-    }, {
-      id: 2,
-      description: 'Avançado',
-      author: 'william@phpcomrapadura.org.br',
-      createdAt: new Date(),
-      updatedAt: new Date(),
-      questions: [
+        },
         {
           id: 10,
           text: 'O que a keyword `final` faz?',

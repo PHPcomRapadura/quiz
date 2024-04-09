@@ -1,19 +1,20 @@
-.pergunta {
-    padding: 0 12px 12px 12px;
-    background: #ffffff;
-    color: #51575b;
+.GamePlaySessionQuestionUnanswered > .card {
+    text-shadow: 1px 1px 1px #707070;
+}
+
+.GamePlaySessionQuestionUnanswered > .card code {
+    text-shadow: none;
+    padding: 4px 6px;
     border-radius: 6px;
+    background-color: #ffffff;
+    color: #565656;
+    margin: 0 0.1rem;
 }
 
-.pergunta .radio p {
-    display: inline-block;
-    padding-left: 5px;
+.GamePlaySessionQuestionUnanswered > .card > .card-header code {
+    font-size: 1rem;
 }
 
-.pergunta .radio code {
-    padding: 2px 4px;
-    font-size: 90%;
-    color: #c7254e;
-    background-color: #f9f2f4;
-    border-radius: 4px;
+main .btn.btn-primary {
+    box-shadow: rgba(64, 60, 67, 0.3) 1px 2px 5px 1px !important;
 }

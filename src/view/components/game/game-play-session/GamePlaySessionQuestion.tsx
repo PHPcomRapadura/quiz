@@ -1,12 +1,17 @@
 import { useEffect, useState } from 'react'
-import Answer from '../../../app/Domain/Game/Answer.ts'
-import AnswerStatus from '../../../app/Domain/Game/AnswerStatus.ts'
-import { Case, Switch } from '../general/Switch.tsx'
-import { GameWrongAnswer } from './GameWrongAnswer.tsx'
-import { GameCorrectAnswer } from './GameCorrectAnswer.tsx'
-import { GameTimeExpired } from './GameTimeExpired.tsx'
-import { shuffle } from '../../../app/Domain/Util.ts'
-import { GamePlay } from './GamePlay.tsx'
+
+import Answer from '../../../../app/Domain/Game/Answer.ts'
+import { shuffle } from '../../../../app/Domain/Util.ts'
+import AnswerStatus from '../../../../app/Domain/Game/AnswerStatus.ts'
+
+import { Case, Switch } from '../../general/Switch.tsx'
+
+import {
+  GamePlaySessionQuestionCorrect,
+  GamePlaySessionQuestionUnanswered,
+  GamePlaySessionQuestionTimeExpired,
+  GamePlaySessionQuestionWrong
+} from './game-play-session-question'
 
 export type GameQuestionComponentsProps = {
   finishQuestion: () => void
@@ -22,7 +27,7 @@ export type GameQuestionProps = {
   timeout: number
 }
 
-export function GameQuestion (props: GameQuestionProps) {
+export function GamePlaySessionQuestion (props: GameQuestionProps) {
   const {
     timeout,
     text,
@@ -71,12 +76,12 @@ export function GameQuestion (props: GameQuestionProps) {
   }
 
   return (
-    <div className="pergunta">
+    <>
       <Switch condition={status}>
         <Case
           value={AnswerStatus.UNANSWERED}
         >
-          <GamePlay
+          <GamePlaySessionQuestionUnanswered
             text={text}
             options={options}
             timer={timer}
@@ -87,15 +92,15 @@ export function GameQuestion (props: GameQuestionProps) {
           />
         </Case>
         <Case value={AnswerStatus.WRONG}>
-          <GameWrongAnswer finishQuestion={finishQuestion} />
+          <GamePlaySessionQuestionWrong finishQuestion={finishQuestion} />
         </Case>
         <Case value={AnswerStatus.TIME_EXPIRED}>
-          <GameTimeExpired finishQuestion={finishQuestion} />
+          <GamePlaySessionQuestionTimeExpired finishQuestion={finishQuestion} />
         </Case>
         <Case value={AnswerStatus.CORRECT}>
-          <GameCorrectAnswer finishQuestion={finishQuestion} />
+          <GamePlaySessionQuestionCorrect finishQuestion={finishQuestion} />
         </Case>
       </Switch>
-    </div>
+    </>
   )
 }

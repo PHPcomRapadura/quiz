@@ -6,6 +6,9 @@ import Game from '../../../app/Domain/Game/Game.ts'
 
 import { useApp } from '../../hooks'
 import { Hydrated, Pending, Rejected, Resolved } from '../../components/general/Hydrated.tsx'
+import { Loading } from '../../components/general/Loading.tsx'
+import { Warning } from '../../components/general/Alert.tsx'
+
 import { GameList } from '../../components/game/GameList.tsx'
 
 export function GameWelcomePage () {
@@ -27,16 +30,7 @@ export function GameWelcomePage () {
       >
         <Pending>
           <div className="py-3">
-            <div className="progress">
-              <div
-                className="progress-bar progress-bar-striped progress-bar-animated"
-                role="progressbar"
-                style={{ width: '75%' }}
-              />
-            </div>
-            <div className="text-center">
-              <small>{t('pending')}</small>
-            </div>
+            <Loading label={t('pending')} />
           </div>
         </Pending>
         <Resolved>
@@ -44,9 +38,10 @@ export function GameWelcomePage () {
         </Resolved>
         <Rejected>
           <div className="py-2">
-            <div className="alert alert-dismissible alert-warning">
-              <strong>{t('error')}</strong> {t('rejected')}
-            </div>
+            <Warning
+              strong={t('error')}
+              messsage={t('rejected')}
+            />
           </div>
         </Rejected>
       </Hydrated>

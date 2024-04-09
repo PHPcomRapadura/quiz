@@ -24,6 +24,39 @@ const resources = {
           callToAction: 'Jogar agora »'
         },
         game: {
+          play: {
+            pending: 'Carregando Jogo ...',
+            rejected: 'Não foi possível carregar o jogo',
+            error: 'Oh snap!',
+            instructions: {
+              title: 'O jogo já vai começar!',
+              selected: 'Jogo Selecionado: ',
+              description: 'Certifique-se de que todos estão prontos e clique em Começar!\n' +
+                'Lembrando que este jogo tem um tempo limite de {{timeout}} segundos para responder ' +
+                'cada pergunta e {{total}} perguntas ao todo',
+              greetings: 'Boa sorte!',
+              start: 'Começar'
+            },
+            session: {
+              correct: {
+                title: 'Certa a resposta! Acerto Mizeravi!',
+                description: 'Você acertou! Escolha alguém para beber e passe a vez para a pessoa à sua esquerda.'
+              },
+              wrong: {
+                title: 'Você errou! Bebe!',
+                description: 'Errou feio, errou Rude! Agora tem de beber e passar a vez para a pessoa à sua esquerda.'
+              },
+              expired: {
+                title: 'Acabou o tempo!',
+                description: 'Você demorou demais para responder! Agora tem de beber e passar a vez para a pessoa à sua esquerda.'
+              },
+              unanswered: {
+                timer: 'Tempo restante: {{time}} segundos',
+              },
+              next: 'Próximo',
+              answer: 'Responder',
+            }
+          },
           welcome: {
             title: 'Escolha um Jogo',
             description: 'Depois de selecionar um jogo cada um na mesa deve responder a uma pergunta.\n' +
@@ -32,15 +65,6 @@ const resources = {
             pending: 'Carregando jogos ...',
             rejected: 'Não foi possível carregar os jogos',
             error: 'Oh snap!'
-          },
-          play: {
-            title: 'O jogo já vai começar!',
-            selected: 'Jogo Selecionado: ',
-            description: 'Certifique-se de que todos estão prontos para começar e clique em Começar!\n' +
-              'Lembrando que este jogo tem um tempo limite de {{timeout}} segundos para responder ' +
-              'cada pergunta e {{total}} perguntas ao todo',
-            greetings: 'Boa sorte!',
-            start: 'Começar'
           },
           end: {
             title: 'O jogo acabou!',
