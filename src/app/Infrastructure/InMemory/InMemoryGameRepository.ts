@@ -1,20 +1,14 @@
 import GameRepository from '../../Domain/Game/GameRepository.ts'
 import Game from '../../Domain/Game/Game.ts'
 import games from './games.ts'
+import InMemoryRepository from './InMemoryRepository.ts'
 
-export default class InMemoryGameRepository implements GameRepository {
+export default class InMemoryGameRepository extends InMemoryRepository implements GameRepository {
   private games: Game[]
 
   constructor () {
+    super()
     this.games = games()
-  }
-
-  async promisify <T>(data: T): Promise<T> {
-    const timeout = import.meta.env.VITE_IN_MEMORY_TIMEOUT || 300
-    return new Promise((resolve) => {
-      const handler = () => resolve(data)
-      window.setTimeout(handler, Number(timeout))
-    })
   }
 
   async paginate (page: number, limit: number): Promise<Game[]> {

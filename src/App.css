@@ -43,6 +43,11 @@
     white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
     white-space: -o-pre-wrap; /* Opera 7 */
     word-wrap: break-word; /* Internet Explorer 5.5+ */
+    display: block;
+    background-color: #ffffff;
+    color: #565656;
+    padding: 4px 6px;
+    border-radius: 6px;
 }
 
 .PublicLayout .GamePlaySessionQuestionUnanswered > .card > .card-header code {

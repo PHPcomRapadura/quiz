@@ -7,13 +7,13 @@ export type MarkdownProps = {
 }
 
 export function Markdown ({ text, tag }: MarkdownProps) {
-  const Tag = tag || 'span'
+  const Tag = (tag || 'span')
   const parse = function (string: string) {
-    string = markdown.toHTML(string + '')
-    string = string.replace('block<code>', '<pre><code>')
-    string = string.replace('</code>block', '</code></pre>')
-    return string
+    return markdown.toHTML(string + '')
+      .replace('<br>', "\n")
+      .replace('block<code>', '<pre><code>')
+      .replace('</code>block', '</code></pre>')
   }
   // @ts-ignore
-  return <Tag dangerouslySetInnerHTML={{ __html: parse(text) }}/>
+  return <Tag dangerouslySetInnerHTML={{ __html: parse(text) }} />
 }
