@@ -5,6 +5,8 @@ import SupabaseAuthRepository from '../app/Infrastructure/Supabase/SupabaseAuthR
 import HttpAuthRepository from '../app/Infrastructure/Backend/HttpAuthRepository.ts'
 import InMemoryGameRepository from '../app/Infrastructure/InMemory/InMemoryGameRepository.ts'
 import SupabaseGameRepository from '../app/Infrastructure/Supabase/SupabaseGameRepository.ts'
+import InMemoryAuthRepository from '../app/Infrastructure/InMemory/InMemoryAuthRepository.ts'
+
 import { mode } from './env.ts'
 
 const binds: Record<string, Record<string, () => unknown>> = {
@@ -13,7 +15,7 @@ const binds: Record<string, Record<string, () => unknown>> = {
     // GameRepository: () => HttpGameRepository.build(),
   },
   memory: {
-    // AuthRepository: () => new InMemoryAuthRepository(),
+    AuthRepository: () => new InMemoryAuthRepository(),
     GameRepository: () => new InMemoryGameRepository(),
   },
   supabase: {

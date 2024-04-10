@@ -34,8 +34,8 @@ export function GamePlaySessionQuestionUnanswered (props: GameQuestionOptionsPro
         <div className="card-header">
           <h4>
             <Markdown
-              text={text}
               tag="div"
+              text={text}
             />
           </h4>
         </div>
