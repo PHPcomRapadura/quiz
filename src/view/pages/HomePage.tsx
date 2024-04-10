@@ -7,6 +7,7 @@ export function HomePage () {
     'default',
     { keyPrefix: 'pages.home' }
   )
+
   return (
     <div className="card bg-secondary py-3 px-4 rounded">
       <h1>{t('title')}</h1>

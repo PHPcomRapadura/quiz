@@ -75,6 +75,9 @@ const resources = {
             waiting: 'Recomeçar em {{timer}} segundos',
             restart: 'Começar de novo'
           }
+        },
+        dashboard: {
+          soon: 'Em breve!'
         }
       },
       components: {
