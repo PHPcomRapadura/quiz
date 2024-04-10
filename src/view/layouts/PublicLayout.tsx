@@ -18,7 +18,7 @@ export function PublicLayout () {
   })
 
   return (
-    <>
+    <div className="PublicLayout">
       <nav className="navbar navbar-expand-lg bg-body-tertiary fixed-top">
         <div className="container-fluid">
           <Link
@@ -70,6 +70,6 @@ export function PublicLayout () {
           <small className="text-light-emphasis">{t('copyright')}</small>
         </div>
       </footer>
-    </>
+    </div>
   )
 }
