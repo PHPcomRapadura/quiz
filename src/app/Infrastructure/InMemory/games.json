@@ -7,58 +7,432 @@
     "updatedAt": "2024-04-05 04:14:13.951247+00",
     "questions": [
       {
-        "id": 5,
-        "text": "Com relação as funções `str_replace()`, `str_ireplace()` e `str_casereplace()`, marque a alternativa correta?",
+        "id": 1,
+        "text": "Qual a diferença entre as constantes definidas com `define()` e `const` em PHP?",
         "createdAt": "2024-04-05 04:14:13.951247+00",
         "updatedAt": "2024-04-05 04:14:13.951247+00",
         "answers": [
           {
             "correct": false,
             "createdAt": "2024-04-05 04:14:13.951247+00",
-            "text": "Não há diferença entre elas"
+            "text": "Não há diferença, ambas são usadas para definir constantes."
           },
           {
             "correct": false,
             "createdAt": "2024-04-05 04:14:13.951247+00",
-            "text": "`str_ireplace` e `str_casereplace` não existem"
-          },
-          {
-            "correct": false,
-            "createdAt": "2024-04-05 04:14:13.951247+00",
-            "text": "`str_ireplace` e `str_casereplace` são para substituir caracteres em strings com case insensitive"
+            "text": "`define()` é usada para definir constantes globais, enquanto `const` é usada para definir constantes de classe."
           },
           {
             "correct": true,
             "createdAt": "2024-04-05 04:14:13.951247+00",
-            "text": "`str_ireplace` é para substituir caracteres em strings com case insensitive e `str_casereplace` não existe"
+            "text": "`const` é usada para definir constantes globais, enquanto `define()` é usada para definir constantes de classe."
+          },
+          {
+            "correct": false,
+            "createdAt": "2024-04-05 04:14:13.951247+00",
+            "text": "`define()` é usada para definir constantes de classe, enquanto `const` é usada para definir constantes globais."
           }
         ]
       },
       {
-        "id": 13,
-        "text": "Indique o resultado da seguinte expressão: \n\n block```$var = '2015PHPinga'; echo $var == 2015 ? 'Igual' : 'Diferente';```block",
+        "id": 2,
+        "text": "Qual é a variável global que contém informações sobre solicitações HTTP recebidas pelo servidor web?",
         "createdAt": "2024-04-05 04:14:13.951247+00",
         "updatedAt": "2024-04-05 04:14:13.951247+00",
         "answers": [
           {
             "correct": false,
             "createdAt": "2024-04-05 04:14:13.951247+00",
-            "text": "Dá erro: String to Integer convertion error"
+            "text": "`$SERVER`"
+          },
+          {
+            "correct": false,
+            "createdAt": "2024-04-05 04:14:13.951247+00",
+            "text": "`$REQUEST`"
           },
           {
             "correct": true,
             "createdAt": "2024-04-05 04:14:13.951247+00",
-            "text": "`'Igual'`"
+            "text": "`$HTTP_SERVER_VARS`"
           },
           {
             "correct": false,
             "createdAt": "2024-04-05 04:14:13.951247+00",
-            "text": "`'Diferente'`"
+            "text": "`$GLOBALS`"
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "text": "Qual função do PHP é usada para converter todos os caracteres de uma string para minúsculas?",
+        "createdAt": "2024-04-05 04:14:13.951247+00",
+        "updatedAt": "2024-04-05 04:14:13.951247+00",
+        "answers": [
+          {
+            "correct": false,
+            "createdAt": "2024-04-05 04:14:13.951247+00",
+            "text": "`to_lower()`"
+          },
+          {
+            "correct": true,
+            "createdAt": "2024-04-05 04:14:13.951247+00",
+            "text": "`strtolower()`"
           },
           {
             "correct": false,
             "createdAt": "2024-04-05 04:14:13.951247+00",
-            "text": "`'2015PHPinga'`"
+            "text": "`lowercase()`"
+          },
+          {
+            "correct": false,
+            "createdAt": "2024-04-05 04:14:13.951247+00",
+            "text": "`case_lower()`"
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "text": "Qual função do PHP é usada para obter o número de segundos desde a Época Unix (01 de janeiro de 1970 00:00:00 GMT)",
+        "createdAt": "2024-04-05 04:14:13.951247+00",
+        "updatedAt": "2024-04-05 04:14:13.951247+00",
+        "answers": [
+          {
+            "correct": true,
+            "createdAt": "2024-04-05 04:14:13.951247+00",
+            "text": "`time()`"
+          },
+          {
+            "correct": false,
+            "createdAt": "2024-04-05 04:14:13.951247+00",
+            "text": "`now()`"
+          },
+          {
+            "correct": false,
+            "createdAt": "2024-04-05 04:14:13.951247+00",
+            "text": "`date()`"
+          },
+          {
+            "correct": false,
+            "createdAt": "2024-04-05 04:14:13.951247+00",
+            "text": "`unixtime()`"
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "text": "Qual função do PHP é usada para remover o último elemento de um array?",
+        "createdAt": "2024-04-05 04:14:13.951247+00",
+        "updatedAt": "2024-04-05 04:14:13.951247+00",
+        "answers": [
+          {
+            "correct": false,
+            "createdAt": "2024-04-05 04:14:13.951247+00",
+            "text": "`array_remove_last()`"
+          },
+          {
+            "correct": false,
+            "createdAt": "2024-04-05 04:14:13.951247+00",
+            "text": "`array_shift()`"
+          },
+          {
+            "correct": true,
+            "createdAt": "2024-04-05 04:14:13.951247+00",
+            "text": "`array_pop()`"
+          },
+          {
+            "correct": false,
+            "createdAt": "2024-04-05 04:14:13.951247+00",
+            "text": "`array_last()`"
+          }
+        ]
+      },
+      {
+        "id": 6,
+        "text": "Qual função do PHP é usada para ler o conteúdo de um arquivo em uma string?",
+        "createdAt": "2024-04-05 04:14:13.951247+00",
+        "updatedAt": "2024-04-05 04:14:13.951247+00",
+        "answers": [
+          {
+            "correct": false,
+            "createdAt": "2024-04-05 04:14:13.951247+00",
+            "text": "`file_get_contents()`"
+          },
+          {
+            "correct": false,
+            "createdAt": "2024-04-05 04:14:13.951247+00",
+            "text": "`readfile()`"
+          },
+          {
+            "correct": true,
+            "createdAt": "2024-04-05 04:14:13.951247+00",
+            "text": "`fread()`"
+          },
+          {
+            "correct": false,
+            "createdAt": "2024-04-05 04:14:13.951247+00",
+            "text": "`file_read()`"
+          }
+        ]
+      },
+      {
+        "id": 7,
+        "text": "Quais são as diferenças entre `include` e `require` no PHP?",
+        "createdAt": "2024-04-10 20:05:00.000000+00",
+        "updatedAt": "2024-04-10 20:05:00.000000+00",
+        "answers": [
+          {
+            "correct": false,
+            "createdAt": "2024-04-10 20:05:00.000000+00",
+            "text": "`Include` é usado para inserir conteúdo HTML, enquanto `require` é usado para incluir arquivos PHP."
+          },
+          {
+            "correct": true,
+            "createdAt": "2024-04-10 20:05:00.000000+00",
+            "text": "`Include` gera um aviso (warning) se o arquivo não for encontrado, mas o script continua a execução. `Require` gera um erro fatal e para a execução do script se o arquivo não for encontrado."
+          },
+          {
+            "correct": false,
+            "createdAt": "2024-04-10 20:05:00.000000+00",
+            "text": "`Include` e `require` são completamente intercambiáveis e não há diferença entre eles."
+          }
+        ]
+      },
+      {
+        "id": 8,
+        "text": "Como você pode evitar ataques de injeção de SQL em PHP?",
+        "createdAt": "2024-04-10 20:07:00.000000+00",
+        "updatedAt": "2024-04-10 20:07:00.000000+00",
+        "answers": [
+          {
+            "correct": true,
+            "createdAt": "2024-04-10 20:07:00.000000+00",
+            "text": "Para evitar ataques de injeção de SQL, deve-se usar prepared statements e parâmetros vinculados com PDO ou MySQLi."
+          },
+          {
+            "correct": false,
+            "createdAt": "2024-04-10 20:07:00.000000+00",
+            "text": "A melhor maneira de evitar injeção de SQL é colocar todas as entradas de usuário entre aspas simples."
+          },
+          {
+            "correct": false,
+            "createdAt": "2024-04-10 20:07:00.000000+00",
+            "text": "Para prevenir injeção de SQL, basta usar a função `mysql_real_escape_string` em todas as entradas de usuário."
+          }
+        ]
+      },
+      {
+        "id": 9,
+        "text": "O que a função `unset` faz em PHP?",
+        "createdAt": "2024-04-10 20:15:00.000000+00",
+        "updatedAt": "2024-04-10 20:15:00.000000+00",
+        "answers": [
+          {
+            "correct": true,
+            "text": "A função `unset` destrói a variável especificada."
+          },
+          {
+            "correct": false,
+            "text": "A função `unset` cria uma nova instância de uma classe."
+          },
+          {
+            "correct": false,
+            "text": "A função `unset` verifica se uma variável está definida."
+          },
+          {
+            "correct": false,
+            "text": "A função `unset` retorna o valor da variável antes de destruí-la."
+          }
+        ]
+      },
+      {
+        "id": 10,
+        "text": "Qual é o propósito do operador de resolução de escopo `::` em PHP?",
+        "createdAt": "2024-04-10 20:17:00.000000+00",
+        "updatedAt": "2024-04-10 20:17:00.000000+00",
+        "answers": [
+          {
+            "correct": true,
+            "text": "O operador `::` é usado para acessar métodos estáticos ou propriedades de uma classe."
+          },
+          {
+            "correct": false,
+            "text": "O operador `::` é usado para comparar dois objetos."
+          },
+          {
+            "correct": false,
+            "text": "O operador `::` é usado para clonar um objeto."
+          },
+          {
+            "correct": false,
+            "text": "O operador `::` é usado para concatenar strings."
+          }
+        ]
+      },
+      {
+        "id": 11,
+        "text": "Como você pode obter o tamanho de um array em PHP?",
+        "createdAt": "2024-04-10 20:19:00.000000+00",
+        "updatedAt": "2024-04-10 20:19:00.000000+00",
+        "answers": [
+          {
+            "correct": false,
+            "text": "Usando a função `length()`."
+          },
+          {
+            "correct": true,
+            "text": "Usando a função `count()`."
+          },
+          {
+            "correct": false,
+            "text": "Usando a propriedade `length`."
+          },
+          {
+            "correct": false,
+            "text": "Usando a função `sizeof()`."
+          }
+        ]
+      },
+      {
+        "id": 17,
+        "text": "Qual função você usaria para verificar se uma chave ou índice existe em um array?",
+        "createdAt": "2024-04-10 20:21:00.000000+00",
+        "updatedAt": "2024-04-10 20:21:00.000000+00",
+        "answers": [
+          {
+            "correct": false,
+            "text": "A função `key_exists()`."
+          },
+          {
+            "correct": false,
+            "text": "A função `in_array()`."
+          },
+          {
+            "correct": false,
+            "text": "A função `isset()`."
+          },
+          {
+            "correct": true,
+            "text": "A função `array_key_exists()`."
+          }
+        ]
+      },
+      {
+        "id": 18,
+        "text": "Qual função em PHP é usada para iniciar uma nova sessão ou retomar uma existente?",
+        "createdAt": "2024-04-10 20:31:00.000000+00",
+        "updatedAt": "2024-04-10 20:31:00.000000+00",
+        "answers": [
+          {
+            "correct": false,
+            "text": "A função `session_begin()`."
+          },
+          {
+            "correct": false,
+            "text": "A função `start_session()`."
+          },
+          {
+            "correct": true,
+            "text": "A função `session_start()`."
+          },
+          {
+            "correct": false,
+            "text": "A função `new_session()`."
+          }
+        ]
+      },
+      {
+        "id": 19,
+        "text": "Como você pode enviar um cabeçalho HTTP personalizado em PHP?",
+        "createdAt": "2024-04-10 20:33:00.000000+00",
+        "updatedAt": "2024-04-10 20:33:00.000000+00",
+        "answers": [
+          {
+            "correct": false,
+            "text": "Usando a função `set_header()`."
+          },
+          {
+            "correct": false,
+            "text": "Usando a função `http_header()`."
+          },
+          {
+            "correct": true,
+            "text": "Usando a função `header()`."
+          },
+          {
+            "correct": false,
+            "text": "Usando a função `send_header()`."
+          }
+        ]
+      },
+      {
+        "id": 20,
+        "text": "Qual é a maneira correta de incluir um arquivo PHP apenas uma vez?",
+        "createdAt": "2024-04-10 20:35:00.000000+00",
+        "updatedAt": "2024-04-10 20:35:00.000000+00",
+        "answers": [
+          {
+            "correct": false,
+            "text": "Usando `require` ou `include` com um parâmetro especial."
+          },
+          {
+            "correct": true,
+            "text": "Usando `require_once` ou `include_once`."
+          },
+          {
+            "correct": false,
+            "text": "Usando `import`."
+          },
+          {
+            "correct": false,
+            "text": "Usando `load_file`."
+          }
+        ]
+      },
+      {
+        "id": 21,
+        "text": "Como você pode verificar se uma constante já foi definida em PHP?",
+        "createdAt": "2024-04-10 20:37:00.000000+00",
+        "updatedAt": "2024-04-10 20:37:00.000000+00",
+        "answers": [
+          {
+            "correct": true,
+            "text": "Usando a função `defined()`."
+          },
+          {
+            "correct": false,
+            "text": "Usando a função `is_defined()`."
+          },
+          {
+            "correct": false,
+            "text": "Usando a função `const_exists()`."
+          },
+          {
+            "correct": false,
+            "text": "Usando a função `define_check()`."
+          }
+        ]
+      },
+      {
+        "id": 23,
+        "text": "Qual função em PHP você usaria para converter todos os caracteres aplicáveis em entidades HTML?",
+        "createdAt": "2024-04-10 20:29:00.000000+00",
+        "updatedAt": "2024-04-10 20:29:00.000000+00",
+        "answers": [
+          {
+            "correct": false,
+            "text": "A função `html_encode()`."
+          },
+          {
+            "correct": false,
+            "text": "A função `html_chars()`."
+          },
+          {
+            "correct": true,
+            "text": "A função `htmlentities()`."
+          },
+          {
+            "correct": false,
+            "text": "A função `htmlspecialchars()`."
           }
         ]
       }
@@ -72,460 +446,260 @@
     "updatedAt": "2024-04-05 04:14:13.951247+00",
     "questions": [
       {
-        "id": 1,
-        "text": "Qual das funções pode ser usada para verificar se um número é inteiro?",
-        "createdAt": "2024-04-05 04:14:13.951247+00",
-        "updatedAt": "2024-04-05 04:14:13.951247+00",
-        "answers": [
-          {
-            "correct": false,
-            "createdAt": "2024-04-05 04:14:13.951247+00",
-            "text": "`int`"
-          },
-          {
-            "correct": false,
-            "createdAt": "2024-04-05 04:14:13.951247+00",
-            "text": "`is_interger`"
-          },
-          {
-            "correct": true,
-            "createdAt": "2024-04-05 04:14:13.951247+00",
-            "text": "`is_int`"
-          },
-          {
-            "correct": false,
-            "createdAt": "2024-04-05 04:14:13.951247+00",
-            "text": "`isInt`"
-          },
-          {
-            "correct": false,
-            "createdAt": "2024-04-05 04:14:13.951247+00",
-            "text": "`isInteger`"
-          }
-        ]
-      },
-      {
-        "id": 12,
-        "text": "Indique o resultado da seguinte expressão: \n\n block```$var = '0'; echo empty($var) ? 'Vazio' : 'Tem conteúdo';```block",
-        "createdAt": "2024-04-05 04:14:13.951247+00",
-        "updatedAt": "2024-04-05 04:14:13.951247+00",
-        "answers": [
-          {
-            "correct": false,
-            "createdAt": "2024-04-05 04:14:13.951247+00",
-            "text": "Dá erro: String to Integer convertion error"
-          },
-          {
-            "correct": false,
-            "createdAt": "2024-04-05 04:14:13.951247+00",
-            "text": "`'Tem conteúdo'`"
-          },
-          {
-            "correct": true,
-            "createdAt": "2024-04-05 04:14:13.951247+00",
-            "text": "`'Vazio'`"
-          },
-          {
-            "correct": false,
-            "createdAt": "2024-04-05 04:14:13.951247+00",
-            "text": "`'0'`"
-          }
-        ]
-      },
-      {
-        "id": 2,
-        "text": "Qual método pode-se usar como construtor de uma classe?",
-        "createdAt": "2024-04-05 04:14:13.951247+00",
-        "updatedAt": "2024-04-05 04:14:13.951247+00",
-        "answers": [
-          {
-            "correct": true,
-            "createdAt": "2024-04-05 04:14:13.951247+00",
-            "text": "`__construct()`"
-          },
-          {
-            "correct": false,
-            "createdAt": "2024-04-05 04:14:13.951247+00",
-            "text": "`contruct__()`"
-          },
-          {
-            "correct": false,
-            "createdAt": "2024-04-05 04:14:13.951247+00",
-            "text": "`__constructor()`"
-          },
-          {
-            "correct": false,
-            "createdAt": "2024-04-05 04:14:13.951247+00",
-            "text": "`construtor__`"
-          }
-        ]
-      },
-      {
-        "id": 3,
-        "text": "Utilizando banco de dados MySQL, qual a função para enviar uma consulta SQL ao banco de dados ativo?",
-        "createdAt": "2024-04-05 04:14:13.951247+00",
-        "updatedAt": "2024-04-05 04:14:13.951247+00",
-        "answers": [
-          {
-            "correct": false,
-            "createdAt": "2024-04-05 04:14:13.951247+00",
-            "text": "`mysql_free_result()`"
-          },
-          {
-            "correct": false,
-            "createdAt": "2024-04-05 04:14:13.951247+00",
-            "text": "`mysql_stmt_start()`"
-          },
-          {
-            "correct": false,
-            "createdAt": "2024-04-05 04:14:13.951247+00",
-            "text": "`mysql_fetch_array()`"
-          },
-          {
-            "correct": true,
-            "createdAt": "2024-04-05 04:14:13.951247+00",
-            "text": "`mysql_query()`"
-          }
-        ]
-      },
-      {
         "id": 4,
-        "text": "Qual função compara duas strings de forma case insensitive?",
-        "createdAt": "2024-04-05 04:14:13.951247+00",
-        "updatedAt": "2024-04-05 04:14:13.951247+00",
+        "text": "Qual é o propósito da PSR-1 e quais são seus principais requisitos?",
+        "createdAt": "2024-04-10 18:44:48.000000+00",
+        "updatedAt": "2024-04-10 18:44:48.000000+00",
         "answers": [
           {
             "correct": false,
-            "createdAt": "2024-04-05 04:14:13.951247+00",
-            "text": "`strcmp()`"
-          },
-          {
-            "correct": false,
-            "createdAt": "2024-04-05 04:14:13.951247+00",
-            "text": "`str_cmp()`"
+            "text": "PSR-1 é uma ferramenta de formatação de código."
           },
           {
             "correct": true,
-            "createdAt": "2024-04-05 04:14:13.951247+00",
-            "text": "`strcasecmp()`"
+            "text": "PSR-1 define um padrão básico de codificação para garantir um alto nível de interoperabilidade técnica entre o código PHP."
           },
           {
             "correct": false,
-            "createdAt": "2024-04-05 04:14:13.951247+00",
-            "text": "`stricmp()`"
+            "text": "PSR-1 é um framework para aplicações PHP."
+          },
+          {
+            "correct": false,
+            "text": "PSR-1 é um conjunto de interfaces para componentes de cache."
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "text": "Como a PSR-4 difere da PSR-0 em termos de autoloading?",
+        "createdAt": "2024-04-10 18:44:48.000000+00",
+        "updatedAt": "2024-04-10 18:44:48.000000+00",
+        "answers": [
+          {
+            "correct": false,
+            "text": "PSR-4 requer que cada classe tenha seu próprio arquivo."
+          },
+          {
+            "correct": false,
+            "text": "PSR-4 utiliza o padrão PEAR para nomeação de classes."
+          },
+          {
+            "correct": false,
+            "text": "PSR-4 e PSR-0 são idênticos em funcionalidade."
+          },
+          {
+            "correct": true,
+            "text": "PSR-4 é mais flexível e permite um mapeamento mais eficiente de espaços de nomes para caminhos de arquivos, eliminando a necessidade de ter a estrutura de diretórios completamente alinhada com os espaços de nomes."
           }
         ]
       },
       {
         "id": 6,
-        "text": "Qual é o resultado da variável `$a`, dado que: \n\n`$a = '1 gato' + '2 cachorros' == '3 mamíferos';` ?",
-        "createdAt": "2024-04-05 04:14:13.951247+00",
-        "updatedAt": "2024-04-05 04:14:13.951247+00",
+        "text": "Quais são as vantagens de seguir as PSRs em um projeto PHP?",
+        "createdAt": "2024-04-10 18:44:48.000000+00",
+        "updatedAt": "2024-04-10 18:44:48.000000+00",
         "answers": [
           {
             "correct": false,
-            "createdAt": "2024-04-05 04:14:13.951247+00",
-            "text": "`false`"
-          },
-          {
-            "correct": false,
-            "createdAt": "2024-04-05 04:14:13.951247+00",
-            "text": "`null`"
+            "text": "As PSRs aumentam a performance do PHP."
           },
           {
             "correct": true,
-            "createdAt": "2024-04-05 04:14:13.951247+00",
-            "text": "`true`"
+            "text": "Seguir as PSRs pode melhorar a legibilidade, manutenibilidade e interoperabilidade do código, além de facilitar a integração com bibliotecas de terceiros."
+          },
+          {
+            "correct": false,
+            "text": "As PSRs são obrigatórias para todos os projetos PHP."
+          },
+          {
+            "correct": false,
+            "text": "As PSRs reduzem a necessidade de testes."
           }
         ]
       },
       {
         "id": 7,
-        "text": "Qual é o valor da variável `$a`, dado que: \n\n`$a = stristr('ElePHPant', 'p', true)`",
-        "createdAt": "2024-04-05 04:14:13.951247+00",
-        "updatedAt": "2024-04-05 04:14:13.951247+00",
+        "text": "Considere o código PHP a seguir: \n\n block```$a = 3;\n$b = &$a;\n$c = ++$b;\n$b += 2;\necho$a . \", \" . $c;```block",
+        "createdAt": "2024-04-10 18:44:48.000000+00",
+        "updatedAt": "2024-04-10 18:44:48.000000+00",
         "answers": [
           {
             "correct": false,
-            "createdAt": "2024-04-05 04:14:13.951247+00",
-            "text": "PHP"
+            "text": "3, 4"
+          },
+          {
+            "correct": false,
+            "text": "5, 4"
           },
           {
             "correct": true,
-            "createdAt": "2024-04-05 04:14:13.951247+00",
-            "text": "Ele"
+            "text": "6, 4"
           },
           {
             "correct": false,
-            "createdAt": "2024-04-05 04:14:13.951247+00",
-            "text": "ElePHPant"
-          },
-          {
-            "correct": false,
-            "createdAt": "2024-04-05 04:14:13.951247+00",
-            "text": "php"
-          },
-          {
-            "correct": false,
-            "createdAt": "2024-04-05 04:14:13.951247+00",
-            "text": "PHPAnt"
+            "text": "5, 5"
           }
         ]
       },
       {
         "id": 8,
-        "text": "Em qual versão o PHP ganhou uma API de hashing de senhas?",
-        "createdAt": "2024-04-05 04:14:13.951247+00",
-        "updatedAt": "2024-04-05 04:14:13.951247+00",
+        "text": "Considere o código PHP abaixo:\n\n block```$input = '<script>alert(\"XSS\")</script>'; echo htmlspecialchars($input, ENT_QUOTES, 'UTF-8');```block",
+        "createdAt": "2024-04-10 18:44:48.000000+00",
+        "updatedAt": "2024-04-10 18:44:48.000000+00",
         "answers": [
           {
             "correct": false,
-            "createdAt": "2024-04-05 04:14:13.951247+00",
-            "text": "5.3"
+            "text": "Um alerta XSS será exibido."
           },
           {
             "correct": false,
-            "createdAt": "2024-04-05 04:14:13.951247+00",
-            "text": "5.4"
+            "text": "A string será exibida como está."
           },
           {
             "correct": true,
-            "createdAt": "2024-04-05 04:14:13.951247+00",
-            "text": "5.5"
+            "text": "A string será exibida com tags HTML codificadas."
           },
           {
             "correct": false,
-            "createdAt": "2024-04-05 04:14:13.951247+00",
-            "text": "5.6"
-          },
-          {
-            "correct": false,
-            "createdAt": "2024-04-05 04:14:13.951247+00",
-            "text": "7"
+            "text": "O código resultará em um erro."
           }
         ]
       },
       {
         "id": 9,
-        "text": "Quais são, respectivamente, os métodos mágicos chamados antes de `serialize()` e depois de `unserialize()`?",
-        "createdAt": "2024-04-05 04:14:13.951247+00",
-        "updatedAt": "2024-04-05 04:14:13.951247+00",
+        "text": "Como a PSR-6 contribui para a padronização do armazenamento em cache?",
+        "createdAt": "2024-04-10 19:30:00.000000+00",
+        "updatedAt": "2024-04-10 19:30:00.000000+00",
         "answers": [
           {
-            "correct": false,
-            "createdAt": "2024-04-05 04:14:13.951247+00",
-            "text": "`__serialize()` e `__unserialize()`"
-          },
-          {
             "correct": true,
-            "createdAt": "2024-04-05 04:14:13.951247+00",
-            "text": "`__sleep()` e `__wakeup()`"
+            "createdAt": "2024-04-10 19:30:00.000000+00",
+            "text": "A PSR-6 define uma interface padronizada para sistemas de armazenamento em cache, permitindo a interoperabilidade entre bibliotecas de cache."
           },
           {
             "correct": false,
-            "createdAt": "2024-04-05 04:14:13.951247+00",
-            "text": "`__begin()` e `__end()`"
+            "createdAt": "2024-04-10 19:30:00.000000+00",
+            "text": "A PSR-6 estabelece um conjunto de diretrizes para a criação de logs detalhados de aplicações, o que pode ser confundido com a PSR-3."
           },
           {
             "correct": false,
-            "createdAt": "2024-04-05 04:14:13.951247+00",
-            "text": "`__construct()` e `__destruct()`"
+            "createdAt": "2024-04-10 19:30:00.000000+00",
+            "text": "A PSR-6 é uma recomendação para a estruturação de diretórios de projetos PHP, similar à PSR-4, mas com foco em cache."
           }
         ]
       },
       {
         "id": 10,
-        "text": "O que a keyword `final` faz?",
-        "createdAt": "2024-04-05 04:14:13.951247+00",
-        "updatedAt": "2024-04-05 04:14:13.951247+00",
+        "text": "Qual é o propósito da PSR-11 no contexto de contêineres de injeção de dependência?",
+        "createdAt": "2024-04-10 19:32:00.000000+00",
+        "updatedAt": "2024-04-10 19:32:00.000000+00",
         "answers": [
           {
+            "correct": false,
+            "createdAt": "2024-04-10 19:32:00.000000+00",
+            "text": "A PSR-11 descreve um método para documentação e anotação de código PHP, o que pode ser confundido com a PSR-5."
+          },
+          {
             "correct": true,
-            "createdAt": "2024-04-05 04:14:13.951247+00",
-            "text": "Impede que uma classe ou método seja sobrescrito"
+            "createdAt": "2024-04-10 19:32:00.000000+00",
+            "text": "A PSR-11 fornece uma interface para recuperar objetos de um contêiner de injeção de dependência, promovendo um padrão comum para contêineres."
           },
           {
             "correct": false,
-            "createdAt": "2024-04-05 04:14:13.951247+00",
-            "text": "Encerra o script PHP"
-          },
-          {
-            "correct": false,
-            "createdAt": "2024-04-05 04:14:13.951247+00",
-            "text": "Indica o final do programa"
-          },
-          {
-            "correct": false,
-            "createdAt": "2024-04-05 04:14:13.951247+00",
-            "text": "Nada, pois keyword 'final' não existe"
+            "createdAt": "2024-04-10 19:32:00.000000+00",
+            "text": "A PSR-11 é uma diretriz para a formatação de strings e arrays em PHP, assemelhando-se à PSR-12 em termos de estilo de código."
           }
         ]
       },
       {
         "id": 11,
-        "text": "Zivinho quer que seu sistema PHP funcione com qualquer banco de dados sem depender de funções específicas (como mysql_* para MySQL). Como ele pode fazer isso?",
-        "createdAt": "2024-04-05 04:14:13.951247+00",
-        "updatedAt": "2024-04-05 04:14:13.951247+00",
+        "text": "Como a PSR-7 influencia o desenvolvimento de aplicações web em PHP?",
+        "createdAt": "2024-04-10 19:45:00.000000+00",
+        "updatedAt": "2024-04-10 19:45:00.000000+00",
         "answers": [
           {
             "correct": false,
-            "createdAt": "2024-04-05 04:14:13.951247+00",
-            "text": "Não pode"
+            "createdAt": "2024-04-10 19:45:00.000000+00",
+            "text": "A PSR-7 padroniza a maneira como as exceções são tratadas em aplicações PHP, o que na verdade é o foco da PSR-15."
+          },
+          {
+            "correct": false,
+            "createdAt": "2024-04-10 19:45:00.000000+00",
+            "text": "A PSR-7 oferece diretrizes para a autoloading de classes PHP, o que é na verdade abordado pela PSR-4."
           },
           {
             "correct": true,
-            "createdAt": "2024-04-05 04:14:13.951247+00",
-            "text": "Com PDO"
+            "createdAt": "2024-04-10 19:45:00.000000+00",
+            "text": "A PSR-7 define uma interface padronizada para mensagens HTTP, facilitando a criação de middleware e aplicações web compatíveis."
+          }
+        ]
+      },
+      {
+        "id": 12,
+        "text": "Qual é a importância da PSR-12 para a comunidade PHP?",
+        "createdAt": "2024-04-10 19:47:00.000000+00",
+        "updatedAt": "2024-04-10 19:47:00.000000+00",
+        "answers": [
+          {
+            "correct": false,
+            "createdAt": "2024-04-10 19:47:00.000000+00",
+            "text": "A PSR-12 define uma interface comum para sistemas de templates em PHP, o que é na verdade o propósito da PSR-5."
+          },
+          {
+            "correct": true,
+            "createdAt": "2024-04-10 19:47:00.000000+00",
+            "text": "A PSR-12 estabelece um conjunto de regras de estilo de código para garantir a consistência e legibilidade do código PHP em diversos projetos."
           },
           {
             "correct": false,
-            "createdAt": "2024-04-05 04:14:13.951247+00",
-            "text": "Com ADODB"
+            "createdAt": "2024-04-10 19:47:00.000000+00",
+            "text": "A PSR-12 é uma recomendação para a estruturação e organização de testes unitários em PHP, o que é na verdade abordado pela PSR-19."
+          }
+        ]
+      },
+      {
+        "id": 13,
+        "text": "Quais são as principais melhorias introduzidas pela PSR-4 em relação ao autoloading de classes?",
+        "createdAt": "2024-04-10 19:55:00.000000+00",
+        "updatedAt": "2024-04-10 19:55:00.000000+00",
+        "answers": [
+          {
+            "correct": false,
+            "createdAt": "2024-04-10 19:55:00.000000+00",
+            "text": "A PSR-4 é uma diretriz para a formatação de código HTML gerado por PHP, o que é na verdade o foco da PSR-7."
           },
           {
             "correct": false,
-            "createdAt": "2024-04-05 04:14:13.951247+00",
-            "text": "Com PHP Global Databases"
+            "createdAt": "2024-04-10 19:55:00.000000+00",
+            "text": "A PSR-4 define padrões para a documentação de código PHP, o que é na verdade abordado pela PSR-5."
+          },
+          {
+            "correct": true,
+            "createdAt": "2024-04-10 19:55:00.000000+00",
+            "text": "A PSR-4 oferece uma abordagem mais flexível e eficiente para o autoloading, permitindo um mapeamento mais simples entre os namespaces e a estrutura de diretórios dos arquivos."
           }
         ]
       },
       {
         "id": 14,
-        "text": "O que originalmente significava PHP antes de significar 'PHP: Hypertext Preprocessor'?",
-        "createdAt": "2024-04-05 04:14:13.951247+00",
-        "updatedAt": "2024-04-05 04:14:13.951247+00",
-        "answers": [
-          {
-            "correct": true,
-            "createdAt": "2024-04-05 04:14:13.951247+00",
-            "text": "Personal Home Page"
-          },
-          {
-            "correct": false,
-            "createdAt": "2024-04-05 04:14:13.951247+00",
-            "text": "Preprocessor for Huge Parallelization"
-          },
-          {
-            "correct": false,
-            "createdAt": "2024-04-05 04:14:13.951247+00",
-            "text": "Packaged Hints for Programming"
-          },
-          {
-            "correct": false,
-            "createdAt": "2024-04-05 04:14:13.951247+00",
-            "text": "Program for High Problems"
-          }
-        ]
-      },
-      {
-        "id": 15,
-        "text": "Escolha a resposta correta",
-        "createdAt": "2024-04-05 04:14:13.951247+00",
-        "updatedAt": "2024-04-05 04:14:13.951247+00",
+        "text": "Como a PSR-14 pode beneficiar o desenvolvimento de aplicações PHP?",
+        "createdAt": "2024-04-10 19:57:00.000000+00",
+        "updatedAt": "2024-04-10 19:57:00.000000+00",
         "answers": [
           {
             "correct": false,
-            "createdAt": "2024-04-05 04:14:13.951247+00",
-            "text": "`(1 | 2) == 1`"
+            "createdAt": "2024-04-10 19:57:00.000000+00",
+            "text": "A PSR-14 estabelece um conjunto de regras para a criação de APIs RESTful em PHP, o que é na verdade o propósito da PSR-17."
           },
           {
             "correct": true,
-            "createdAt": "2024-04-05 04:14:13.951247+00",
-            "text": "`(1 ^ 3) == 2`"
+            "createdAt": "2024-04-10 19:57:00.000000+00",
+            "text": "A PSR-14 introduz um sistema de eventos padronizado, permitindo que os componentes de uma aplicação PHP comuniquem entre si de maneira desacoplada."
           },
           {
             "correct": false,
-            "createdAt": "2024-04-05 04:14:13.951247+00",
-            "text": "`(2 ^ 3) == 8`"
-          },
-          {
-            "correct": false,
-            "createdAt": "2024-04-05 04:14:13.951247+00",
-            "text": "`(2 & 3) == 6`"
-          }
-        ]
-      },
-      {
-        "id": 16,
-        "text": "Dado que `strtolower()` é usado para aplicar lower case a strings, que função é usada para first case em cada palavra (ex.: _\"First Case Em Palavras\"_)?",
-        "createdAt": "2024-04-05 04:14:13.951247+00",
-        "updatedAt": "2024-04-05 04:14:13.951247+00",
-        "answers": [
-          {
-            "correct": false,
-            "createdAt": "2024-04-05 04:14:13.951247+00",
-            "text": "`strtofirst()`"
-          },
-          {
-            "correct": false,
-            "createdAt": "2024-04-05 04:14:13.951247+00",
-            "text": "`firstcharupper()`"
-          },
-          {
-            "correct": true,
-            "createdAt": "2024-04-05 04:14:13.951247+00",
-            "text": "`ucwords()`"
-          },
-          {
-            "correct": false,
-            "createdAt": "2024-04-05 04:14:13.951247+00",
-            "text": "`firstcase()`"
-          }
-        ]
-      },
-      {
-        "id": 17,
-        "text": "Qual comando para iniciar o PHP em modo interativo (REPL - Read-Eval-Print-Delete loop)?",
-        "createdAt": "2024-04-05 04:14:13.951247+00",
-        "updatedAt": "2024-04-05 04:14:13.951247+00",
-        "answers": [
-          {
-            "correct": false,
-            "createdAt": "2024-04-05 04:14:13.951247+00",
-            "text": "`php --repl`"
-          },
-          {
-            "correct": true,
-            "createdAt": "2024-04-05 04:14:13.951247+00",
-            "text": "`php -a`"
-          },
-          {
-            "correct": false,
-            "createdAt": "2024-04-05 04:14:13.951247+00",
-            "text": "`php -i`"
-          },
-          {
-            "correct": false,
-            "createdAt": "2024-04-05 04:14:13.951247+00",
-            "text": "`php -r`"
-          }
-        ]
-      },
-      {
-        "id": 18,
-        "text": "Espaços após tags de fechamento (`?>`) ao final de um arquivo `*.php` costumam causar problemas em aplicações PHP. Por quê?",
-        "createdAt": "2024-04-05 04:14:13.951247+00",
-        "updatedAt": "2024-04-05 04:14:13.951247+00",
-        "answers": [
-          {
-            "correct": false,
-            "createdAt": "2024-04-05 04:14:13.951247+00",
-            "text": "Espaços após `?>` ocasionam erros de execução"
-          },
-          {
-            "correct": false,
-            "createdAt": "2024-04-05 04:14:13.951247+00",
-            "text": "Espaços após `?>` iniciam o envio de cabeçalhos da requisição"
-          },
-          {
-            "correct": true,
-            "createdAt": "2024-04-05 04:14:13.951247+00",
-            "text": "Espaços após `?>` iniciam o envio do corpo da requisição"
-          },
-          {
-            "correct": false,
-            "createdAt": "2024-04-05 04:14:13.951247+00",
-            "text": "Espaços após `?>` encerram o envio do corpo da requisição"
+            "createdAt": "2024-04-10 19:57:00.000000+00",
+            "text": "A PSR-14 define diretrizes para a segurança de aplicações PHP, o que é na verdade abordado pela PSR-19."
           }
         ]
       }
