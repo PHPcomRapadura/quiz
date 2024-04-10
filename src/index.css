@@ -1,31 +1,24 @@
+body {
+    background-image: linear-gradient(90deg, #33b7e2, #a680da, #fd81b8);
+}
+
 #root {
     height: 100%;
     width: 100%;
     position: relative;
 }
 
-body {
-    background-image: linear-gradient(90deg, #33b7e2, #a680da, #fd81b8);
+input[type="text"], input[type="password"] {
+    background-color: #ffffff;
+    color: #5c5c5c;
 }
 
-.PublicLayout {
-    padding-top: 82px;
+input[type="text"]:focus, input[type="password"]:focus {
+    color: #5c5c5c;
+    background-color: #ffffff;
+    border: 1px solid #a8a8a8;
 }
 
-.PublicLayout nav {
-    height: 82px;
-}
-
-.PublicLayout main {
-    padding: 30px 10px;
-}
-
-.PublicLayout main > .container {
-    min-height: calc(100vh - 198px);
-    transition: height 0.3s;
-    max-width: 1024px;
-}
-
-.PublicLayout footer {
-    height: 56px;
+input[type="text"]::placeholder, input[type="password"]::placeholder {
+    color: #c5c5c5;
 }

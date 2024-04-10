@@ -7,27 +7,31 @@ import InMemoryGameRepository from '../app/Infrastructure/InMemory/InMemoryGameR
 import SupabaseGameRepository from '../app/Infrastructure/Supabase/SupabaseGameRepository.ts'
 import { mode } from './env.ts'
 
-const factory = (binds: Record<string, () => unknown>) => {
+const binds: Record<string, Record<string, () => unknown>> = {
+  http: {
+    AuthRepository: () => HttpAuthRepository.build(),
+    // GameRepository: () => HttpGameRepository.build(),
+  },
+  memory: {
+    // AuthRepository: () => new InMemoryAuthRepository(),
+    GameRepository: () => new InMemoryGameRepository(),
+  },
+  supabase: {
+    AuthRepository: () => SupabaseAuthRepository.build(),
+    GameRepository: () => SupabaseGameRepository.build(),
+  },
+}
+
+const factory = (token: string): [string, { useFactory: () => unknown }] => {
   const bind = binds[mode()]
-  return bind && bind()
+  const useFactory = bind[token]
+  return [token, { useFactory }]
 }
 
 export default function () {
   container.register('AuthService', { useClass: AuthService })
-  container.register('AuthRepository', {
-    useFactory: () => {
-      return factory({
-        http: () => HttpAuthRepository.build(),
-        supabase: () => SupabaseAuthRepository.build(),
-      })
-    }
-  })
-  container.register('GameRepository', {
-    useFactory: () => factory({
-      memory: () => new InMemoryGameRepository(),
-      supabase: () => SupabaseGameRepository.build(),
-    })
-  })
+  container.register(...factory('AuthRepository'))
+  container.register(...factory('GameRepository'))
 
   return container
 }
