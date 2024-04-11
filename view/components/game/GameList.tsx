@@ -1,4 +1,4 @@
-import Game from '../../../app/Domain/Game/Game.ts'
+import Game from '../../../src/Domain/Game/Game.ts'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 

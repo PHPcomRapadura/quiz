@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 
-import Answer from '../../../../app/Domain/Game/Answer.ts'
-import { shuffle } from '../../../../app/Domain/Util.ts'
-import AnswerStatus from '../../../../app/Domain/Game/AnswerStatus.ts'
+import Answer from '../../../../src/Domain/Game/Answer.ts'
+import { shuffle } from '../../../../src/Domain/Util.ts'
+import AnswerStatus from '../../../../src/Domain/Game/AnswerStatus.ts'
 
 import { Case, Match } from '../../general/Match.tsx'
 

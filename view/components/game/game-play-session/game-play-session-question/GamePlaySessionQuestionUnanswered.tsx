@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 
 import { Markdown } from '../../../general/Markdown.tsx'
-import Answer from '../../../../../app/Domain/Game/Answer.ts'
+import Answer from '../../../../../src/Domain/Game/Answer.ts'
 
 export type GameQuestionOptionsProps = {
   text: string

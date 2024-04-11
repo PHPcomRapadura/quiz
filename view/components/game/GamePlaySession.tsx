@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 
-import Question from '../../../app/Domain/Game/Question.ts'
-import AnswerStatus from '../../../app/Domain/Game/AnswerStatus.ts'
-import { shuffle } from '../../../app/Domain/Util.ts'
-import Game from '../../../app/Domain/Game/Game.ts'
+import Question from '../../../src/Domain/Game/Question.ts'
+import AnswerStatus from '../../../src/Domain/Game/AnswerStatus.ts'
+import { shuffle } from '../../../src/Domain/Util.ts'
+import Game from '../../../src/Domain/Game/Game.ts'
 
 import { GamePlaySessionInstruction } from './game-play-session/GamePlaySessionInstruction.tsx'
 import { GamePlaySessionQuestion, GameQuestionAnswerQuestion } from './game-play-session/GamePlaySessionQuestion.tsx'

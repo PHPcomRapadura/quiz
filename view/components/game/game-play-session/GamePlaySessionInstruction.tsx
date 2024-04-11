@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import Game from '../../../../app/Domain/Game/Game.ts'
+import Game from '../../../../src/Domain/Game/Game.ts'
 import { AlertPrimary } from '../../general/Alert.tsx'
 
 export type GameInstructionProps = {

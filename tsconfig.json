@@ -21,8 +21,9 @@
     "noFallthroughCasesInSwitch": true,
 
     "experimentalDecorators": true,
-    "emitDecoratorMetadata": true
+    "emitDecoratorMetadata": true,
+    "types": ["vite/client"]
   },
-  "include": ["src"],
+  "include": ["src", "view", "config"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

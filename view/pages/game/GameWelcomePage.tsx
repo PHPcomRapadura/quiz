@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import GameRepository from '../../../app/Domain/Game/GameRepository.ts'
-import Game from '../../../app/Domain/Game/Game.ts'
+import GameRepository from '../../../src/Domain/Game/GameRepository.ts'
+import Game from '../../../src/Domain/Game/Game.ts'
 
 import { useApp } from '../../hooks/useApp.ts'
 import { Async, AsyncStatus, On } from '../../components/general/Async.tsx'

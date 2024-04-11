@@ -2,26 +2,26 @@ import 'reflect-metadata'
 
 import { Route, Routes } from 'react-router-dom'
 
-import { AppProvider } from './view/providers/AppProvider'
+import { AppProvider } from './providers/AppProvider.tsx'
 
-import { PublicLayout } from './view/layouts/PublicLayout.tsx'
+import { PublicLayout } from './layouts/PublicLayout.tsx'
 
 import './App.css'
 // components
-import { ProtectPage } from './view/components/auth/ProtectPage'
+import { ProtectPage } from './components/auth/ProtectPage.tsx'
 // pages
-import { HomePage } from './view/pages/HomePage.tsx'
+import { HomePage } from './pages/HomePage.tsx'
 // game
-import { GameWelcomePage } from './view/pages/game/GameWelcomePage.tsx'
-import { GamePlayPage } from './view/pages/game/GamePlayPage.tsx'
-import { GameEndPage } from './view/pages/game/GameEndPage.tsx'
+import { GameWelcomePage } from './pages/game/GameWelcomePage.tsx'
+import { GamePlayPage } from './pages/game/GamePlayPage.tsx'
+import { GameEndPage } from './pages/game/GameEndPage.tsx'
 // session
-import { DashboardPage } from './view/pages/DashboardPage.tsx'
-import { SignInPage } from './view/pages/auth/SignInPage.tsx'
-import { WaitOneTimePassword } from './view/pages/auth/WaitOneTimePassword.tsx'
-import { useRunOnce } from './view/hooks/useRunOnce.ts'
+import { DashboardPage } from './pages/DashboardPage.tsx'
+import { SignInPage } from './pages/auth/SignInPage.tsx'
+import { WaitOneTimePassword } from './pages/auth/WaitOneTimePassword.tsx'
+import { useRunOnce } from './hooks/useRunOnce.ts'
 
-import { name } from './config/i18n.ts'
+import { name } from '../config/i18n.ts'
 
 export default function App () {
   useRunOnce(() => document.title = name)

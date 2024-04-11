@@ -1,11 +1,11 @@
 import 'reflect-metadata'
 import { container } from 'tsyringe'
-import { AuthService } from '../app/Application/AuthService.ts'
-import SupabaseAuthRepository from '../app/Infrastructure/Supabase/SupabaseAuthRepository.ts'
-import HttpAuthRepository from '../app/Infrastructure/Backend/HttpAuthRepository.ts'
-import InMemoryGameRepository from '../app/Infrastructure/InMemory/InMemoryGameRepository.ts'
-import SupabaseGameRepository from '../app/Infrastructure/Supabase/SupabaseGameRepository.ts'
-import InMemoryAuthRepository from '../app/Infrastructure/InMemory/InMemoryAuthRepository.ts'
+import { AuthService } from '../src/Application/AuthService.ts'
+import SupabaseAuthRepository from '../src/Infrastructure/Supabase/SupabaseAuthRepository.ts'
+import HttpAuthRepository from '../src/Infrastructure/Backend/HttpAuthRepository.ts'
+import InMemoryGameRepository from '../src/Infrastructure/InMemory/InMemoryGameRepository.ts'
+import SupabaseGameRepository from '../src/Infrastructure/Supabase/SupabaseGameRepository.ts'
+import InMemoryAuthRepository from '../src/Infrastructure/InMemory/InMemoryAuthRepository.ts'
 
 import { mode } from './env.ts'
 
