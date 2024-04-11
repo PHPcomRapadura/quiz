@@ -1,17 +1,20 @@
 import { createStore, Store } from '../store.ts'
 import { Session } from '../../src/Domain/Auth/Auth.ts'
+import { Driver } from '../../src/Domain/Contracts.ts'
 
 export const sessionStore: Store<Session> = createStore({
   username: '',
   credential: null,
   abilities: [],
-  infra: localStorage.getItem('mode') || import.meta.env.VITE_BACKEND_MODE || 'supabase',
+  driver: window.sessionStorage.getItem('driver') ?
+    JSON.parse(window.sessionStorage.getItem('driver') as string) :
+    undefined,
 })
 
-sessionStore.subscribe('mode', (mode: unknown) => {
-  if (mode) {
-    window.sessionStorage.setItem('mode', mode as string)
+sessionStore.subscribe('driver', (driver: unknown) => {
+  if (driver) {
+    window.sessionStorage.setItem('driver', JSON.stringify(driver as Driver))
     return
   }
-  window.sessionStorage.removeItem('mode')
+  window.sessionStorage.removeItem('driver')
 })
