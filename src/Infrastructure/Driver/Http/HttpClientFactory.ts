@@ -1,5 +1,5 @@
 import JsonHttpClient from './JsonHttpClient.ts'
-import { Content, Data } from '../../Domain/Contracts.ts'
+import { Content, Data } from '../../../Domain/Contracts.ts'
 import { HttpClientContract, HttpClientDriverContract } from './Contracts.ts'
 
 const clients: Record<string, HttpClientContract> = {}

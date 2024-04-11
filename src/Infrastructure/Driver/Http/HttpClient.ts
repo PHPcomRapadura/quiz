@@ -1,5 +1,5 @@
-import type { Content, Data } from '../../Domain/Contracts.ts'
-import { Status } from '../../Domain/Contracts.ts'
+import type { Content, Data } from '../../../Domain/Contracts.ts'
+import { Status } from '../../../Domain/Contracts.ts'
 import { HttpClientContract, HttpRequester } from './Contracts.ts'
 
 export default class HttpClient implements HttpClientContract {

@@ -11,3 +11,16 @@ export interface Content {
 }
 
 export type Data = { [property: string]: Data | unknown }
+
+export enum DriverType {
+  http = 'http',
+  memory = 'memory',
+  supabase = 'supabase',
+}
+
+export type Driver = {
+  type: DriverType
+  config: Data
+}
+
+export type DriverResolver = Record<DriverType, Record<string, (config: Data) => unknown>>

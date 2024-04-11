@@ -1,3 +1,5 @@
+import { Driver } from '../Contracts.ts'
+
 export type Session = {
   username: string
   credential?: {
@@ -7,6 +9,7 @@ export type Session = {
     type: string
   }
   abilities?: string[]
+  driver?: Driver
 } | null
 
 export interface AuthContract {

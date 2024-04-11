@@ -1,5 +1,5 @@
-import type { Content, Data } from '../../Domain/Contracts.ts'
-import { Status } from '../../Domain/Contracts.ts'
+import type { Content, Data } from '../../../Domain/Contracts.ts'
+import { Status } from '../../../Domain/Contracts.ts'
 import HttpClient from './HttpClient.ts'
 
 export default class JsonHttpClient extends HttpClient {

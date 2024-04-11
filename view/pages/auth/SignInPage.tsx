@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useApp } from '../../hooks/useApp.ts'
 import { AlertDanger } from '../../components/general/Alert.tsx'
-import { mode } from '../../../config/env.ts'
+import { loadedDriver, Driver } from '../../../config/env.ts'
 import { Loading } from '../../components/general/Loading.tsx'
 
 export function SignInPage () {
@@ -17,7 +17,7 @@ export function SignInPage () {
     return
   }
 
-  const type = mode() === 'supabase' ? 'otp' : 'password'
+  const type = loadedDriver() === Mode.supabase ? 'otp' : 'password'
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()

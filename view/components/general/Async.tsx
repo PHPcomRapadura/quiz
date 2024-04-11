@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { ReactNode, useEffect, useRef, useState } from 'react'
 
-export type HydrateElementProps = {
+export type AsyncElementProps = {
   children: ReactNode | ReactNode[]
   status: AsyncStatus
 }
 
-export type HydrateProps = {
+export type AsyncProps = {
   using: () => Promise<any>
   onResolve: (data: any) => void
   onReject?: (data: any) => void
@@ -20,11 +20,11 @@ export enum AsyncStatus {
   Rejected = 'Rejected'
 }
 
-export function On ({ children }: HydrateElementProps) {
+export function On ({ children }: AsyncElementProps) {
   return children
 }
 
-export function Async ({ using, onResolve, onReject, children }: HydrateProps) {
+export function Async ({ using, onResolve, onReject, children }: AsyncProps) {
   const fetched = useRef(false)
   const [status, setStatus] = useState(AsyncStatus.Pending)
 

@@ -1,7 +1,7 @@
 import AuthRepository from '../../Domain/Auth/AuthRepository.ts'
 import { Data, Status } from '../../Domain/Contracts.ts'
-import { HttpClientDriverContract } from '../Http/Contracts.ts'
-import HttpClientFactory from '../Http/HttpClientFactory.ts'
+import { HttpClientDriverContract } from '../Driver/Http/Contracts.ts'
+import HttpClientFactory from '../Driver/Http/HttpClientFactory.ts'
 import { Session } from '../../Domain/Auth/Auth.ts'
 
 export default class HttpAuthRepository implements AuthRepository {

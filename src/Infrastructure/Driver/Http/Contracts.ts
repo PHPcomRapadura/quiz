@@ -1,4 +1,4 @@
-import type { Content, Data } from '../../Domain/Contracts.ts'
+import type { Content, Data } from '../../../Domain/Contracts.ts'
 
 export interface HttpRequester {
   request: (method: string, path: string, data?: Data) => Promise<Content>

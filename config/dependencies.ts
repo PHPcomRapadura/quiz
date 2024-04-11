@@ -1,33 +1,37 @@
 import 'reflect-metadata'
 import { container } from 'tsyringe'
+
+import { DriverResolver, Data, DriverType } from '../src/Domain/Contracts.ts'
+
 import { AuthService } from '../src/Application/AuthService.ts'
 import SupabaseAuthRepository from '../src/Infrastructure/Supabase/SupabaseAuthRepository.ts'
-import HttpAuthRepository from '../src/Infrastructure/Backend/HttpAuthRepository.ts'
-import InMemoryGameRepository from '../src/Infrastructure/InMemory/InMemoryGameRepository.ts'
+import HttpAuthRepository from '../src/Infrastructure/Http/HttpAuthRepository.ts'
+import InMemoryGameRepository from '../src/Infrastructure/Memory/InMemoryGameRepository.ts'
 import SupabaseGameRepository from '../src/Infrastructure/Supabase/SupabaseGameRepository.ts'
-import InMemoryAuthRepository from '../src/Infrastructure/InMemory/InMemoryAuthRepository.ts'
+import InMemoryAuthRepository from '../src/Infrastructure/Memory/InMemoryAuthRepository.ts'
 
-import { mode } from './env.ts'
+import { loadedDriver } from './env.ts'
 
-const binds: Record<string, Record<string, () => unknown>> = {
-  http: {
+const binds: DriverResolver = {
+  [DriverType.http]: {
     AuthRepository: () => HttpAuthRepository.build(),
-    // GameRepository: () => HttpGameRepository.build(),
+    // GameRepository: (config: Data) => HttpGameRepository.build(),
   },
-  memory: {
+  [DriverType.memory]: {
     AuthRepository: () => new InMemoryAuthRepository(),
     GameRepository: () => new InMemoryGameRepository(),
   },
-  supabase: {
-    AuthRepository: () => SupabaseAuthRepository.build(),
-    GameRepository: () => SupabaseGameRepository.build(),
+  [DriverType.supabase]: {
+    AuthRepository: (config: Data) => SupabaseAuthRepository.build(config),
+    GameRepository: (config: Data) => SupabaseGameRepository.build(config),
   },
 }
 
 const factory = (token: string): [string, { useFactory: () => unknown }] => {
-  const bind = binds[mode()]
+  const driver = loadedDriver()
+  const bind = binds[driver.type]
   const useFactory = bind[token]
-  return [token, { useFactory }]
+  return [token, { useFactory: () => useFactory(driver.config) }]
 }
 
 export default function () {

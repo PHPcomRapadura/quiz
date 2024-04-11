@@ -1,17 +1,14 @@
+import { AuthOtpResponse } from '@supabase/supabase-js'
+
+import SupabaseRepository from '../Driver/Supabase/SupabaseRepository.ts'
+
 import AuthRepository from '../../Domain/Auth/AuthRepository.ts'
-import SupabaseClientFactory from './SupabaseClientFactory.ts'
-import { AuthOtpResponse, SupabaseClient } from '@supabase/supabase-js'
 import { Session } from '../../Domain/Auth/Auth.ts'
+import { Data } from '../../Domain/Contracts.ts'
 
-export default class SupabaseAuthRepository implements AuthRepository {
-  private driver: SupabaseClient
-
-  constructor (supabaseClientFactory: SupabaseClientFactory) {
-    this.driver = supabaseClientFactory.make()
-  }
-
-  static build () {
-    return new this(new SupabaseClientFactory())
+export default class SupabaseAuthRepository extends SupabaseRepository implements AuthRepository {
+  static build (config: Data) {
+    return new this(config)
   }
 
   async signInWithOtp (email: string): Promise<Session> {

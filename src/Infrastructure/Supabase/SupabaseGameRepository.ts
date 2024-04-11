@@ -1,27 +1,26 @@
-import { SupabaseClient } from '@supabase/supabase-js'
+import SupabaseRepository from '../Driver/Supabase/SupabaseRepository.ts'
 
-import Game from '../../Domain/Game/Game.ts'
 import GameRepository from '../../Domain/Game/GameRepository.ts'
-import SupabaseClientFactory from './SupabaseClientFactory.ts'
+import { Data } from '../../Domain/Contracts.ts'
+import Game from '../../Domain/Game/Game.ts'
+
 import GameMapper from './Mapper/GameMapper.ts'
 
-export default class SupabaseGameRepository implements GameRepository {
-  private supabase: SupabaseClient
-
+export default class SupabaseGameRepository extends SupabaseRepository implements GameRepository {
   constructor (
     private mapper: GameMapper,
-    supabaseClientFactory: SupabaseClientFactory
+    config: Data
   ) {
-    this.supabase = supabaseClientFactory.make()
+    super(config)
   }
 
-  static build () {
-    return new this(new GameMapper(), new SupabaseClientFactory())
+  static build (config: Data) {
+    return new this(new GameMapper(), config)
   }
 
   async paginate (page: number, limit: number): Promise<Game[]> {
     const from = (page - 1) * limit
-    const { data, error } = await this.supabase
+    const { data, error } = await this.driver
       .from('games')
       .select(`id,
           description,  
@@ -49,7 +48,7 @@ export default class SupabaseGameRepository implements GameRepository {
   }
 
   async findById (id: number | string): Promise<Game> {
-    const { data, error } = await this.supabase
+    const { data, error } = await this.driver
       .from('games')
       .select(`id,
           description,  

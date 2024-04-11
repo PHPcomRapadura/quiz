@@ -1,6 +1,6 @@
 import AuthRepository from '../../Domain/Auth/AuthRepository.ts'
 import { Session } from '../../Domain/Auth/Auth.ts'
-import InMemoryRepository from './InMemoryRepository.ts'
+import InMemoryRepository from '../Driver/Memory/InMemoryRepository.ts'
 
 export default class InMemoryAuthRepository extends InMemoryRepository implements AuthRepository {
   restore (): Promise<Session> {
