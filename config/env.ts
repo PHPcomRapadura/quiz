@@ -1,7 +1,7 @@
 import { sessionStore } from '../view/stores/session.ts'
 import { Driver, DriverType } from '../src/Domain/Contracts.ts'
 
-const fallback: Driver = {
+export const driverDefault: Driver = {
   type: DriverType.supabase,
   config: {
     url: import.meta.env.VITE_SUPABASE_URL,
@@ -9,4 +9,4 @@ const fallback: Driver = {
   }
 }
 
-export const loadedDriver = (): Driver => sessionStore.state?.driver || fallback
+export const loadedDriver = (): Driver => sessionStore.state?.driver || driverDefault
