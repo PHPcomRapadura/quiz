@@ -23,3 +23,11 @@ input[type="text"]:focus, input[type="password"]:focus {
 input[type="text"]::placeholder, input[type="password"]::placeholder {
     color: #c5c5c5;
 }
+
+.full-width {
+    width: 100vw;
+}
+
+.full-height {
+    height: 100vh;
+}
