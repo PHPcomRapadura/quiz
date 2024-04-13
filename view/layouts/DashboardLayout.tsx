@@ -1,11 +1,9 @@
 import { useTranslation } from 'react-i18next'
-import { useNavigate } from 'react-router-dom'
 import { useApp } from '../hooks/useApp.ts'
 import { Async, AsyncStatus, On } from '../components/general/Async.tsx'
-import { Case } from '../components/general/Conditional.tsx'
 import { loadingStore } from '../stores/loading.ts'
-import { LayoutLoading } from './LayoutLoading.tsx'
-import { LayoutNavbar } from './LayoutNavbar.tsx'
+import { LayoutLoading } from './general/LayoutLoading.tsx'
+import { LayoutNavbar } from './general/LayoutNavbar.tsx'
 import { DashboardNavigation } from './dashboard/DashboardNavigation.tsx'
 
 export function DashboardLayout () {
@@ -13,16 +11,8 @@ export function DashboardLayout () {
     'default',
     { keyPrefix: 'layouts.dashboard' }
   )
-  const navigate = useNavigate()
 
   const { session, auth } = useApp()
-
-  const signOut = async () => {
-    const done = await auth.signOut()
-    if (done) {
-      navigate('/')
-    }
-  }
 
   return (
     <>
@@ -34,25 +24,12 @@ export function DashboardLayout () {
         <On status={AsyncStatus.Resolved}>
 
           <div className="DashboardLayout">
-            <LayoutNavbar condition={!!session.credential}>
-              <Case value={true}>
-                <small className="text-light-emphasis px-2">{session.username}</small>
-                <button
-                  className="btn btn-outline-primary"
-                  onClick={signOut}
-                >
-                  {t('signOut')}
-                </button>
-              </Case>
-              <Case value={false}>
-                <button
-                  className="btn btn-primary"
-                  onClick={() => navigate('/games')}
-                >
-                  {t('games')}
-                </button>
-              </Case>
-            </LayoutNavbar>
+
+            <LayoutNavbar
+              session={session}
+              auth={auth}
+              layout="public"
+            />
 
             <main className="flex-shrink-0">
               <div className="container">

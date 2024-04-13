@@ -1,6 +1,6 @@
-import { Loading } from '../components/general/Loading.tsx'
-import { If } from '../components/general/Conditional.tsx'
-import { loadingStore } from '../stores/loading.ts'
+import { Loading } from '../../components/general/Loading.tsx'
+import { If } from '../../components/general/Conditional.tsx'
+import { loadingStore } from '../../stores/loading.ts'
 import { useState } from 'react'
 import { useBeforeUnload } from 'react-router-dom'
 
