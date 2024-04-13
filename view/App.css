@@ -57,3 +57,10 @@
 .PublicLayout .GamePlaySessionQuestionUnanswered > .card > .card-body > .form-check p {
     line-height: 165%;
 }
+
+.LayoutLoading {
+    position: fixed;
+    top: 0;
+    z-index: 9999;
+    background-color: rgba(39, 39, 39, 0.7);
+}

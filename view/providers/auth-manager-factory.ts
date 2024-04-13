@@ -17,7 +17,7 @@ export function authManagerFactory (updateAuthSession: (session: Session) => voi
       if (!done) {
         return false
       }
-      updateAuthSession(getInitialSession())
+      updateAuthSession(getInitialSession(false))
       return true
     },
     async restore (): Promise<Session> {

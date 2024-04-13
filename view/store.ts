@@ -2,57 +2,52 @@ export interface StoreState {
   [key: string | symbol]: unknown
 }
 
+export type StoreCallback = (current?: unknown, previous?: unknown) => void
+
 export interface Store<T> {
   state: T
-  subscribe: (property: string, callback: (data: unknown) => void) => number
-  unsubscribe: (property: string, index: number) => void
+  subscribe: (property: keyof T, callback: StoreCallback) => number
+  unsubscribe: (property: keyof T, index: number) => void
 }
 
 export function createStore<T> (initial: StoreState): Store<T> {
-  type EventMap = {
-    [key: string]: Array<(data: unknown) => void>
-  };
+  type Key = keyof T
+  type EventMap = Record<Key, Array<StoreCallback>>
 
-  const events: EventMap = {}
+  const EVENTS: EventMap = Object.create({})
 
-  const publish = (eventName: string, data: unknown) => {
-    const subscribers = events[eventName]
+  const publish = (eventName: Key, current: unknown, previous: unknown) => {
+    const subscribers = EVENTS[eventName]
     if (subscribers) {
-      subscribers.forEach((callback) => {
-        callback(data)
-      })
+      subscribers.forEach((callback: StoreCallback) => callback(current, previous))
     }
   }
 
   const state = new Proxy(initial, {
-    get (target, property) {
+    get (target: StoreState, property) {
       return target[property]
     },
-    set (target, property, value) {
-      if (target[property] === value) {
-        return true
-      }
-      target[property] = value
-      publish(property as string, value)
+    set (target: StoreState, property, current) {
+      const previous = target[property]
+      target[property] = current
+      publish(property as Key, current, previous)
       return true
     }
   })
 
-  const subscribe = function (property: string, callback: (data: unknown) => void) {
-    if (!events[property]) {
-      events[property] = []
-    }
-    return events[property].push(callback)
-  }
-  const unsubscribe = function (property: string, index: number) {
-    if (!events[property]) {
-      return
-    }
-    events[property].splice(index - 1, 1)
-  }
   return {
     state: state as T,
-    subscribe,
-    unsubscribe
+    subscribe: function (property: Key, callback: StoreCallback) {
+      if (!EVENTS[property]) {
+        EVENTS[property] = []
+      }
+      return EVENTS[property].push(callback)
+    },
+    unsubscribe: function (property: Key, id: number) {
+      if (!EVENTS[property]) {
+        return
+      }
+      EVENTS[property].splice(id - 1, 1)
+    }
   }
 }

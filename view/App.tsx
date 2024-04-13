@@ -8,7 +8,7 @@ import { PublicLayout } from './layouts/PublicLayout.tsx'
 
 import './App.css'
 // components
-import { ProtectPage } from './components/auth/ProtectPage.tsx'
+import { AccreditedPage } from './components/auth/AccreditedPage.tsx'
 // pages
 import { HomePage } from './pages/HomePage.tsx'
 // game
@@ -16,12 +16,13 @@ import { GameWelcomePage } from './pages/game/GameWelcomePage.tsx'
 import { GamePlayPage } from './pages/game/GamePlayPage.tsx'
 import { GameEndPage } from './pages/game/GameEndPage.tsx'
 // session
-import { DashboardPage } from './pages/DashboardPage.tsx'
+import { DashboardLayout } from './layouts/DashboardLayout.tsx'
 import { SignInPage } from './pages/auth/SignInPage.tsx'
 import { WaitOneTimePassword } from './pages/auth/WaitOneTimePassword.tsx'
 import { useRunOnce } from './hooks/useRunOnce.ts'
 
 import { name } from '../config/i18n.ts'
+import { DashboardIndexPage } from './pages/DashboardIndexPage.tsx'
 
 export default function App () {
   useRunOnce(() => document.title = name)
@@ -58,13 +59,19 @@ export default function App () {
             element={<WaitOneTimePassword />}
           />
         </Route>
+
         <Route
-          element={<ProtectPage />}
+          element={<AccreditedPage />}
         >
           <Route
             path="/dashboard"
-            element={<DashboardPage />}
-          />
+            element={<DashboardLayout />}
+          >
+            <Route
+              index
+              element={<DashboardIndexPage />}
+            />
+          </Route>
         </Route>
       </Routes>
     </AppProvider>

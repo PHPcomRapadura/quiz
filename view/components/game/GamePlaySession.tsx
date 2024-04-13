@@ -7,7 +7,7 @@ import Game from '../../../src/Domain/Game/Game.ts'
 
 import { GamePlaySessionInstruction } from './game-play-session/GamePlaySessionInstruction.tsx'
 import { GamePlaySessionQuestion, GameQuestionAnswerQuestion } from './game-play-session/GamePlaySessionQuestion.tsx'
-import { Case, Match } from '../general/Match.tsx'
+import { Case, Match } from '../general/Conditional.tsx'
 import { Loading } from '../general/Loading.tsx'
 import { AlertWarning } from '../general/Alert.tsx'
 

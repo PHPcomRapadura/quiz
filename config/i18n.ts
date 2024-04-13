@@ -15,7 +15,8 @@ const resources = {
           play: 'Jogar',
           signIn: 'Entrar',
           myAccount: 'Minha Conta',
-          copyright: '© PHP com Rapadura'
+          copyright: '© PHP com Rapadura',
+          pending: 'Carregando ...',
         }
       },
       pages: {

@@ -1,7 +1,7 @@
 import { createStore, Store } from '../store.ts'
 
 import { Credential, Session } from '../../src/Domain/Auth/Auth.ts'
-import { Driver, DriverType } from '../../src/Domain/Contracts.ts'
+import { DriverType } from '../../src/Domain/Contracts.ts'
 import { credentialParser } from '../../src/Application/Auth'
 
 const loadCredential = (): Credential => {
@@ -9,9 +9,9 @@ const loadCredential = (): Credential => {
   return credential ? credentialParser(JSON.parse(credential)) : undefined
 }
 
-export const getInitialSession = (): Session => ({
-  username: 'guest',
-  credential: loadCredential(),
+export const getInitialSession = (load: boolean = true): Session => ({
+  username: '',
+  credential: load ? loadCredential() : undefined,
   abilities: [],
   driver: {
     type: DriverType.supabase,
@@ -24,9 +24,9 @@ export const getInitialSession = (): Session => ({
 
 export const sessionStore: Store<Session> = createStore(getInitialSession())
 
-sessionStore.subscribe('credential', (driver: unknown) => {
-  if (driver) {
-    window.sessionStorage.setItem('credential', JSON.stringify(driver as Driver))
+sessionStore.subscribe('credential', (credential: unknown) => {
+  if (credential) {
+    window.sessionStorage.setItem('credential', JSON.stringify(credential as Credential))
     return
   }
   window.sessionStorage.removeItem('credential')
