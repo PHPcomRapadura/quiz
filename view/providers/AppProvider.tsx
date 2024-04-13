@@ -1,22 +1,28 @@
-import React, { useState } from 'react'
+import { ReactNode, useState } from 'react'
 
-import { AppContext } from '../components/app/AppContext'
 import { AppContextContract, Session } from '../contracts.ts'
-import { authManagerFactory } from './auth-manager-factory.ts'
+
 import dependencies from '../../config/dependencies.ts'
 
-export function AppProvider ({ children }: { children: React.ReactNode }) {
+import { getInitialSession, sessionStore } from '../stores/session.ts'
+import { AppContext } from '../components/app/AppContext'
+import { authManagerFactory } from './auth-manager-factory.ts'
+
+export function AppProvider ({ children }: { children: ReactNode }) {
   const container = dependencies()
 
-  const [session, setSession] = useState<Session>(null)
+  const [session, setSession] = useState<Session>(getInitialSession())
 
   const updateAuthSession = (session: Session) => {
-    if (session?.credential) {
-      setSession(session)
-    }
+    setSession(session)
+    sessionStore.state.username = session.username
+    sessionStore.state.driver = session.driver
+    sessionStore.state.credential = session.credential
+    sessionStore.state.abilities = session.abilities
   }
 
-  const auth = authManagerFactory(updateAuthSession)
+  const context = sessionStore.state.credential
+  const auth = authManagerFactory(updateAuthSession, context)
 
   const value: AppContextContract = { container, session, auth }
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>

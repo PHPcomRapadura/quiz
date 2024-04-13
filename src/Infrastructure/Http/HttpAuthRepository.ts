@@ -1,5 +1,5 @@
 import AuthRepository from '../../Domain/Auth/AuthRepository.ts'
-import { Data, Status } from '../../Domain/Contracts.ts'
+import { Data, DriverType, Status } from '../../Domain/Contracts.ts'
 import { HttpClientDriverContract } from '../Driver/Http/Contracts.ts'
 import HttpClientFactory from '../Driver/Http/HttpClientFactory.ts'
 import { Session } from '../../Domain/Auth/Auth.ts'
@@ -24,7 +24,12 @@ export default class HttpAuthRepository implements AuthRepository {
     const user = data.user as Data
     return {
       username: user?.username as string,
-      abilities: []
+      credential: undefined,
+      abilities: [],
+      driver: {
+        type: DriverType.http,
+        config: {}
+      }
     }
   }
 
@@ -44,7 +49,11 @@ export default class HttpAuthRepository implements AuthRepository {
         expiresAt: credential?.expiresAt as string,
         type: credential?.type as string,
       },
-      abilities: []
+      abilities: [],
+      driver: {
+        type: DriverType.http,
+        config: {}
+      }
     }
   }
 
@@ -62,7 +71,12 @@ export default class HttpAuthRepository implements AuthRepository {
     const user = data.user as Data
     return {
       username: user?.username as string,
-      abilities: []
+      credential: undefined,
+      abilities: [],
+      driver: {
+        type: DriverType.http,
+        config: {}
+      }
     }
   }
 }

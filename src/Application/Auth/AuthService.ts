@@ -1,6 +1,7 @@
 import { inject, injectable } from 'tsyringe'
-import type AuthRepository from '../Domain/Auth/AuthRepository.ts'
-import { Session } from '../../view/contracts.ts'
+import type AuthRepository from '../../Domain/Auth/AuthRepository.ts'
+import { Session } from '../../../view/contracts.ts'
+import { Credential } from '../../Domain/Auth/Auth.ts'
 
 @injectable()
 export class AuthService {
@@ -17,7 +18,7 @@ export class AuthService {
     return this.authRepository.signOut()
   }
 
-  async restore (): Promise<Session> {
-    return this.authRepository.restore()
+  async restore (context: Credential): Promise<Session> {
+    return this.authRepository.restore(context)
   }
 }

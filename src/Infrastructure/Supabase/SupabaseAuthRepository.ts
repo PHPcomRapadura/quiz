@@ -5,6 +5,7 @@ import SupabaseRepository from '../Driver/Supabase/SupabaseRepository.ts'
 import AuthRepository from '../../Domain/Auth/AuthRepository.ts'
 import { Session } from '../../Domain/Auth/Auth.ts'
 import { Data } from '../../Domain/Contracts.ts'
+import { getInheritDriver } from '../../../config/env.ts'
 
 export default class SupabaseAuthRepository extends SupabaseRepository implements AuthRepository {
   static build (config: Data) {
@@ -19,7 +20,9 @@ export default class SupabaseAuthRepository extends SupabaseRepository implement
     }
     return {
       username: email,
-      abilities: []
+      abilities: [],
+      credential: undefined,
+      driver: getInheritDriver()
     }
   }
 
@@ -40,7 +43,8 @@ export default class SupabaseAuthRepository extends SupabaseRepository implement
         expiresAt: session?.expires_at,
         type: session?.token_type
       },
-      abilities: []
+      abilities: [],
+      driver: getInheritDriver()
     }
   }
 
@@ -54,18 +58,22 @@ export default class SupabaseAuthRepository extends SupabaseRepository implement
       throw new Error(error.message)
     }
     const { session } = data
-    if (!session?.user?.email) {
-      throw new Error('Invalid session found')
-    }
-    return {
-      username: session?.user?.email,
-      credential: {
+    let username = ''
+    let credential
+    if (session?.user?.email) {
+      username = session?.user?.email
+      credential = {
         token: session?.access_token,
         refresh: session?.refresh_token,
         expiresAt: session?.expires_at,
         type: session?.token_type
-      },
-      abilities: []
+      }
+    }
+    return {
+      username: username,
+      credential: credential,
+      abilities: [],
+      driver: getInheritDriver()
     }
   }
 }

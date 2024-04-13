@@ -12,7 +12,7 @@ export default class SupabaseClientFactory {
       }
       return client
     } catch (error) {
-      const message = 'Error creating Supabase client'
+      const message = 'Error making a new Supabase client on SupabaseClientFactory'
       console.error(message, ': ', error)
       throw new Error(message)
     }

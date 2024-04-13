@@ -1,8 +1,10 @@
 import { Session } from '../contracts.ts'
 import { container } from 'tsyringe'
-import { AuthService } from '../../src/Application/AuthService.ts'
+import { AuthService } from '../../src/Application/Auth/AuthService.ts'
+import { getInitialSession } from '../stores/session.ts'
+import { Credential } from '../../src/Domain/Auth/Auth.ts'
 
-export function authManagerFactory (updateAuthSession: (session: Session) => void) {
+export function authManagerFactory (updateAuthSession: (session: Session) => void, context: Credential) {
   const authService = container.resolve<AuthService>('AuthService')
   return {
     async signIn (username: string, password: string): Promise<Session> {
@@ -15,12 +17,11 @@ export function authManagerFactory (updateAuthSession: (session: Session) => voi
       if (!done) {
         return false
       }
-      updateAuthSession(null)
+      updateAuthSession(getInitialSession())
       return true
     },
     async restore (): Promise<Session> {
-      const session = await authService.restore()
-      console.log(session)
+      const session = await authService.restore(context)
       updateAuthSession(session)
       return session
     }

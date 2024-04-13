@@ -8,7 +8,7 @@ export type AsyncElementProps = {
 
 export type AsyncProps = {
   using: () => Promise<any>
-  onResolve: (data: any) => void
+  onResolve?: (data: any) => void
   onReject?: (data: any) => void
   children: ReactNode | ReactNode[]
 }
@@ -36,14 +36,12 @@ export function Async ({ using, onResolve, onReject, children }: AsyncProps) {
       fetched.current = true
       try {
         const data = await using()
-        onResolve(data)
+        onResolve && onResolve(data)
         setStatus(AsyncStatus.Resolved)
       } catch (e) {
         console.error(e)
         setStatus(AsyncStatus.Rejected)
-        if (onReject) {
-          onReject(e)
-        }
+        onReject && onReject(e)
       }
     }
     fetchData()

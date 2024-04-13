@@ -1,4 +1,4 @@
-import { Session } from './Auth.ts'
+import { Credential, Session } from './Auth.ts'
 
 export default interface AuthRepository {
   signInWithOtp (email: string): Promise<Session>
@@ -7,5 +7,5 @@ export default interface AuthRepository {
 
   signOut (): Promise<boolean>
 
-  restore (): Promise<Session>
+  restore (context: Credential): Promise<Session>
 }

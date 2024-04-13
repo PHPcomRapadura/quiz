@@ -3,14 +3,14 @@ import { container } from 'tsyringe'
 
 import { Data, Driver, DriverResolver, DriverType } from '../src/Domain/Contracts.ts'
 
-import { AuthService } from '../src/Application/AuthService.ts'
+import { AuthService } from '../src/Application/Auth/AuthService.ts'
 import SupabaseAuthRepository from '../src/Infrastructure/Supabase/SupabaseAuthRepository.ts'
 import HttpAuthRepository from '../src/Infrastructure/Http/HttpAuthRepository.ts'
 import InMemoryGameRepository from '../src/Infrastructure/Memory/InMemoryGameRepository.ts'
 import SupabaseGameRepository from '../src/Infrastructure/Supabase/SupabaseGameRepository.ts'
 import InMemoryAuthRepository from '../src/Infrastructure/Memory/InMemoryAuthRepository.ts'
 
-import { driverDefault, loadedDriver } from './env.ts'
+import { getInheritDriver, getSessionDriver, isDevelopmentMode } from './env.ts'
 
 const binds: DriverResolver = {
   [DriverType.memory]: {
@@ -28,21 +28,30 @@ const binds: DriverResolver = {
 }
 
 const factory = (token: string, driver?: Driver): [string, { useFactory: () => unknown }] => {
-  if (!driver) {
-    driver = loadedDriver()
+  const useFactory = () => {
+    if (!driver) {
+      driver = getSessionDriver()
+    }
+    const bind = binds[driver.type]
+    const maker = bind[token]
+    return maker(driver.config)
   }
-  const bind = binds[driver.type]
-  const useFactory = bind[token]
-  return [token, { useFactory: () => useFactory(driver.config) }]
+  return [token, { useFactory }]
 }
 
 export default function () {
-  // structure stuff
+  // [begin] structure stuff
   container.register('AuthService', { useClass: AuthService })
-  if (import.meta.env.VITE_DEVELOPMENT_MODE === 'true') {
-    container.register(...factory('AuthRepository'))
+
+  let authDriver: Driver = getInheritDriver()
+  if (isDevelopmentMode()) {
+    authDriver = {
+      type: DriverType.memory,
+      config: {}
+    }
   }
-  container.register(...factory('AuthRepository', driverDefault))
+  container.register(...factory('AuthRepository', authDriver))
+  // [end] structure stuff
 
   // game stuff
   container.register(...factory('GameRepository'))

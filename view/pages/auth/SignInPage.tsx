@@ -2,8 +2,9 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useApp } from '../../hooks/useApp.ts'
 import { AlertDanger } from '../../components/general/Alert.tsx'
-import { loadedDriver, Driver } from '../../../config/env.ts'
 import { Loading } from '../../components/general/Loading.tsx'
+import { DriverType } from '../../../src/Domain/Contracts.ts'
+import { isDevelopmentMode } from '../../../config/env.ts'
 
 export function SignInPage () {
   const { auth, session } = useApp()
@@ -12,12 +13,12 @@ export function SignInPage () {
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
 
-  if (session) {
+  if (session.credential) {
     navigate('/dashboard')
     return
   }
 
-  const type = loadedDriver() === Mode.supabase ? 'otp' : 'password'
+  const type = session.driver.type === DriverType.supabase ? 'otp' : 'password'
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -60,6 +61,7 @@ export function SignInPage () {
             name="username"
             aria-describedby="username_help"
             placeholder="Informe seu usuário"
+            defaultValue={isDevelopmentMode() ? 'root@phpcomrapadura.org' : ''}
           />
           <small
             id="username_help"
@@ -85,6 +87,7 @@ export function SignInPage () {
               id="password"
               placeholder="Password"
               autoComplete="off"
+              defaultValue={isDevelopmentMode() ? 'aq1sw2de3' : ''}
             />
           </div>
         }

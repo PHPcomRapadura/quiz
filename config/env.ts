@@ -1,12 +1,8 @@
-import { sessionStore } from '../view/stores/session.ts'
-import { Driver, DriverType } from '../src/Domain/Contracts.ts'
+import { getInitialSession, sessionStore } from '../view/stores/session.ts'
+import { Driver } from '../src/Domain/Contracts.ts'
 
-export const driverDefault: Driver = {
-  type: DriverType.supabase,
-  config: {
-    url: import.meta.env.VITE_SUPABASE_URL,
-    anonymousKey: import.meta.env.VITE_SUPABASE_ANON_KEY,
-  }
-}
+export const getInheritDriver = (): Driver => getInitialSession().driver
 
-export const loadedDriver = (): Driver => sessionStore.state?.driver || driverDefault
+export const getSessionDriver = (): Driver => sessionStore.state.driver
+
+export const isDevelopmentMode = (): boolean => import.meta.env.VITE_DEVELOPMENT_MODE === 'true'
