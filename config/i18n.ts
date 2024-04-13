@@ -24,6 +24,12 @@ const resources = {
           signOut: 'Sair',
           myAccount: 'Minha Conta',
           pending: 'Carregando ...',
+          navigation: {
+            index: 'Meus Jogos',
+            games: 'Meus Jogos',
+            account: 'Minha Conta',
+            settings: 'Configurações'
+          }
         }
       },
       pages: {

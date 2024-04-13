@@ -35,19 +35,20 @@ export function DashboardSettingsPage () {
           <option value={DriverType.supabase}>Supabase</option>
         </select>
       </div>
-      <div>
-        <Switch condition={driverType}>
-          <Case value={DriverType.http}>
+
+      <Switch condition={driverType}>
+        <Case value={DriverType.http}>
+          <div className="form-row">
             HTTP
-          </Case>
-          <Case value={DriverType.memory}>
-            Memory
-          </Case>
-          <Case value={DriverType.supabase}>
-            Supabase
-          </Case>
-        </Switch>
-      </div>
+          </div>
+        </Case>
+        <Case value={DriverType.memory}>
+          Memory
+        </Case>
+        <Case value={DriverType.supabase}>
+          Supabase
+        </Case>
+      </Switch>
     </form>
   )
 }

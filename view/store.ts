@@ -7,7 +7,7 @@ export type StoreCallback = (current?: unknown, previous?: unknown) => void
 export interface Store<T> {
   state: T
   subscribe: (property: keyof T, callback: StoreCallback) => number
-  unsubscribe: (property: keyof T, index: number) => void
+  unsubscribe: (property: keyof T, subscriptionId: number) => void
 }
 
 export function createStore<T> (initial: StoreState): Store<T> {
@@ -43,11 +43,11 @@ export function createStore<T> (initial: StoreState): Store<T> {
       }
       return EVENTS[property].push(callback)
     },
-    unsubscribe: function (property: Key, id: number) {
+    unsubscribe: function (property: Key, subscriptionId: number) {
       if (!EVENTS[property]) {
         return
       }
-      EVENTS[property].splice(id - 1, 1)
+      EVENTS[property].splice(subscriptionId - 1, 1)
     }
   }
 }

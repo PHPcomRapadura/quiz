@@ -1,7 +1,12 @@
 import { useTranslation } from 'react-i18next'
-import { Link, NavLink, Outlet, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useApp } from '../hooks/useApp.ts'
 import { Async, AsyncStatus, On } from '../components/general/Async.tsx'
+import { Case } from '../components/general/Conditional.tsx'
+import { loadingStore } from '../stores/loading.ts'
+import { LayoutLoading } from './LayoutLoading.tsx'
+import { LayoutNavbar } from './LayoutNavbar.tsx'
+import { DashboardNavigation } from './dashboard/DashboardNavigation.tsx'
 
 export function DashboardLayout () {
   const { t } = useTranslation(
@@ -20,102 +25,43 @@ export function DashboardLayout () {
   }
 
   return (
-    <Async using={() => auth.restore()}>
-      <On status={AsyncStatus.Resolved}>
+    <>
+      <LayoutLoading label={t('pending')} />
+      <Async
+        using={() => auth.restore()}
+        onFinally={() => loadingStore.state.loading = false}
+      >
+        <On status={AsyncStatus.Resolved}>
 
-        <div className="DashboardLayout">
-          <nav className="navbar navbar-expand-lg bg-body-tertiary fixed-top">
-            <div className="container-fluid">
-              <Link
-                className="navbar-brand"
-                to="/"
-              >
-                {t('brand')}
-              </Link>
-
-              <ul className="navbar-nav me-auto">
-                <li className="nav-item">
-                  <Link
-                    to="/games"
-                    className="nav-link"
-                  >
-                    {t('play')}
-                  </Link>
-                </li>
-              </ul>
-              {
-                session.credential ?
-                  <>
-                    <small className="text-light-emphasis px-2">{session.username}</small>
-                    <button
-                      className="btn btn-outline-primary"
-                      onClick={signOut}
-                    >
-                      {t('signOut')}
-                    </button>
-                  </> :
-                  <button
-                    className="btn btn-primary"
-                    onClick={() => navigate('/games')}
-                  >
-                    {t('games')}
-                  </button>
-              }
-            </div>
-          </nav>
-
-          <main className="flex-shrink-0">
-            <div className="container">
-              <div className="card bg-secondary py-1 px-2">
-                <ul
-                  className="nav nav-tabs nav-fill"
-                  role="tablist"
+          <div className="DashboardLayout">
+            <LayoutNavbar condition={!!session.credential}>
+              <Case value={true}>
+                <small className="text-light-emphasis px-2">{session.username}</small>
+                <button
+                  className="btn btn-outline-primary"
+                  onClick={signOut}
                 >
-                  <li
-                    className="nav-item"
-                    role="presentation"
-                  >
-                    <NavLink
-                      className="nav-link"
-                      role="tab"
-                      to="/dashboard/games"
-                    >
-                      Meus Jogos
-                    </NavLink>
-                  </li>
-                  <li
-                    className="nav-item"
-                    role="presentation"
-                  >
-                    <NavLink
-                      className="nav-link"
-                      role="tab"
-                      to="/dashboard/my-account"
-                    >
-                      Minha Conta
-                    </NavLink>
-                  </li>
-                  <li
-                    className="nav-item"
-                    role="presentation"
-                  >
-                    <NavLink
-                      className="nav-link"
-                      to="/dashboard/settings"
-                      role="tab"
-                    >
-                      Configurações
-                    </NavLink>
-                  </li>
-                </ul>
-                <div className="py-2">
-                  <Outlet />
-                </div>
+                  {t('signOut')}
+                </button>
+              </Case>
+              <Case value={false}>
+                <button
+                  className="btn btn-primary"
+                  onClick={() => navigate('/games')}
+                >
+                  {t('games')}
+                </button>
+              </Case>
+            </LayoutNavbar>
+
+            <main className="flex-shrink-0">
+              <div className="container">
+                <DashboardNavigation />
               </div>
-            </div>
-          </main>
-        </div>
-      </On>
-    </Async>
+            </main>
+          </div>
+        </On>
+      </Async>
+    </>
   )
 }

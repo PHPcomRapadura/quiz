@@ -7,13 +7,13 @@ import { useBeforeUnload } from 'react-router-dom'
 export function LayoutLoading ({ label, initial = true }: { label: string, initial?: boolean }) {
   const [loading, setLoading] = useState<boolean>(initial)
 
-  const id = loadingStore.subscribe('loading', (value: unknown) => {
+  const subscriptionId = loadingStore.subscribe('loading', (value: unknown) => {
     if (value !== loading) {
       setLoading(!!value)
     }
   })
 
-  useBeforeUnload(() => loadingStore.unsubscribe('loading', id))
+  useBeforeUnload(() => loadingStore.unsubscribe('loading', subscriptionId))
 
   return (
     <If condition={loading}>

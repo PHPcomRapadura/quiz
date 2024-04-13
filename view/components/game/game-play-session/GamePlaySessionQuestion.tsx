@@ -4,12 +4,12 @@ import Answer from '../../../../src/Domain/Game/Answer.ts'
 import { shuffle } from '../../../../src/Domain/Util.ts'
 import AnswerStatus from '../../../../src/Domain/Game/AnswerStatus.ts'
 
-import { Case, Match } from '../../general/Conditional.tsx'
+import { Case, Switch } from '../../general/Conditional.tsx'
 
 import {
   GamePlaySessionQuestionCorrect,
-  GamePlaySessionQuestionUnanswered,
   GamePlaySessionQuestionTimeExpired,
+  GamePlaySessionQuestionUnanswered,
   GamePlaySessionQuestionWrong
 } from './game-play-session-question'
 
@@ -76,29 +76,27 @@ export function GamePlaySessionQuestion (props: GameQuestionProps) {
   }
 
   return (
-    <>
-      <Match condition={status}>
-        <Case value={AnswerStatus.UNANSWERED}>
-          <GamePlaySessionQuestionUnanswered
-            text={text}
-            options={options}
-            timer={timer}
-            timeout={timeout}
-            setSelected={setSelected}
-            setTimer={setTimer}
-            confirmSelection={confirmSelection}
-          />
-        </Case>
-        <Case value={AnswerStatus.WRONG}>
-          <GamePlaySessionQuestionWrong finishQuestion={finishQuestion} />
-        </Case>
-        <Case value={AnswerStatus.TIME_EXPIRED}>
-          <GamePlaySessionQuestionTimeExpired finishQuestion={finishQuestion} />
-        </Case>
-        <Case value={AnswerStatus.CORRECT}>
-          <GamePlaySessionQuestionCorrect finishQuestion={finishQuestion} />
-        </Case>
-      </Match>
-    </>
+    <Switch condition={status}>
+      <Case value={AnswerStatus.UNANSWERED}>
+        <GamePlaySessionQuestionUnanswered
+          text={text}
+          options={options}
+          timer={timer}
+          timeout={timeout}
+          setSelected={setSelected}
+          setTimer={setTimer}
+          confirmSelection={confirmSelection}
+        />
+      </Case>
+      <Case value={AnswerStatus.WRONG}>
+        <GamePlaySessionQuestionWrong finishQuestion={finishQuestion} />
+      </Case>
+      <Case value={AnswerStatus.TIME_EXPIRED}>
+        <GamePlaySessionQuestionTimeExpired finishQuestion={finishQuestion} />
+      </Case>
+      <Case value={AnswerStatus.CORRECT}>
+        <GamePlaySessionQuestionCorrect finishQuestion={finishQuestion} />
+      </Case>
+    </Switch>
   )
 }

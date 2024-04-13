@@ -1,5 +1,5 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { ReactNode, useEffect, useRef, useState } from 'react'
+import { ReactNode, useState } from 'react'
+import { useRunOnce } from '../../hooks/useRunOnce.ts'
 
 export type AsyncElementProps = {
   children: ReactNode | ReactNode[]
@@ -7,9 +7,10 @@ export type AsyncElementProps = {
 }
 
 export type AsyncProps = {
-  using: () => Promise<any>
-  onResolve?: (data: any) => void
-  onReject?: (data: any) => void
+  using: () => Promise<unknown>
+  onResolve?: (data: unknown) => void
+  onReject?: (data: unknown) => void
+  onFinally?: () => void
   children: ReactNode | ReactNode[]
 }
 
@@ -17,39 +18,41 @@ export type AsyncProps = {
 export enum AsyncStatus {
   Pending = 'Pending',
   Resolved = 'Resolved',
-  Rejected = 'Rejected'
+  Rejected = 'Rejected',
 }
 
 export function On ({ children }: AsyncElementProps) {
   return children
 }
 
-export function Async ({ using, onResolve, onReject, children }: AsyncProps) {
-  const fetched = useRef(false)
+export function Async (props: AsyncProps) {
+  const {
+    using,
+    onResolve,
+    onReject,
+    onFinally,
+    children
+  } = props
   const [status, setStatus] = useState(AsyncStatus.Pending)
 
-  useEffect(() => {
-    if (fetched.current) {
-      return
+  useRunOnce(async () => {
+    try {
+      const data = await using()
+      onResolve && onResolve(data)
+      setStatus(AsyncStatus.Resolved)
+    } catch (error) {
+      console.error('Async detected an error: ', error)
+      setStatus(AsyncStatus.Rejected)
+      onReject && onReject(error)
+    } finally {
+      onFinally && onFinally()
     }
-    const fetchData = async () => {
-      fetched.current = true
-      try {
-        const data = await using()
-        onResolve && onResolve(data)
-        setStatus(AsyncStatus.Resolved)
-      } catch (e) {
-        console.error(e)
-        setStatus(AsyncStatus.Rejected)
-        onReject && onReject(e)
-      }
-    }
-    fetchData()
-  }, [fetched, using, onReject, onResolve])
+  })
 
   if (!children) {
     return null
   }
+  /* eslint-disable @typescript-eslint/no-explicit-any */
   if (Array.isArray(children)) {
     return children.filter((child: any) => child.props.status === status)
   }

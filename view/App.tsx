@@ -52,7 +52,7 @@ export default function App () {
             path="/games/:id/end"
             element={<GameEndPage />}
           />
-          <Route element={<CredentialChecker withCredential={false} />}>
+          <Route element={<CredentialChecker reverse />}>
             <Route
               path="/auth/sign-in"
               element={<SignInPage />}
@@ -64,7 +64,7 @@ export default function App () {
           />
         </Route>
 
-        <Route element={<CredentialChecker withCredential={true} />}>
+        <Route element={<CredentialChecker />}>
           <Route
             path="/dashboard"
             element={<DashboardLayout />}

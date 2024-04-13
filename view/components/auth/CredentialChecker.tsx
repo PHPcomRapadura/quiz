@@ -2,21 +2,21 @@ import { Navigate, Outlet, useLocation } from 'react-router-dom'
 import { useApp } from '../../hooks/useApp.ts'
 import { ReactNode } from 'react'
 
-export type CredentialRoutesProps = {
+export type CredentialCheckerProps = {
   children?: ReactNode | ReactNode[]
-  withCredential: boolean
+  reverse?: boolean
 }
 
-export function CredentialChecker ({ children, withCredential }: CredentialRoutesProps) {
+export function CredentialChecker ({ children, reverse = false }: CredentialCheckerProps) {
   const { session } = useApp()
   const from = useLocation()
 
-  const can = withCredential ? !!session.credential : !session.credential
+  const can = reverse ? !session.credential : !!session.credential
   if (can) {
     return children ? children : <Outlet />
   }
 
-  const route = withCredential ? '/auth/sign-in' : '/dashboard'
+  const route: string = reverse ? '/dashboard' : '/auth/sign-in'
   return <Navigate
     to={route}
     state={{ from }}
