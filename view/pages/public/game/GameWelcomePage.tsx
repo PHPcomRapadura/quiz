@@ -1,15 +1,15 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import GameRepository from '../../../src/Domain/Game/GameRepository.ts'
-import Game from '../../../src/Domain/Game/Game.ts'
+import GameRepository from '../../../../src/Domain/Game/GameRepository.ts'
+import Game from '../../../../src/Domain/Game/Game.ts'
 
-import { useApp } from '../../hooks/useApp.ts'
-import { Async, AsyncStatus, On } from '../../components/general/Async.tsx'
-import { Loading } from '../../components/general/Loading.tsx'
-import { AlertWarning } from '../../components/general/Alert.tsx'
+import { useApp } from '../../../hooks/useApp.ts'
+import { Async, AsyncStatus, On } from '../../../components/general/Async.tsx'
+import { Loading } from '../../../components/general/Loading.tsx'
+import { AlertWarning } from '../../../components/general/Alert.tsx'
 
-import { GameList } from '../../components/game/GameList.tsx'
+import { GameList } from '../../../components/game/GameList.tsx'
 
 export function GameWelcomePage () {
   const { t } = useTranslation(

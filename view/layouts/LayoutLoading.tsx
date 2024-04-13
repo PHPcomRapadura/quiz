@@ -18,7 +18,7 @@ export function LayoutLoading ({ label, initial = true }: { label: string, initi
   return (
     <If condition={loading}>
       <div
-        className="LayoutLoading full-height full-width d-flex justify-content-center align-items-center"
+        className="LayoutLoading d-flex justify-content-center align-items-center"
         onClick={() => loadingStore.state.loading = false}
       >
         <div className="container">

@@ -1,13 +1,17 @@
-.PublicLayout {
+.PublicLayout, .DashboardLayout {
     padding-top: 82px;
 }
 
-.PublicLayout nav {
+.PublicLayout nav, .DashboardLayout nav {
     height: 82px;
 }
 
 .PublicLayout main {
     padding: 30px 10px;
+}
+
+.DashboardLayout main {
+    padding: 20px 10px;
 }
 
 .PublicLayout main > .container {
@@ -61,6 +65,8 @@
 .LayoutLoading {
     position: fixed;
     top: 0;
+    width: 100vw;
+    height: 100vh;
     z-index: 9999;
     background-color: rgba(39, 39, 39, 0.7);
 }

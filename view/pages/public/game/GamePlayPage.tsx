@@ -2,14 +2,14 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import GameRepository from '../../../src/Domain/Game/GameRepository.ts'
-import Game from '../../../src/Domain/Game/Game.ts'
+import GameRepository from '../../../../src/Domain/Game/GameRepository.ts'
+import Game from '../../../../src/Domain/Game/Game.ts'
 
-import { useApp } from '../../hooks/useApp.ts'
-import { Async, AsyncStatus, On } from '../../components/general/Async.tsx'
-import { Loading } from '../../components/general/Loading.tsx'
-import { AlertWarning } from '../../components/general/Alert.tsx'
-import { GamePlaySession } from '../../components/game/GamePlaySession.tsx'
+import { useApp } from '../../../hooks/useApp.ts'
+import { Async, AsyncStatus, On } from '../../../components/general/Async.tsx'
+import { Loading } from '../../../components/general/Loading.tsx'
+import { AlertWarning } from '../../../components/general/Alert.tsx'
+import { GamePlaySession } from '../../../components/game/GamePlaySession.tsx'
 
 export function GamePlayPage () {
   const params = useParams()

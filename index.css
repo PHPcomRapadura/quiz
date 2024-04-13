@@ -9,25 +9,26 @@ body {
     position: relative;
 }
 
-input[type="text"], input[type="password"] {
+input[type="text"].form-control, input[type="password"].form-control {
     background-color: #ffffff;
     color: #5c5c5c;
 }
 
-input[type="text"]:focus, input[type="password"]:focus {
+input[type="text"].form-control:focus, input[type="password"].form-control:focus {
     color: #5c5c5c;
     background-color: #ffffff;
     border: 1px solid #a8a8a8;
 }
 
-input[type="text"]::placeholder, input[type="password"]::placeholder {
+input[type="text"].form-control::placeholder, input[type="password"].form-control::placeholder {
     color: #c5c5c5;
 }
 
-.full-width {
-    width: 100vw;
+select.form-select {
+    background-color: #ffffff;
+    color: #5c5c5c;
 }
 
-.full-height {
-    height: 100vh;
+select.form-select {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23555' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
 }

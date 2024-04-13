@@ -1,13 +1,13 @@
 import { useTranslation } from 'react-i18next'
 
-export function DashboardIndexPage () {
+export function DashboardGamesPage () {
   const { t } = useTranslation(
     'default',
     { keyPrefix: 'pages.dashboard' }
   )
   return (
     <p>
-      {t('soon')}
+      DashboardGamesPage: {t('soon')}
     </p>
   )
 }

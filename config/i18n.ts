@@ -17,6 +17,13 @@ const resources = {
           myAccount: 'Minha Conta',
           copyright: '© PHP com Rapadura',
           pending: 'Carregando ...',
+        },
+        dashboard: {
+          brand: name,
+          play: 'Jogar',
+          signOut: 'Sair',
+          myAccount: 'Minha Conta',
+          pending: 'Carregando ...',
         }
       },
       pages: {

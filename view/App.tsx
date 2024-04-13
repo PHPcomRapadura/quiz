@@ -8,21 +8,23 @@ import { PublicLayout } from './layouts/PublicLayout.tsx'
 
 import './App.css'
 // components
-import { AccreditedPage } from './components/auth/AccreditedPage.tsx'
+import { CredentialChecker } from './components/auth/CredentialChecker.tsx'
 // pages
 import { HomePage } from './pages/HomePage.tsx'
 // game
-import { GameWelcomePage } from './pages/game/GameWelcomePage.tsx'
-import { GamePlayPage } from './pages/game/GamePlayPage.tsx'
-import { GameEndPage } from './pages/game/GameEndPage.tsx'
+import { GameWelcomePage } from './pages/public/game/GameWelcomePage.tsx'
+import { GamePlayPage } from './pages/public/game/GamePlayPage.tsx'
+import { GameEndPage } from './pages/public/game/GameEndPage.tsx'
 // session
 import { DashboardLayout } from './layouts/DashboardLayout.tsx'
-import { SignInPage } from './pages/auth/SignInPage.tsx'
-import { WaitOneTimePassword } from './pages/auth/WaitOneTimePassword.tsx'
+import { SignInPage } from './pages/public/auth/SignInPage.tsx'
+import { WaitOneTimePassword } from './pages/public/auth/WaitOneTimePassword.tsx'
 import { useRunOnce } from './hooks/useRunOnce.ts'
 
 import { name } from '../config/i18n.ts'
-import { DashboardIndexPage } from './pages/DashboardIndexPage.tsx'
+import { DashboardGamesPage } from './pages/dashboard/DashboardGamesPage.tsx'
+import { DashboardSettingsPage } from './pages/dashboard/DashboardSettingsPage.tsx'
+import { DashboardMyAccountPage } from './pages/dashboard/DahboardMyAccountPage.tsx'
 
 export default function App () {
   useRunOnce(() => document.title = name)
@@ -50,26 +52,38 @@ export default function App () {
             path="/games/:id/end"
             element={<GameEndPage />}
           />
-          <Route
-            path="/auth/sign-in"
-            element={<SignInPage />}
-          />
+          <Route element={<CredentialChecker withCredential={false} />}>
+            <Route
+              path="/auth/sign-in"
+              element={<SignInPage />}
+            />
+          </Route>
           <Route
             path="/auth/otp"
             element={<WaitOneTimePassword />}
           />
         </Route>
 
-        <Route
-          element={<AccreditedPage />}
-        >
+        <Route element={<CredentialChecker withCredential={true} />}>
           <Route
             path="/dashboard"
             element={<DashboardLayout />}
           >
             <Route
               index
-              element={<DashboardIndexPage />}
+              element={<DashboardGamesPage />}
+            />
+            <Route
+              path="/dashboard/games"
+              element={<DashboardGamesPage />}
+            />
+            <Route
+              path="/dashboard/my-account"
+              element={<DashboardMyAccountPage />}
+            />
+            <Route
+              path="/dashboard/settings"
+              element={<DashboardSettingsPage />}
             />
           </Route>
         </Route>

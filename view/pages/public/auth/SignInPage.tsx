@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useApp } from '../../hooks/useApp.ts'
-import { AlertDanger } from '../../components/general/Alert.tsx'
-import { Loading } from '../../components/general/Loading.tsx'
-import { DriverType } from '../../../src/Domain/Contracts.ts'
-import { isDevelopmentMode } from '../../../config/env.ts'
-import { loadingStore } from '../../stores/loading.ts'
+import { useApp } from '../../../hooks/useApp.ts'
+import { AlertDanger } from '../../../components/general/Alert.tsx'
+import { DriverType } from '../../../../src/Domain/Contracts.ts'
+import { isDevelopmentMode } from '../../../../config/env.ts'
+import { loadingStore } from '../../../stores/loading.ts'
 
 export function SignInPage () {
   const { auth, session } = useApp()
@@ -37,18 +36,9 @@ export function SignInPage () {
     }
   }
 
-  useEffect(() => {
-    if (session.credential) {
-      navigate('/dashboard')
-      return
-    }
-  }, [session, navigate])
-
-  return session.credential ?
-    <Loading /> :
+  return (
     <div className="SignInPage">
       <h4>Entrar</h4>
-
       <div className="card bg-secondary py-2 px-3 rounded">
         <form onSubmit={handleSubmit}>
           <div>
@@ -114,6 +104,6 @@ export function SignInPage () {
           }
         </form>
       </div>
-
     </div>
+  )
 }

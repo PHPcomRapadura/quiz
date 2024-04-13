@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import { Link, Outlet, useNavigate } from 'react-router-dom'
+import { Link, NavLink, Outlet, useNavigate } from 'react-router-dom'
 import { useApp } from '../hooks/useApp.ts'
 import { Async, AsyncStatus, On } from '../components/general/Async.tsx'
 
@@ -36,7 +36,7 @@ export function DashboardLayout () {
               <ul className="navbar-nav me-auto">
                 <li className="nav-item">
                   <Link
-                    to="/dashboard/my-account"
+                    to="/games"
                     className="nav-link"
                   >
                     {t('play')}
@@ -66,15 +66,54 @@ export function DashboardLayout () {
 
           <main className="flex-shrink-0">
             <div className="container">
-              <Outlet />
+              <div className="card bg-secondary py-1 px-2">
+                <ul
+                  className="nav nav-tabs nav-fill"
+                  role="tablist"
+                >
+                  <li
+                    className="nav-item"
+                    role="presentation"
+                  >
+                    <NavLink
+                      className="nav-link"
+                      role="tab"
+                      to="/dashboard/games"
+                    >
+                      Meus Jogos
+                    </NavLink>
+                  </li>
+                  <li
+                    className="nav-item"
+                    role="presentation"
+                  >
+                    <NavLink
+                      className="nav-link"
+                      role="tab"
+                      to="/dashboard/my-account"
+                    >
+                      Minha Conta
+                    </NavLink>
+                  </li>
+                  <li
+                    className="nav-item"
+                    role="presentation"
+                  >
+                    <NavLink
+                      className="nav-link"
+                      to="/dashboard/settings"
+                      role="tab"
+                    >
+                      Configurações
+                    </NavLink>
+                  </li>
+                </ul>
+                <div className="py-2">
+                  <Outlet />
+                </div>
+              </div>
             </div>
           </main>
-
-          <footer className="footer mt-auto p-2 bg-body-tertiary">
-            <div className="container text-center">
-              <small className="text-light-emphasis">{t('copyright')}</small>
-            </div>
-          </footer>
         </div>
       </On>
     </Async>
