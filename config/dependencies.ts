@@ -13,18 +13,21 @@ import InMemoryAuthRepository from '../src/Infrastructure/Memory/InMemoryAuthRep
 import { getInheritDriver, getSessionDriver, isDevelopmentMode } from './env.ts'
 
 const binds: DriverResolver = {
-  [DriverType.memory]: {
-    AuthRepository: () => new InMemoryAuthRepository(),
+  [DriverType.json]: {
     GameRepository: () => new InMemoryGameRepository(),
   },
   [DriverType.http]: {
     AuthRepository: () => HttpAuthRepository.build(),
-    // GameRepository: (config: Data) => HttpGameRepository.build(),
+    GameRepository: () => new InMemoryGameRepository(),
+  },
+  [DriverType.memory]: {
+    AuthRepository: () => new InMemoryAuthRepository(),
+    GameRepository: () => new InMemoryGameRepository(),
   },
   [DriverType.supabase]: {
     AuthRepository: (config: Data) => SupabaseAuthRepository.build(config),
     GameRepository: (config: Data) => SupabaseGameRepository.build(config),
-  },
+  }
 }
 
 const factory = (token: string, driver?: Driver): [string, { useFactory: () => unknown }] => {
@@ -34,6 +37,10 @@ const factory = (token: string, driver?: Driver): [string, { useFactory: () => u
     }
     const bind = binds[driver.type]
     const maker = bind[token]
+    if (!maker) {
+      throw new Error(
+        `No factory found for '${token}' in '${driver.type}' driver type. Review your dependencies.ts file`)
+    }
     return maker(driver.config)
   }
   return [token, { useFactory }]

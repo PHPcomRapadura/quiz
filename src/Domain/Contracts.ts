@@ -16,6 +16,7 @@ export enum DriverType {
   http = 'http',
   memory = 'memory',
   supabase = 'supabase',
+  json = 'json',
 }
 
 export type Driver = {

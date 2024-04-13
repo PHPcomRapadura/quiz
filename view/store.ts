@@ -1,3 +1,4 @@
+
 export interface StoreState {
   [key: string | symbol]: unknown
 }
@@ -16,8 +17,8 @@ export function createStore<T> (initial: StoreState): Store<T> {
 
   const EVENTS: EventMap = Object.create({})
 
-  const publish = (eventName: Key, current: unknown, previous: unknown) => {
-    const subscribers = EVENTS[eventName]
+  const publish = (key: Key, current: unknown, previous: unknown) => {
+    const subscribers = EVENTS[key]
     if (subscribers) {
       subscribers.forEach((callback: StoreCallback) => callback(current, previous))
     }

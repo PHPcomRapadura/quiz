@@ -32,3 +32,14 @@ select.form-select {
 select.form-select {
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23555' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
 }
+
+.DashboardForm div.form-row {
+    margin-bottom: 1rem;
+}
+
+.DashboardForm small.text-muted {
+    margin-top: 0.5rem;
+    display: block;
+    opacity: 0.7;
+    font-size: 0.8rem;
+}
