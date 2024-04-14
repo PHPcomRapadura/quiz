@@ -12,6 +12,8 @@ export interface Content {
 
 export type Data = { [property: string]: Data | unknown }
 
+export type Id = string | number
+
 export enum DriverType {
   http = 'http',
   memory = 'memory',

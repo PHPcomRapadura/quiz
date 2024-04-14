@@ -1,36 +1,40 @@
 import { FormEvent, ReactNode } from 'react'
 
-import { useLoading } from '../../hooks/useLoading.ts'
+import { useLoading } from '../../hooks'
 import { AlertDanger } from '../general/Alert.tsx'
 
-type FormProps<T, R> = {
-  children: ReactNode | ReactNode[]
-  value: T
-  action: (data: T, rawValue: FormData) => Promise<R>
-  onResolve?: (data: R) => void
+type Children = ReactNode | ReactNode[]
+
+type ChildrenLoader = (loading: boolean) => Children
+
+type FormProps<T> = {
+  fields: Children
+  action: (rawValue: FormData) => Promise<T>
+  onResolve?: (data: T) => void
   onReject?: (error: unknown) => void
   onFinally?: () => void
   error?: string
+  buttons?: ChildrenLoader | Children
 }
 
-export function Form<T, R> (props: FormProps<T, R>) {
+export function Form<T> (props: FormProps<T>) {
   const {
-    children,
-    value,
     action,
+    fields,
     onResolve,
     onReject,
     onFinally,
-    error
+    error,
+    buttons,
   } = props
-  const { raise, fall } = useLoading()
+  const { raise, fall, loading } = useLoading()
 
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     const rawValue = new FormData(event.currentTarget)
     try {
       raise()
-      const response = await action(value, rawValue)
+      const response = await action(rawValue)
       onResolve && onResolve(response)
     } catch (error) {
       onReject && onReject(error)
@@ -44,14 +48,30 @@ export function Form<T, R> (props: FormProps<T, R>) {
   return (
     <form
       className="form-component"
-      onSubmit={handleSubmit}
+      onSubmit={onSubmit}
     >
-      {children}
+      {fields}
+      {
+        buttons && (
+          <>
+            <hr />
+            <div className="form-action align-right">
+              {
+                typeof buttons === 'function' ?
+                  buttons(loading) :
+                  buttons
+              }
+            </div>
+          </>
+        )
+      }
       {
         error && (
-          <AlertDanger>
-            <span className="text-light-emphasis">{error}</span>
-          </AlertDanger>
+          <div className="pt-2">
+            <AlertDanger>
+              <span className="text-light-emphasis">{error}</span>
+            </AlertDanger>
+          </div>
         )
       }
     </form>

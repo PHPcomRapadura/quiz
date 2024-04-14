@@ -1,4 +1,4 @@
-import { FormFieldProps } from './index.tsx'
+import { FormFieldProps } from './index.ts'
 import { useFormComponent } from './hooks/useFormComponent.ts'
 
 type OptionValue = string | number

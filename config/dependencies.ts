@@ -4,11 +4,15 @@ import { container } from 'tsyringe'
 import { Data, Driver, DriverResolver, DriverType } from '../src/Domain/Contracts.ts'
 
 import { AuthService } from '../src/Application/Auth/AuthService.ts'
-import SupabaseAuthRepository from '../src/Infrastructure/Supabase/SupabaseAuthRepository.ts'
+
 import HttpAuthRepository from '../src/Infrastructure/Http/HttpAuthRepository.ts'
-import InMemoryGameRepository from '../src/Infrastructure/Memory/InMemoryGameRepository.ts'
-import SupabaseGameRepository from '../src/Infrastructure/Supabase/SupabaseGameRepository.ts'
+
 import InMemoryAuthRepository from '../src/Infrastructure/Memory/InMemoryAuthRepository.ts'
+import InMemoryGameRepository from '../src/Infrastructure/Memory/InMemoryGameRepository.ts'
+import InMemoryUserConfigRepository from '../src/Infrastructure/Memory/InMemoryUserConfigRepository.ts'
+
+import SupabaseAuthRepository from '../src/Infrastructure/Supabase/SupabaseAuthRepository.ts'
+import SupabaseGameRepository from '../src/Infrastructure/Supabase/SupabaseGameRepository.ts'
 
 import { getInheritDriver, getSessionDriver, isDevelopmentMode } from './env.ts'
 
@@ -23,6 +27,7 @@ const binds: DriverResolver = {
   [DriverType.memory]: {
     AuthRepository: () => new InMemoryAuthRepository(),
     GameRepository: () => new InMemoryGameRepository(),
+    UserConfigRepository: () => new InMemoryUserConfigRepository(),
   },
   [DriverType.supabase]: {
     AuthRepository: (config: Data) => SupabaseAuthRepository.build(config),
@@ -58,6 +63,7 @@ export default function () {
     }
   }
   container.register(...factory('AuthRepository', authDriver))
+  container.register(...factory('UserConfigRepository', authDriver))
   // [end] structure stuff
 
   // game stuff

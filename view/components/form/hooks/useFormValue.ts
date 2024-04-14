@@ -2,15 +2,26 @@ import { useState } from 'react'
 import { get, set } from 'lodash'
 import { FormValueUpdate, FormValueWatch, FormValueWatchCallback } from '../index.tsx'
 
-export function useFormValue<T> (initial: T): [T, FormValueUpdate, FormValueWatch] {
-  const [data, setData] = useState(initial)
+function clone<T> (value: T): T {
+  return JSON.parse(JSON.stringify(value))
+}
+
+export type FormValueManager<T> = {
+  value: T
+  update: FormValueUpdate
+  watch: FormValueWatch
+  reset: () => void
+}
+
+export function useFormValue<T> (initial: T): FormValueManager<T> {
+  const [value, setData] = useState<T>(clone(initial))
 
   const update: FormValueUpdate = (fieldName: string, current: unknown): void => {
-    const previous = get(data, fieldName)
-    const target = data as object
+    const previous = get(value, fieldName)
+    const target = value as object
     set(target, fieldName, current)
     setData({
-      ...data,
+      ...value,
       ...target
     })
     triggerWatch(fieldName, current, previous)
@@ -29,5 +40,9 @@ export function useFormValue<T> (initial: T): [T, FormValueUpdate, FormValueWatc
     }
   }
 
-  return [data, update, watch] as const
+  const reset = () => {
+    setData(clone(initial))
+  }
+
+  return { value, update, reset, watch } as const
 }

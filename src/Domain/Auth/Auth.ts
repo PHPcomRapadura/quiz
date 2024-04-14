@@ -1,4 +1,4 @@
-import { Driver } from '../Contracts.ts'
+import { Driver, Id } from '../Contracts.ts'
 
 export type Credential = {
   token: string
@@ -8,6 +8,7 @@ export type Credential = {
 } | undefined
 
 export type Session = {
+  id?: Id
   username: string
   credential: Credential
   abilities: string[]

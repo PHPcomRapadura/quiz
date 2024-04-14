@@ -1,4 +1,4 @@
-import { FormFieldProps } from './index.tsx'
+import { FormFieldProps } from './index.ts'
 import { FormInput } from './FormInput.tsx'
 
 export function FormText (props: FormFieldProps) {

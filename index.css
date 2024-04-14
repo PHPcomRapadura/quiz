@@ -50,6 +50,7 @@ form.form-component small.text-muted {
 form.form-component div.form-action {
     display: flex;
     align-items: center;
+    gap: 1rem;
 }
 
 form.form-component div.form-action.align-left {

@@ -170,6 +170,9 @@ export default function (name: string) {
             }
           },
           save: 'Salvar',
+          reset: 'Redefinir',
+          success: 'Configurações salvas com sucesso',
+          error: 'Não foi possível salvar as configurações',
         }
       }
     },

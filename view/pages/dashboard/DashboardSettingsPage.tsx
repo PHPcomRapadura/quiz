@@ -1,150 +1,161 @@
 import { useState } from 'react'
 
-import { Driver, DriverType } from '../../../src/Domain/Contracts.ts'
+import { Content, Driver, DriverType } from '../../../src/Domain/Contracts.ts'
+import UserConfigRepository from '../../../src/Domain/Admin/UserConfigRepository.ts'
 
-import { useFormValue } from '../../components/form/hooks/useFormValue.ts'
+import { Form, FormSelect, FormText, useFormValue } from '../../components/form'
 import { Case, Switch } from '../../components/general/Conditional.tsx'
-import { Form } from '../../components/form/Form.tsx'
-import { FormSelect } from '../../components/form/FormSelect.tsx'
-import { FormText } from '../../components/form/FormText.tsx'
-import { useApp } from '../../hooks/useApp.ts'
-import { useI18n } from '../../hooks/useI18n.ts'
-import { useLoading } from '../../hooks/useLoading.ts'
+import { useApp, useI18n } from '../../hooks'
 
 export function DashboardSettingsPage () {
   const $t = useI18n('pages.dashboard.settings')
-  const { session } = useApp()
-  const [error, setError] = useState('')
-  const { loading } = useLoading()
+  const { container, session } = useApp()
+  const [error, setError] = useState<string>('')
 
-  const [
+  const userConfigRepository = container.resolve<UserConfigRepository>('UserConfigRepository')
+  const {
     value,
     update,
-    watch
-  ] = useFormValue<Driver>(session.driver)
+    watch,
+    reset,
+  } = useFormValue<Driver>(session.driver)
   const config = { url: '', authorization: '', anonKey: '' }
   watch('type', () => update('config', config))
 
-  function action (data: Driver): Promise<unknown> {
+  function action (): Promise<Content> {
     setError('')
-    console.log(data)
-    return new Promise((resolve) => {
-      window.setTimeout(
-        () => resolve('nuhh'),
-        import.meta.env.VITE_IN_MEMORY_TIMEOUT
-      )
-    })
+    if (!session.id) {
+      return Promise.reject(new Error('No session id found'))
+    }
+    return userConfigRepository.update(session.id, value)
   }
 
-  function onResolve (data: unknown) {
+  function onResolve (data: Content) {
     console.log(data)
+  }
+
+  function onReject (error: unknown) {
+    setError($t('error'))
+    console.error(error)
   }
 
   return (
-    <Form<Driver, unknown>
-      value={value}
-      action={action}
-      onResolve={onResolve}
-      onReject={() => setError($t('error'))}
-      error={error}
-    >
+    <div className="DashboardSettingsForm">
       <h4>{$t('title')}</h4>
       <p className="mb-3">{$t('description')}</p>
-      <FormSelect
-        name="type"
-        value={value.type}
-        update={update}
-        label={$t('fields.type.label')}
-        description={$t('fields.type.details')}
-        options={[
-          {
-            value: DriverType.memory,
-            label: $t('fields.type.drivers.memory')
-          },
-          {
-            value: DriverType.json,
-            label: $t('fields.type.drivers.json')
-          },
-          {
-            value: DriverType.http,
-            label: $t('fields.type.drivers.http')
-          },
-          {
-            value: DriverType.supabase,
-            label: $t('fields.type.drivers.supabase')
-          },
-        ]}
+      <Form<Content>
+        action={action}
+        onResolve={onResolve}
+        onReject={onReject}
+        error={error}
+        fields={
+          <>
+            <FormSelect
+              name="type"
+              value={value.type}
+              update={update}
+              label={$t('fields.type.label')}
+              description={$t('fields.type.details')}
+              options={[
+                {
+                  value: DriverType.memory,
+                  label: $t('fields.type.drivers.memory')
+                },
+                {
+                  value: DriverType.json,
+                  label: $t('fields.type.drivers.json')
+                },
+                {
+                  value: DriverType.http,
+                  label: $t('fields.type.drivers.http')
+                },
+                {
+                  value: DriverType.supabase,
+                  label: $t('fields.type.drivers.supabase')
+                },
+              ]}
+            />
+            {/* config */}
+            <div className="form-control">
+              <p>{$t('fields.config.label')}</p>
+
+              <Switch condition={value.type}>
+                {/* DriverType.json */}
+                <Case value={DriverType.json}>
+                  <FormText
+                    name="config.url"
+                    value={value.config.url}
+                    update={update}
+                    label={$t('fields.config.drivers.json.url.label')}
+                    placeholder={$t('fields.config.drivers.json.url.placeholder')}
+                    description={$t('fields.config.drivers.json.url.details')}
+                  />
+                </Case>
+                {/* DriverType.http */}
+                <Case value={DriverType.http}>
+                  <FormText
+                    name="config.url"
+                    value={value.config.url}
+                    update={update}
+                    label={$t('fields.config.drivers.http.url.label')}
+                    placeholder={$t('fields.config.drivers.http.url.placeholder')}
+                    description={$t('fields.config.drivers.http.url.details')}
+                  />
+                  <FormText
+                    name="config.authorization"
+                    value={value.config.authorization}
+                    update={update}
+                    label={$t('fields.config.drivers.http.authorization.label')}
+                    placeholder={$t('fields.config.drivers.http.authorization.placeholder')}
+                    description={$t('fields.config.drivers.http.authorization.details')}
+                  />
+                </Case>
+                {/* DriverType.memory */}
+                <Case value={DriverType.memory}>
+                  <p className="form-text text-muted">{$t('fields.config.drivers.memory')}</p>
+                </Case>
+                {/* DriverType.supabase */}
+                <Case value={DriverType.supabase}>
+                  <FormText
+                    name="config.url"
+                    value={value.config.url}
+                    update={update}
+                    label={$t('fields.config.drivers.supabase.url.label')}
+                    placeholder={$t('fields.config.drivers.supabase.url.placeholder')}
+                    description={$t('fields.config.drivers.supabase.url.details')}
+                  />
+                  <FormText
+                    name="config.anonKey"
+                    value={value.config.anonKey}
+                    update={update}
+                    label={$t('fields.config.drivers.supabase.anonKey.label')}
+                    placeholder={$t('fields.config.drivers.supabase.anonKey.placeholder')}
+                    description={$t('fields.config.drivers.supabase.anonKey.details')}
+                  />
+                </Case>
+              </Switch>
+            </div>
+          </>
+        }
+        buttons={(loading: boolean) => {
+          return <>
+            <button
+              disabled={loading}
+              type="submit"
+              className="btn btn-primary"
+            >
+              {$t('save')}
+            </button>
+            <button
+              type="reset"
+              className="btn btn-outline-light"
+              onClick={reset}
+            >
+              {$t('reset')}
+            </button>
+          </>
+        }}
       />
-
-      <div className="form-control">
-        <p>{$t('fields.config.label')}</p>
-
-        <Switch condition={value.type}>
-
-          <Case value={DriverType.json}>
-            <FormText
-              name="config.url"
-              value={value.config.url}
-              update={update}
-              label={$t('fields.config.drivers.json.url.label')}
-              placeholder={$t('fields.config.drivers.json.url.placeholder')}
-              description={$t('fields.config.drivers.json.url.details')}
-            />
-          </Case>
-
-          <Case value={DriverType.http}>
-            <FormText
-              name="config.url"
-              value={value.config.url}
-              update={update}
-              label={$t('fields.config.drivers.http.url.label')}
-              placeholder={$t('fields.config.drivers.http.url.placeholder')}
-              description={$t('fields.config.drivers.http.url.details')}
-            />
-            <FormText
-              name="config.authorization"
-              value={value.config.authorization}
-              update={update}
-              label={$t('fields.config.drivers.http.authorization.label')}
-              placeholder={$t('fields.config.drivers.http.authorization.placeholder')}
-              description={$t('fields.config.drivers.http.authorization.details')}
-            />
-          </Case>
-
-          <Case value={DriverType.memory}>
-            <p className="form-text text-muted">{$t('fields.config.drivers.memory')}</p>
-          </Case>
-
-          <Case value={DriverType.supabase}>
-            <FormText
-              name="config.url"
-              value={value.config.url}
-              update={update}
-              label={$t('fields.config.drivers.supabase.url.label')}
-              placeholder={$t('fields.config.drivers.supabase.url.placeholder')}
-              description={$t('fields.config.drivers.supabase.url.details')}
-            />
-            <FormText
-              name="config.anonKey"
-              value={value.config.anonKey}
-              update={update}
-              label={$t('fields.config.drivers.supabase.anonKey.label')}
-              placeholder={$t('fields.config.drivers.supabase.anonKey.placeholder')}
-              description={$t('fields.config.drivers.supabase.anonKey.details')}
-            />
-          </Case>
-        </Switch>
-      </div>
-      <hr />
-      <div className="form-action align-right">
-        <button
-          disabled={loading}
-          type="submit"
-          className="btn btn-primary"
-        >
-          {$t('save')}
-        </button>
-      </div>
-    </Form>
+    </div>
   )
 }
