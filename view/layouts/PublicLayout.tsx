@@ -10,7 +10,7 @@ import { LayoutNavbar } from './general/LayoutNavbar.tsx'
 
 export function PublicLayout () {
   const $t = useI18n('layouts.public')
-  const { stop } = useLoading()
+  const { fall } = useLoading()
   const { session, auth } = useApp()
 
   return (
@@ -18,7 +18,7 @@ export function PublicLayout () {
       <LayoutLoading label={$t('pending')}/>
       <Async
         using={() => auth.restore()}
-        onFinally={() => stop()}
+        onFinally={() => fall()}
       >
         <On status={AsyncStatus.Resolved}>
 

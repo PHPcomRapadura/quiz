@@ -8,7 +8,7 @@ import { useLoading } from '../hooks/useLoading.ts'
 
 export function DashboardLayout () {
   const $t = useI18n('layouts.dashboard')
-  const { stop } = useLoading()
+  const { fall } = useLoading()
   const { session, auth } = useApp()
 
   return (
@@ -16,7 +16,7 @@ export function DashboardLayout () {
       <LayoutLoading label={$t('pending')} />
       <Async
         using={() => auth.restore()}
-        onFinally={() => stop()}
+        onFinally={() => fall()}
       >
         <On status={AsyncStatus.Resolved}>
 

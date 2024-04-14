@@ -1,10 +1,9 @@
 import { useState } from 'react'
 
-import { isDevelopmentMode } from '../../../config/env.ts'
 import { Driver, DriverType } from '../../../src/Domain/Contracts.ts'
 
 import { useFormValue } from '../../components/form/hooks/useFormValue.ts'
-import { Case, If, Switch } from '../../components/general/Conditional.tsx'
+import { Case, Switch } from '../../components/general/Conditional.tsx'
 import { Form } from '../../components/form/Form.tsx'
 import { FormSelect } from '../../components/form/FormSelect.tsx'
 import { FormText } from '../../components/form/FormText.tsx'
@@ -17,6 +16,7 @@ export function DashboardSettingsPage () {
   const { session } = useApp()
   const [error, setError] = useState('')
   const { loading } = useLoading()
+
   const [
     value,
     update,
@@ -30,7 +30,7 @@ export function DashboardSettingsPage () {
     console.log(data)
     return new Promise((resolve) => {
       window.setTimeout(
-        () => resolve(stop()),
+        () => resolve('nuhh'),
         import.meta.env.VITE_IN_MEMORY_TIMEOUT
       )
     })
@@ -145,10 +145,6 @@ export function DashboardSettingsPage () {
           {$t('save')}
         </button>
       </div>
-
-        <If condition={isDevelopmentMode()}>
-          <pre className="pt-2">{JSON.stringify(value, null, 2)}</pre>
-        </If>
     </Form>
-)
+  )
 }

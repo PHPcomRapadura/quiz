@@ -2,7 +2,7 @@ import { loadingStore } from '../stores/loading.ts'
 import { useState } from 'react'
 import { useBeforeUnload } from 'react-router-dom'
 
-export function useLoading (): { loading: boolean, start: () => void, stop: () => void } {
+export function useLoading (): { loading: boolean, raise: () => void, fall: () => void } {
   const [loading, setLoading] = useState<boolean>(false)
 
   const subscriptionId = loadingStore.subscribe('loading', (value: unknown) => {
@@ -14,7 +14,7 @@ export function useLoading (): { loading: boolean, start: () => void, stop: () =
 
   return {
     loading,
-    start: () => loadingStore.state.loading = true,
-    stop: () => loadingStore.state.loading = false
+    raise: () => loadingStore.state.loading = true,
+    fall: () => loadingStore.state.loading = false
   } as const
 }

@@ -6,7 +6,7 @@ import { AlertDanger } from '../general/Alert.tsx'
 type FormProps<T, R> = {
   children: ReactNode | ReactNode[]
   value: T
-  action: (data: T) => Promise<R>
+  action: (data: T, rawValue: FormData) => Promise<R>
   onResolve?: (data: R) => void
   onReject?: (error: unknown) => void
   onFinally?: () => void
@@ -23,19 +23,20 @@ export function Form<T, R> (props: FormProps<T, R>) {
     onFinally,
     error
   } = props
-  const { start, stop } = useLoading()
+  const { raise, fall } = useLoading()
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    start()
+    const rawValue = new FormData(event.currentTarget)
     try {
-      const response = await action(value)
+      raise()
+      const response = await action(value, rawValue)
       onResolve && onResolve(response)
     } catch (error) {
       onReject && onReject(error)
       return
     } finally {
-      stop()
+      fall()
       onFinally && onFinally()
     }
   }
