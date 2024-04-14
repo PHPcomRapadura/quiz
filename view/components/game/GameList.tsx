@@ -1,9 +1,10 @@
 import Game from '../../../src/Domain/Game/Game.ts'
 import { Link } from 'react-router-dom'
 
-import styles from './game-list/index.module.css'
+import { useI18n } from '../../hooks'
 import { AlertPrimary } from '../general/Alert.tsx'
-import { useI18n } from '../../hooks/useI18n.ts'
+
+import styles from './game-list/index.module.css'
 
 export function GameList ({ games }: { games: Game[] }) {
   const $t = useI18n('components.game.list')

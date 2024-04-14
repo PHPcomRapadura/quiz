@@ -1,5 +1,5 @@
 import { ReactNode, useState } from 'react'
-import { useRunOnce } from '../../hooks/useRunOnce.ts'
+import { useRunOnce } from '../../hooks'
 
 export type AsyncElementProps = {
   children: ReactNode | ReactNode[]

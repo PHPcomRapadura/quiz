@@ -19,16 +19,12 @@ import { GameEndPage } from './pages/public/game/GameEndPage.tsx'
 import { DashboardLayout } from './layouts/DashboardLayout.tsx'
 import { SignInPage } from './pages/public/auth/SignInPage.tsx'
 import { WaitOneTimePassword } from './pages/public/auth/WaitOneTimePassword.tsx'
-import { useRunOnce } from './hooks/useRunOnce.ts'
 
-import { name } from '../config/i18n.ts'
 import { DashboardGamesPage } from './pages/dashboard/DashboardGamesPage.tsx'
 import { DashboardSettingsPage } from './pages/dashboard/DashboardSettingsPage.tsx'
 import { DashboardMyAccountPage } from './pages/dashboard/DahboardMyAccountPage.tsx'
 
 export default function App () {
-  useRunOnce(() => document.title = name)
-
   return (
     <AppProvider>
       <Routes>

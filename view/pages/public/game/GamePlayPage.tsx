@@ -8,8 +8,7 @@ import { Async, AsyncStatus, On } from '../../../components/general/Async.tsx'
 import { Loading } from '../../../components/general/Loading.tsx'
 import { AlertWarning } from '../../../components/general/Alert.tsx'
 import { GamePlaySession } from '../../../components/game/GamePlaySession.tsx'
-import { useApp } from '../../../hooks/useApp.ts'
-import { useI18n } from '../../../hooks/useI18n.ts'
+import { useApp, useI18n } from '../../../hooks'
 
 export function GamePlayPage () {
   const params = useParams()

@@ -1,9 +1,7 @@
 import { Outlet } from 'react-router-dom'
 
 import { Async, AsyncStatus, On } from '../components/general/Async.tsx'
-import { useApp } from '../hooks/useApp.ts'
-import { useI18n } from '../hooks/useI18n.ts'
-import { useLoading } from '../hooks/useLoading.ts'
+import { useApp, useI18n, useLoading, useRunOnce } from '../hooks'
 
 import { LayoutLoading } from './general/LayoutLoading.tsx'
 import { LayoutNavbar } from './general/LayoutNavbar.tsx'
@@ -12,6 +10,8 @@ export function PublicLayout () {
   const $t = useI18n('layouts.public')
   const { fall } = useLoading()
   const { session, auth } = useApp()
+
+  useRunOnce(() => document.title = $t('brand'))
 
   return (
     <>

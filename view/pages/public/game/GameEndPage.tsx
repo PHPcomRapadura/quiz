@@ -1,8 +1,8 @@
-import { useNavigate, useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
 
 import { Done } from '../../../components/game/GameImage.tsx'
-import { useI18n } from '../../../hooks/useI18n.ts'
+import { useI18n } from '../../../hooks'
 
 export function GameEndPage () {
   const params = useParams()

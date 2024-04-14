@@ -1,15 +1,16 @@
-import { useApp } from '../hooks/useApp.ts'
+import { useApp, useI18n, useLoading, useRunOnce } from '../hooks'
 import { Async, AsyncStatus, On } from '../components/general/Async.tsx'
+
+import { DashboardNavigation } from './dashboard/DashboardNavigation.tsx'
 import { LayoutLoading } from './general/LayoutLoading.tsx'
 import { LayoutNavbar } from './general/LayoutNavbar.tsx'
-import { DashboardNavigation } from './dashboard/DashboardNavigation.tsx'
-import { useI18n } from '../hooks/useI18n.ts'
-import { useLoading } from '../hooks/useLoading.ts'
 
 export function DashboardLayout () {
   const $t = useI18n('layouts.dashboard')
   const { fall } = useLoading()
   const { session, auth } = useApp()
+
+  useRunOnce(() => document.title = $t('brand'))
 
   return (
     <>

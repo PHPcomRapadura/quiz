@@ -3,13 +3,12 @@ import { useState } from 'react'
 import GameRepository from '../../../../src/Domain/Game/GameRepository.ts'
 import Game from '../../../../src/Domain/Game/Game.ts'
 
-import { useApp } from '../../../hooks/useApp.ts'
+import { useApp, useI18n } from '../../../hooks'
+
+import { AlertWarning } from '../../../components/general/Alert.tsx'
 import { Async, AsyncStatus, On } from '../../../components/general/Async.tsx'
 import { Loading } from '../../../components/general/Loading.tsx'
-import { AlertWarning } from '../../../components/general/Alert.tsx'
-
 import { GameList } from '../../../components/game/GameList.tsx'
-import { useI18n } from '../../../hooks/useI18n.ts'
 
 export function GameWelcomePage () {
   const $t = useI18n('pages.game.welcome')

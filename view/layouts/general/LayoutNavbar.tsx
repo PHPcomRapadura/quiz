@@ -1,7 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { Case, Switch } from '../../components/general/Conditional.tsx'
 import { AuthContract, Session } from '../../../src/Domain/Auth/Auth.ts'
-import { useI18n } from '../../hooks/useI18n.ts'
+import { useI18n } from '../../hooks'
 
 export type LayoutNavbarProps = {
   session: Session

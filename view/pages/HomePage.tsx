@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
+
 import { image } from '../../config/assets.ts'
-import { useI18n } from '../hooks/useI18n.ts'
+import { useI18n } from '../hooks'
 
 export function HomePage () {
   const $t = useI18n('pages.home')

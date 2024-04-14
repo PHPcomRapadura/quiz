@@ -1,5 +1,6 @@
 import { NavLink, Outlet } from 'react-router-dom'
-import { useI18n } from '../../hooks/useI18n.ts'
+
+import { useI18n } from '../../hooks'
 
 export function DashboardNavigation () {
   const $t = useI18n('layouts.dashboard')

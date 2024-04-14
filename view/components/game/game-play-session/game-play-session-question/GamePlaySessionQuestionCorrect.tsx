@@ -1,6 +1,7 @@
+import { useI18n } from '../../../../hooks'
+
 import { GameQuestionComponentsProps } from '../GamePlaySessionQuestion.tsx'
 import { Celebrate } from '../../GameImage.tsx'
-import { useI18n } from '../../../../hooks/useI18n.ts'
 
 export function GamePlaySessionQuestionCorrect ({ finishQuestion }: GameQuestionComponentsProps) {
   const $t = useI18n('pages.game.play.session')

@@ -1,6 +1,7 @@
-import { Navigate, Outlet, useLocation } from 'react-router-dom'
-import { useApp } from '../../hooks/useApp.ts'
 import { ReactNode } from 'react'
+import { Navigate, Outlet, useLocation } from 'react-router-dom'
+
+import { useApp } from '../../hooks'
 
 export type CredentialCheckerProps = {
   children?: ReactNode | ReactNode[]

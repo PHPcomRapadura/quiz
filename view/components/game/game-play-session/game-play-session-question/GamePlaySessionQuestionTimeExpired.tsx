@@ -1,4 +1,4 @@
-import { useI18n } from '../../../../hooks/useI18n.ts'
+import { useI18n } from '../../../../hooks'
 
 import { GameQuestionComponentsProps } from '../GamePlaySessionQuestion.tsx'
 import { Drink } from '../../GameImage.tsx'
