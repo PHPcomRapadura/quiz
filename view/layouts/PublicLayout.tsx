@@ -1,16 +1,16 @@
 import { Outlet } from 'react-router-dom'
 
+import { Async, AsyncStatus, On } from '../components/general/Async.tsx'
 import { useApp } from '../hooks/useApp.ts'
 import { useI18n } from '../hooks/useI18n.ts'
-import { loadingStore } from '../stores/loading.ts'
-import { Async, AsyncStatus, On } from '../components/general/Async.tsx'
+import { useLoading } from '../hooks/useLoading.ts'
 
 import { LayoutLoading } from './general/LayoutLoading.tsx'
 import { LayoutNavbar } from './general/LayoutNavbar.tsx'
 
 export function PublicLayout () {
   const $t = useI18n('layouts.public')
-
+  const { stop } = useLoading()
   const { session, auth } = useApp()
 
   return (
@@ -18,7 +18,7 @@ export function PublicLayout () {
       <LayoutLoading label={$t('pending')}/>
       <Async
         using={() => auth.restore()}
-        onFinally={() => loadingStore.state.loading = false}
+        onFinally={() => stop()}
       >
         <On status={AsyncStatus.Resolved}>
 

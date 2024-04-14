@@ -15,7 +15,7 @@ export type Session = {
 }
 
 export interface AuthContract {
-  signIn (username: string, password: string | null): Promise<Session>
+  signIn (username: string, password?: string | null): Promise<Session>
 
   signOut (): Promise<boolean>
 

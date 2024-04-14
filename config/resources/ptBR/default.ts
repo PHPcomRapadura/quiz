@@ -31,6 +31,30 @@ export default function (name: string) {
         contributing: 'Não se esqueça de contribuir com o projeto no link abaixo! 😉',
         callToAction: 'Jogar agora »'
       },
+      auth: {
+        signIn: {
+          title: 'Entrar',
+          error: 'Usuário e/ou senha inválidos',
+          action: 'Entrar',
+          fields: {
+            username: {
+              label: 'Usuário',
+              placeholder: 'Informe seu usuário',
+              description: 'Utilize seu nome de usuário ou email'
+            },
+            password: {
+              label: 'Senha',
+              placeholder: 'Informe sua senha',
+              description: 'Utilize sua senha de acesso'
+            },
+            otp: {
+              label: 'Código de Verificação',
+              placeholder: 'Informe o código de verificação',
+              description: 'Utilize o código de verificação enviado para seu email'
+            }
+          },
+        }
+      },
       game: {
         play: {
           pending: 'Carregando Jogo ...',

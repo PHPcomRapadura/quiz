@@ -1,19 +1,22 @@
-import { FormEvent } from 'react'
+import { useState } from 'react'
 
-import { Driver, DriverType } from '../../../src/Domain/Contracts.ts'
 import { isDevelopmentMode } from '../../../config/env.ts'
+import { Driver, DriverType } from '../../../src/Domain/Contracts.ts'
 
-import { useApp } from '../../hooks/useApp.ts'
 import { useFormValue } from '../../components/form/hooks/useFormValue.ts'
-import { loadingStore } from '../../stores/loading.ts'
 import { Case, If, Switch } from '../../components/general/Conditional.tsx'
+import { Form } from '../../components/form/Form.tsx'
 import { FormSelect } from '../../components/form/FormSelect.tsx'
 import { FormText } from '../../components/form/FormText.tsx'
+import { useApp } from '../../hooks/useApp.ts'
 import { useI18n } from '../../hooks/useI18n.ts'
+import { useLoading } from '../../hooks/useLoading.ts'
 
 export function DashboardSettingsPage () {
   const $t = useI18n('pages.dashboard.settings')
   const { session } = useApp()
+  const [error, setError] = useState('')
+  const { loading } = useLoading()
   const [
     value,
     update,
@@ -22,19 +25,28 @@ export function DashboardSettingsPage () {
   const config = { url: '', authorization: '', anonKey: '' }
   watch('type', () => update('config', config))
 
-  function onSubmit (event: FormEvent<HTMLFormElement>) {
-    event.preventDefault()
-    loadingStore.state.loading = true
-    window.setTimeout(
-      () => loadingStore.state.loading = false,
-      import.meta.env.VITE_IN_MEMORY_TIMEOUT
-    )
+  function action (data: Driver): Promise<unknown> {
+    setError('')
+    console.log(data)
+    return new Promise((resolve) => {
+      window.setTimeout(
+        () => resolve(stop()),
+        import.meta.env.VITE_IN_MEMORY_TIMEOUT
+      )
+    })
+  }
+
+  function onResolve (data: unknown) {
+    console.log(data)
   }
 
   return (
-    <form
-      className="DashboardForm"
-      onSubmit={onSubmit}
+    <Form<Driver, unknown>
+      value={value}
+      action={action}
+      onResolve={onResolve}
+      onReject={() => setError($t('error'))}
+      error={error}
     >
       <h4>{$t('title')}</h4>
       <p className="mb-3">{$t('description')}</p>
@@ -124,16 +136,19 @@ export function DashboardSettingsPage () {
         </Switch>
       </div>
       <hr />
-      <button
-        type="submit"
-        className="btn btn-primary"
-      >
-        {$t('save')}
-      </button>
+      <div className="form-action align-right">
+        <button
+          disabled={loading}
+          type="submit"
+          className="btn btn-primary"
+        >
+          {$t('save')}
+        </button>
+      </div>
 
-      <If condition={isDevelopmentMode()}>
-        <pre className="pt-2">{JSON.stringify(value, null, 2)}</pre>
-      </If>
-    </form>
-  )
+        <If condition={isDevelopmentMode()}>
+          <pre className="pt-2">{JSON.stringify(value, null, 2)}</pre>
+        </If>
+    </Form>
+)
 }

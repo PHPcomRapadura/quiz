@@ -12,7 +12,6 @@ export function LayoutLoading ({ label, initial = true }: { label: string, initi
       setLoading(!!value)
     }
   })
-
   useBeforeUnload(() => loadingStore.unsubscribe('loading', subscriptionId))
 
   return (

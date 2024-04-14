@@ -1,14 +1,14 @@
 import { useApp } from '../hooks/useApp.ts'
 import { Async, AsyncStatus, On } from '../components/general/Async.tsx'
-import { loadingStore } from '../stores/loading.ts'
 import { LayoutLoading } from './general/LayoutLoading.tsx'
 import { LayoutNavbar } from './general/LayoutNavbar.tsx'
 import { DashboardNavigation } from './dashboard/DashboardNavigation.tsx'
 import { useI18n } from '../hooks/useI18n.ts'
+import { useLoading } from '../hooks/useLoading.ts'
 
 export function DashboardLayout () {
   const $t = useI18n('layouts.dashboard')
-
+  const { stop } = useLoading()
   const { session, auth } = useApp()
 
   return (
@@ -16,7 +16,7 @@ export function DashboardLayout () {
       <LayoutLoading label={$t('pending')} />
       <Async
         using={() => auth.restore()}
-        onFinally={() => loadingStore.state.loading = false}
+        onFinally={() => stop()}
       >
         <On status={AsyncStatus.Resolved}>
 
