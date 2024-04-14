@@ -1,25 +1,22 @@
 import { useNavigate, useParams } from 'react-router-dom'
 import { useState } from 'react'
-import { useTranslation } from 'react-i18next'
 
 import GameRepository from '../../../../src/Domain/Game/GameRepository.ts'
 import Game from '../../../../src/Domain/Game/Game.ts'
 
-import { useApp } from '../../../hooks/useApp.ts'
 import { Async, AsyncStatus, On } from '../../../components/general/Async.tsx'
 import { Loading } from '../../../components/general/Loading.tsx'
 import { AlertWarning } from '../../../components/general/Alert.tsx'
 import { GamePlaySession } from '../../../components/game/GamePlaySession.tsx'
+import { useApp } from '../../../hooks/useApp.ts'
+import { useI18n } from '../../../hooks/useI18n.ts'
 
 export function GamePlayPage () {
   const params = useParams()
   const gameId = Number(params.id)
   const { container } = useApp()
   const navigate = useNavigate()
-  const { t } = useTranslation(
-    'default',
-    { keyPrefix: 'pages.game.play' }
-  )
+  const $t = useI18n('pages.game.play')
 
   const stub = {
     description: '',
@@ -31,25 +28,24 @@ export function GamePlayPage () {
   const [game, setGame] = useState<Game>(stub)
   const gameRepository = container.resolve<GameRepository>('GameRepository')
 
-
   const onResolve = (game: Game) => {
     setGame(game)
   }
 
-  const onReject = (error: Error) => {
+  const onReject = (error: unknown) => {
     console.error(error)
     return navigate(`/games/${gameId}/not-found`)
   }
 
   return (
-    <Async
+    <Async<Game>
       using={() => gameRepository.findById(gameId)}
       onResolve={onResolve}
       onReject={onReject}
     >
       <On status={AsyncStatus.Pending}>
         <div className="py-3">
-          <Loading label={t('pending')} />
+          <Loading label={$t('pending')} />
         </div>
       </On>
       <On status={AsyncStatus.Resolved}>
@@ -61,8 +57,8 @@ export function GamePlayPage () {
       <On status={AsyncStatus.Rejected}>
         <div className="py-2">
           <AlertWarning
-            strong={t('error')}
-            message={t('rejected')}
+            strong={$t('error')}
+            message={$t('rejected')}
           />
         </div>
       </On>

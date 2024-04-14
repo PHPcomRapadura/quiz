@@ -1,19 +1,16 @@
-import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { image } from '../../config/assets.ts'
+import { useI18n } from '../hooks/useI18n.ts'
 
 export function HomePage () {
-  const { t } = useTranslation(
-    'default',
-    { keyPrefix: 'pages.home' }
-  )
+  const $t = useI18n('pages.home')
 
   return (
     <div className="card bg-secondary py-3 px-4 rounded">
-      <h1>{t('title')}</h1>
-      <p className="lead mb-3">{t('description')}</p>
+      <h1>{$t('title')}</h1>
+      <p className="lead mb-3">{$t('description')}</p>
       <p className="lead mb-1">
-        {t('contributing')}
+        {$t('contributing')}
       </p>
       <p className="lead mb-3">
         <a
@@ -34,7 +31,7 @@ export function HomePage () {
         to="/games"
         role="button"
       >
-        {t('callToAction')}
+        {$t('callToAction')}
       </Link>
     </div>
   )

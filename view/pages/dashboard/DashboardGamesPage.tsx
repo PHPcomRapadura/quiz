@@ -1,13 +1,10 @@
-import { useTranslation } from 'react-i18next'
+import { useI18n } from '../../hooks/useI18n.ts'
 
 export function DashboardGamesPage () {
-  const { t } = useTranslation(
-    'default',
-    { keyPrefix: 'pages.dashboard' }
-  )
+  const $t = useI18n('pages.dashboard')
   return (
     <p>
-      DashboardGamesPage: {t('soon')}
+      DashboardGamesPage: {$t('soon')}
     </p>
   )
 }

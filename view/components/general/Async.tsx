@@ -6,10 +6,10 @@ export type AsyncElementProps = {
   status: AsyncStatus
 }
 
-export type AsyncProps = {
-  using: () => Promise<unknown>
-  onResolve?: (data: unknown) => void
-  onReject?: (data: unknown) => void
+export type AsyncProps<T> = {
+  using: () => Promise<T>
+  onResolve?: (data: T) => void
+  onReject?: (error: unknown) => void
   onFinally?: () => void
   children: ReactNode | ReactNode[]
 }
@@ -25,7 +25,7 @@ export function On ({ children }: AsyncElementProps) {
   return children
 }
 
-export function Async (props: AsyncProps) {
+export function Async<T> (props: AsyncProps<T>) {
   const {
     using,
     onResolve,

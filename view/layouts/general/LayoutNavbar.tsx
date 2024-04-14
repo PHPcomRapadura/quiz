@@ -1,7 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom'
-import { useTranslation } from 'react-i18next'
 import { Case, Switch } from '../../components/general/Conditional.tsx'
 import { AuthContract, Session } from '../../../src/Domain/Auth/Auth.ts'
+import { useI18n } from '../../hooks/useI18n.ts'
 
 export type LayoutNavbarProps = {
   session: Session
@@ -12,11 +12,7 @@ export type LayoutNavbarProps = {
 export function LayoutNavbar (props: LayoutNavbarProps) {
   const { layout, session, auth } = props
   const navigate = useNavigate()
-
-  const { t } = useTranslation(
-    'default',
-    { keyPrefix: 'layouts.public' }
-  )
+  const $t = useI18n(`layouts.${layout}`)
 
   const signOut = async () => {
     const done = await auth.signOut()
@@ -32,7 +28,7 @@ export function LayoutNavbar (props: LayoutNavbarProps) {
           className="navbar-brand"
           to="/"
         >
-          {t('brand')}
+          {$t('brand')}
         </Link>
 
         <ul className="navbar-nav me-auto">
@@ -41,7 +37,7 @@ export function LayoutNavbar (props: LayoutNavbarProps) {
               to="/games"
               className="nav-link"
             >
-              {t('play')}
+              {$t('play')}
             </Link>
           </li>
         </ul>
@@ -55,7 +51,7 @@ export function LayoutNavbar (props: LayoutNavbarProps) {
                   className="btn btn-outline-primary"
                   onClick={() => navigate('/dashboard')}
                 >
-                  {t('myAccount')}
+                  {$t('myAccount')}
                 </button>
               </Case>
               <Case value={false}>
@@ -63,7 +59,7 @@ export function LayoutNavbar (props: LayoutNavbarProps) {
                   className="btn btn-primary"
                   onClick={() => navigate('/auth/sign-in')}
                 >
-                  {t('signIn')}
+                  {$t('signIn')}
                 </button>
               </Case>
             </Switch>
@@ -76,7 +72,7 @@ export function LayoutNavbar (props: LayoutNavbarProps) {
                   className="btn btn-outline-primary"
                   onClick={signOut}
                 >
-                  {t('signOut')}
+                  {$t('signOut')}
                 </button>
               </Case>
               <Case value={false}>
@@ -84,7 +80,7 @@ export function LayoutNavbar (props: LayoutNavbarProps) {
                   className="btn btn-primary"
                   onClick={() => navigate('/games')}
                 >
-                  {t('games')}
+                  {$t('games')}
                 </button>
               </Case>
             </Switch>

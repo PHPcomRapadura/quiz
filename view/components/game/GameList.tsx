@@ -1,18 +1,15 @@
 import Game from '../../../src/Domain/Game/Game.ts'
 import { Link } from 'react-router-dom'
-import { useTranslation } from 'react-i18next'
 
 import styles from './game-list/index.module.css'
 import { AlertPrimary } from '../general/Alert.tsx'
+import { useI18n } from '../../hooks/useI18n.ts'
 
 export function GameList ({ games }: { games: Game[] }) {
-  const { t } = useTranslation(
-    'default',
-    { keyPrefix: 'components.game.list' }
-  )
+  const $t = useI18n('components.game.list')
   return (
     <>
-      <h6>{t('title')}</h6>
+      <h6>{$t('title')}</h6>
       {
         games.length > 0 ?
           <div className={styles.GameList}>
@@ -24,7 +21,7 @@ export function GameList ({ games }: { games: Game[] }) {
               </AlertPrimary>
             ))}
           </div> :
-          <small className="fw-lighter">{t('empty')}</small>
+          <small className="fw-lighter">{$t('empty')}</small>
       }
     </>
   )

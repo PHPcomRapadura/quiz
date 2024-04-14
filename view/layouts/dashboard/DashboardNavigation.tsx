@@ -1,11 +1,8 @@
 import { NavLink, Outlet } from 'react-router-dom'
-import { useTranslation } from 'react-i18next'
+import { useI18n } from '../../hooks/useI18n.ts'
 
 export function DashboardNavigation () {
-  const { t } = useTranslation(
-    'default',
-    { keyPrefix: 'layouts.dashboard' }
-  )
+  const $t = useI18n('layouts.dashboard')
 
   return (
     <div className="card bg-secondary py-1 px-2">
@@ -23,7 +20,7 @@ export function DashboardNavigation () {
             to="/dashboard"
             end
           >
-            {t('navigation.index')}
+            {$t('navigation.index')}
           </NavLink>
         </li>
         <li
@@ -35,7 +32,7 @@ export function DashboardNavigation () {
             role="tab"
             to="/dashboard/my-account"
           >
-            {t('navigation.account')}
+            {$t('navigation.account')}
           </NavLink>
         </li>
         <li
@@ -47,7 +44,7 @@ export function DashboardNavigation () {
             to="/dashboard/settings"
             role="tab"
           >
-            {t('navigation.settings')}
+            {$t('navigation.settings')}
           </NavLink>
         </li>
       </ul>

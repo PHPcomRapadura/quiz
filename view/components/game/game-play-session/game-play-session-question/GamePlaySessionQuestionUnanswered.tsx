@@ -1,7 +1,7 @@
-import { useTranslation } from 'react-i18next'
+import Answer from '../../../../../src/Domain/Game/Answer.ts'
 
 import { Markdown } from '../../../general/Markdown.tsx'
-import Answer from '../../../../../src/Domain/Game/Answer.ts'
+import { useI18n } from '../../../../hooks/useI18n.ts'
 
 export type GameQuestionOptionsProps = {
   text: string
@@ -14,10 +14,7 @@ export type GameQuestionOptionsProps = {
 }
 
 export function GamePlaySessionQuestionUnanswered (props: GameQuestionOptionsProps) {
-  const { t } = useTranslation(
-    'default',
-    { keyPrefix: 'pages.game.play.session' }
-  )
+  const $t = useI18n('pages.game.play.session')
   const {
     text,
     options,
@@ -68,7 +65,7 @@ export function GamePlaySessionQuestionUnanswered (props: GameQuestionOptionsPro
             className="h3"
             onClick={() => setTimer(timeout)}
           >
-            {t('unanswered.timer', { time: timer })}
+            {$t('unanswered.timer', { time: timer })}
           </span>
         </div>
       </div>
@@ -78,7 +75,7 @@ export function GamePlaySessionQuestionUnanswered (props: GameQuestionOptionsPro
           className="btn btn-lg btn-primary"
           onClick={confirmSelection}
         >
-          {t('answer')}
+          {$t('answer')}
         </button>
       </div>
     </div>
