@@ -1,33 +1,16 @@
-import { ChangeEvent, useEffect, useId, useState } from 'react'
 import { FormFieldProps } from './index.tsx'
+import { useFormComponent } from './hooks/useFormComponent.ts'
 
-export type FormTextProps = FormFieldProps & {
-  placeholder?: string
-}
-
-export function FormText (props: FormTextProps) {
+export function FormText (props: FormFieldProps) {
   const {
-    id,
-    name,
+    fieldId,
+    fieldName,
+    onChange,
     label,
-    placeholder = '',
-    description = '',
-    value = '',
-    update,
-  } = props
-
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const fieldId: string = id ?? useId()
-
-  const [fieldValue, setFieldValue] = useState<string>(String(value))
-
-  const onChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const value = String(event.target.value)
-    setFieldValue(value)
-    update && update(name, value)
-  }
-
-  useEffect(() => setFieldValue(value as string), [value])
+    placeholder,
+    description,
+    fieldValue,
+  } = useFormComponent<string>(props)
 
   return (
     <div className="form-row">
@@ -41,7 +24,7 @@ export function FormText (props: FormTextProps) {
         type="text"
         className="form-control"
         id={fieldId}
-        name={name}
+        name={fieldName}
         placeholder={placeholder}
         value={fieldValue}
         onChange={onChange}

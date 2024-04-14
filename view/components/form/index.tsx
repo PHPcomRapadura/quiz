@@ -10,5 +10,8 @@ export type FormFieldProps = {
   label: string
   value?: unknown
   description?: string
+  placeholder?: string
   update?: FormValueUpdate
 }
+
+export type FormElement = HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement

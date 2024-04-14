@@ -1,5 +1,5 @@
-import { ChangeEvent, useEffect, useId, useState } from 'react'
 import { FormFieldProps } from './index.tsx'
+import { useFormComponent } from './hooks/useFormComponent.ts'
 
 type OptionValue = string | number
 
@@ -11,29 +11,18 @@ type Option<T extends OptionValue> = {
 export type FormSelectProps<T extends OptionValue> = FormFieldProps & {
   options: Option<T>[]
 }
+
 export function FormSelect<T extends OptionValue> (props: FormSelectProps<T>) {
   const {
-    id,
-    name,
+    fieldId,
+    fieldName,
+    onChange,
     label,
-    options,
-    description = '',
-    value = '',
-    update,
-  } = props
+    description,
+    fieldValue,
+  } = useFormComponent<T>(props)
 
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const fieldId: string = id ?? useId()
-
-  const [fieldValue, setFieldValue] = useState<T>(value as T)
-
-  const onChange = (event: ChangeEvent<HTMLSelectElement>) => {
-    const value = event.target.value as T
-    setFieldValue(value)
-    update && update(name, value)
-  }
-
-  useEffect(() => setFieldValue(value as T), [value])
+  const { options } = props
 
   return (
     <div className="form-row">
@@ -46,7 +35,7 @@ export function FormSelect<T extends OptionValue> (props: FormSelectProps<T>) {
       <select
         className="form-select"
         id={fieldId}
-        name={name}
+        name={fieldName}
         value={fieldValue}
         onChange={onChange}
       >

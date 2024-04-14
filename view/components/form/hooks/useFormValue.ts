@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { get, set } from 'lodash'
-import { FormValueUpdate, FormValueWatch, FormValueWatchCallback } from '../components/form'
+import { FormValueUpdate, FormValueWatch, FormValueWatchCallback } from '../index.tsx'
 
 export function useFormValue<T> (initial: T): [T, FormValueUpdate, FormValueWatch] {
   const [data, setData] = useState(initial)
