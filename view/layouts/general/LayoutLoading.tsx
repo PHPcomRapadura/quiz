@@ -1,21 +1,11 @@
 import { useEffect, useState } from 'react'
-import { useBeforeUnload } from 'react-router-dom'
 
-import { loadingStore } from '../../stores/loading.ts'
-import { Loading } from '../../components/general/Loading.tsx'
-import { If } from '../../components/general/Conditional.tsx'
+import { If, Loading } from '../../components/general'
+import { useLoading } from '../../hooks'
 
 export function LayoutLoading ({ label, initial = true }: { label: string, initial?: boolean }) {
-  const [loading, setLoading] = useState<boolean>(initial)
+  const { loading, fall } = useLoading(initial)
   const [width, setWidth] = useState<number>(0)
-
-  const subscriptionId = loadingStore.subscribe('loading', (value: unknown) => {
-    if (value !== loading) {
-      setLoading(!!value)
-      setWidth(0)
-    }
-  })
-  useBeforeUnload(() => loadingStore.unsubscribe('loading', subscriptionId))
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -30,11 +20,16 @@ export function LayoutLoading ({ label, initial = true }: { label: string, initi
     return () => clearInterval(interval)
   }, [])
 
+  const hide = () => {
+    setWidth(0)
+    fall()
+  }
+
   return (
     <If condition={loading}>
       <div
         className="LayoutLoading d-flex justify-content-center align-items-center"
-        onClick={() => loadingStore.state.loading = false}
+        onClick={hide}
       >
         <div className="container">
           <div className="bg-primary rounded p-3">

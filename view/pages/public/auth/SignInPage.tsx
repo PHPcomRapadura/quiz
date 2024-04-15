@@ -6,7 +6,7 @@ import { Session } from '../../../../src/Domain/Auth/Auth.ts'
 import { DriverType } from '../../../../src/Domain/Contracts.ts'
 
 import { Form, FormPassword, FormText, useFormValue } from '../../../components/form'
-import { If } from '../../../components/general/Conditional.tsx'
+import { If } from '../../../components/general'
 import { useApp, useI18n, useLoading } from '../../../hooks'
 
 type SignInData = {
@@ -59,29 +59,27 @@ export function SignInPage () {
           onResolve={onResolve}
           onReject={() => setError($t('error'))}
           error={error}
-          fields={
-            <>
-              <FormText
-                name="username"
-                value={value.username}
-                update={update}
-                label={$t('fields.username.label')}
-                placeholder={$t('fields.username.placeholder')}
-                description={$t('fields.username.description')}
-              />
+          fields={<>
+            <FormText
+              name="username"
+              value={value.username}
+              update={update}
+              label={$t('fields.username.label')}
+              placeholder={$t('fields.username.placeholder')}
+              description={$t('fields.username.description')}
+            />
 
-              <If condition={type === 'password'}>
-                <FormPassword
-                  name="password"
-                  value={value.password}
-                  update={update}
-                  label={$t('fields.password.label')}
-                  placeholder={$t('fields.password.placeholder')}
-                  description={$t('fields.password.description')}
-                />
-              </If>
-            </>
-          }
+            <If condition={type === 'password'}>
+              <FormPassword
+                name="password"
+                value={value.password}
+                update={update}
+                label={$t('fields.password.label')}
+                placeholder={$t('fields.password.placeholder')}
+                description={$t('fields.password.description')}
+              />
+            </If>
+          </>}
           buttons={
             <button
               disabled={loading}

@@ -2,7 +2,7 @@ import { FormEvent, ReactNode } from 'react'
 
 import { useLoading } from '../../hooks'
 
-import { AlertDanger } from '../general/Alert.tsx'
+import { AlertDanger } from '../general'
 
 type Children = ReactNode | ReactNode[]
 

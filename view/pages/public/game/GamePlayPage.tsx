@@ -4,10 +4,8 @@ import { useState } from 'react'
 import GameRepository from '../../../../src/Domain/Game/GameRepository.ts'
 import Game from '../../../../src/Domain/Game/Game.ts'
 
-import { Async, AsyncStatus, On } from '../../../components/general/Async.tsx'
-import { Loading } from '../../../components/general/Loading.tsx'
-import { AlertWarning } from '../../../components/general/Alert.tsx'
 import { GamePlaySession } from '../../../components/game/GamePlaySession.tsx'
+import { AlertWarning, Async, AsyncStatus, Loading, On } from '../../../components/general'
 import { useApp, useI18n } from '../../../hooks'
 
 export function GamePlayPage () {

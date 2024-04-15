@@ -1,12 +1,12 @@
 import { ReactNode, useState } from 'react'
 import { useRunOnce } from '../../hooks'
 
-export type AsyncElementProps = {
+type AsyncElementProps = {
   children: ReactNode | ReactNode[]
   status: AsyncStatus
 }
 
-export type AsyncProps<T> = {
+type AsyncProps<T> = {
   using: () => Promise<T>
   onResolve?: (data: T) => void
   onReject?: (error: unknown) => void

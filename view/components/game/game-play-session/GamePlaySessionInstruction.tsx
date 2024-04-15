@@ -1,7 +1,7 @@
 import Game from '../../../../src/Domain/Game/Game.ts'
 
 import { useI18n } from '../../../hooks'
-import { AlertPrimary } from '../../general/Alert.tsx'
+import { AlertPrimary } from '../../general'
 
 export type GameInstructionProps = {
   timeout: number,

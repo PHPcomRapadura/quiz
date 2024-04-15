@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 
-export type AlertProps = {
+type AlertProps = {
   strong?: string
   message?: string
   children?: ReactNode | ReactNode[]

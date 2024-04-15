@@ -1,28 +1,28 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { ReactNode } from 'react'
 
-export type CaseProps = {
+type CaseProps = {
   value: unknown
   children: ReactNode | ReactNode[]
+}
+
+type ConditionalProps = {
+  condition: unknown
+  children: ReactNode | ReactNode[]
+  defaultValue?: unknown
+}
+
+const compare = (child: any, condition: unknown, defaultValue: unknown) => {
+  return child.props.value === condition || child.props.value === defaultValue
 }
 
 export function Case (props: CaseProps) {
   return props.children
 }
 
-export type ConditionalProps = {
-  condition: unknown
-  children: ReactNode | ReactNode[]
-  defaultValue?: unknown
-}
-
 export function If (props: ConditionalProps) {
   const { condition, children } = props
   return condition ? children : undefined
-}
-
-const compare = (child: any, condition: unknown, defaultValue: unknown) => {
-  return child.props.value === condition || child.props.value === defaultValue
 }
 
 export function Match (props: ConditionalProps) {

@@ -5,11 +5,10 @@ import AnswerStatus from '../../../src/Domain/Game/AnswerStatus.ts'
 import { shuffle } from '../../../src/Domain/Util.ts'
 import Game from '../../../src/Domain/Game/Game.ts'
 
+import { AlertWarning, Case, Loading, Match } from '../general'
+
 import { GamePlaySessionInstruction } from './game-play-session/GamePlaySessionInstruction.tsx'
 import { GamePlaySessionQuestion, GameQuestionAnswerQuestion } from './game-play-session/GamePlaySessionQuestion.tsx'
-import { Case, Match } from '../general/Conditional.tsx'
-import { Loading } from '../general/Loading.tsx'
-import { AlertWarning } from '../general/Alert.tsx'
 
 export type GamePlaySessionProps = {
   game: Game,

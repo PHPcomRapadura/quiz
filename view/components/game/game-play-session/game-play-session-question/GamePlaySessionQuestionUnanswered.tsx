@@ -1,6 +1,6 @@
 import Answer from '../../../../../src/Domain/Game/Answer.ts'
 
-import { Markdown } from '../../../general/Markdown.tsx'
+import { Markdown } from '../../../general'
 import { useI18n } from '../../../../hooks'
 
 export type GameQuestionOptionsProps = {
