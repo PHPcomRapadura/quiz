@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { isDevelopmentMode } from '../../../../config/env.ts'
@@ -18,7 +17,6 @@ export function SignInPage () {
   const $t = useI18n('pages.auth.signIn')
   const { auth, session } = useApp()
   const navigate = useNavigate()
-  const [error, setError] = useState('')
   const { loading } = useLoading()
 
   const type = session.driver.type === DriverType.supabase ? 'otp' : 'password'
@@ -32,7 +30,6 @@ export function SignInPage () {
   } = useFormValue<SignInData>(initial)
 
   function action (): Promise<Session> {
-    setError('')
     if (type === 'password') {
       return auth.signIn(value.username, value.password)
     }
@@ -57,8 +54,7 @@ export function SignInPage () {
         <Form<Session>
           action={action}
           onResolve={onResolve}
-          onReject={() => setError($t('error'))}
-          error={error}
+          onReject={() => $t('error')}
           fields={<>
             <FormText
               name="username"
