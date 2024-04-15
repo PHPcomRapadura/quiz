@@ -1,0 +1,72 @@
+.PublicLayout, .DashboardLayout {
+    padding-top: 82px;
+}
+
+.PublicLayout nav, .DashboardLayout nav {
+    height: 82px;
+}
+
+.PublicLayout main {
+    padding: 30px 10px;
+}
+
+.DashboardLayout main {
+    padding: 20px 10px;
+}
+
+.PublicLayout main > .container {
+    min-height: calc(100vh - 198px);
+    transition: height 0.3s;
+    max-width: 1024px;
+}
+
+.PublicLayout footer {
+    height: 56px;
+}
+
+.PublicLayout main .btn.btn-primary {
+    box-shadow: rgba(64, 60, 67, 0.4) 1px 2px 4px 1px !important;
+}
+
+.PublicLayout .GamePlaySessionQuestionUnanswered > .card {
+    text-shadow: 1px 1px 1px #707070;
+}
+
+.PublicLayout .GamePlaySessionQuestionUnanswered > .card code {
+    text-shadow: none;
+    padding: 4px 6px;
+    border-radius: 6px;
+    background-color: #ffffff;
+    color: #565656;
+    margin: 0 0.1rem;
+}
+
+.PublicLayout .GamePlaySessionQuestionUnanswered > .card pre {
+    overflow: visible;
+    white-space: pre-wrap; /* css-3 */
+    white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+    white-space: -o-pre-wrap; /* Opera 7 */
+    word-wrap: break-word; /* Internet Explorer 5.5+ */
+    display: block;
+    background-color: #ffffff;
+    color: #565656;
+    padding: 4px 6px;
+    border-radius: 6px;
+}
+
+.PublicLayout .GamePlaySessionQuestionUnanswered > .card > .card-header code {
+    font-size: 1rem;
+}
+
+.PublicLayout .GamePlaySessionQuestionUnanswered > .card > .card-body > .form-check p {
+    line-height: 165%;
+}
+
+.LayoutLoading {
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
+    background-color: rgba(73, 73, 73, 0.7);
+}
