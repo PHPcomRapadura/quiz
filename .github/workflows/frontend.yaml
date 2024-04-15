@@ -2,8 +2,6 @@ on:
   push:
     branches:
       - main
-    tags:
-      - frontend
 
 permissions:
   contents: read
