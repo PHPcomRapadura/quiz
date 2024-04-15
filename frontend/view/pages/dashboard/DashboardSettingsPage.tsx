@@ -1,5 +1,3 @@
-import { useState } from 'react'
-
 import { Content, Driver, DriverType } from '../../../src/Domain/Contracts.ts'
 import UserConfigRepository from '../../../src/Domain/Admin/UserConfigRepository.ts'
 
@@ -10,7 +8,6 @@ import { useApp, useI18n } from '../../hooks'
 export function DashboardSettingsPage () {
   const $t = useI18n('pages.dashboard.settings')
   const { container, session } = useApp()
-  const [error, setError] = useState<string>('')
 
   const userConfigRepository = container.resolve<UserConfigRepository>('UserConfigRepository')
   const {
@@ -23,7 +20,6 @@ export function DashboardSettingsPage () {
   watch('type', () => update('config', config))
 
   function action (): Promise<Content> {
-    setError('')
     if (!session.id) {
       return Promise.reject(new Error('No session id found'))
     }
@@ -35,8 +31,8 @@ export function DashboardSettingsPage () {
   }
 
   function onReject (error: unknown) {
-    setError($t('error'))
     console.error(error)
+    return $t('error')
   }
 
   return (
@@ -47,7 +43,6 @@ export function DashboardSettingsPage () {
         action={action}
         onResolve={onResolve}
         onReject={onReject}
-        error={error}
         fields={<>
           <FormSelect
             name="type"

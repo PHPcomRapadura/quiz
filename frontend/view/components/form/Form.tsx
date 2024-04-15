@@ -1,4 +1,4 @@
-import { FormEvent, ReactNode } from 'react'
+import { FormEvent, ReactNode, useState } from 'react'
 
 import { useLoading } from '../../hooks'
 
@@ -12,9 +12,8 @@ type FormProps<T> = {
   fields: Children
   action: (rawValue: FormData) => Promise<T>
   onResolve?: (data: T) => void
-  onReject?: (error: unknown) => void
+  onReject?: (error: unknown) => string
   onFinally?: () => void
-  error?: string
   buttons?: ChildrenLoader | Children
 }
 
@@ -25,20 +24,21 @@ export function Form<T> (props: FormProps<T>) {
     onResolve,
     onReject,
     onFinally,
-    error,
     buttons,
   } = props
   const { raise, fall, loading } = useLoading()
+  const [error, setError] = useState<string>('')
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
+    setError('')
     const rawValue = new FormData(event.currentTarget)
     try {
       raise()
       const response = await action(rawValue)
       onResolve && onResolve(response)
     } catch (error) {
-      onReject && onReject(error)
+      onReject && setError(onReject(error))
       return
     } finally {
       fall()

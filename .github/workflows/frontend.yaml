@@ -1,0 +1,41 @@
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - frontend
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Setup caching
+        uses: actions/setup-node@v4
+        with:
+          cache: npm
+      
+      - name: Build
+        working-directory: ./frontend
+        env:
+          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
+        run: |
+          npm install
+          npm run test
+          npm run build
+
+      - name: Upload
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: frontend/dist
+      
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4

@@ -6,9 +6,9 @@
   "homepage": "https://phpcomrapadura.github.io/quiz",
   "scripts": {
     "dev": "vite",
+    "test": "echo \"Tests not yet configured\"",
     "build": "tsc && vite build",
     "build:preview": "tsc && vite build && mkdir dist/quiz && mv dist/index.html dist/quiz && mv dist/assets/ dist/quiz && code dist",
-    "ci": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
