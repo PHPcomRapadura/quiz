@@ -1,9 +1,9 @@
 import { FormFieldProps } from './index.ts'
 import { useFormComponent } from './hooks/useFormComponent.ts'
 
-type FormInputProps = FormFieldProps & { type?: string }
+type FormInputProps<T> = FormFieldProps<T> & { type?: string }
 
-export function FormInput (props: FormInputProps) {
+export function FormInput<T> (props: FormInputProps<T>) {
   const {
     fieldId,
     fieldName,

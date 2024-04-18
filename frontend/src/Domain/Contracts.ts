@@ -23,7 +23,7 @@ export enum DriverType {
 
 export type Driver = {
   type: DriverType
-  config: Data
+  config: Record<string, string>
 }
 
 export type DriverResolver = Record<DriverType, Record<string, (config: Data) => unknown>>

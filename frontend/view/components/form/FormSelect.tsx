@@ -3,12 +3,12 @@ import { useFormComponent } from './hooks/useFormComponent.ts'
 
 type OptionValue = string | number
 
-type Option<T extends OptionValue> = {
+export type Option<T extends OptionValue> = {
   value: T
   label: string
 }
 
-export type FormSelectProps<T extends OptionValue> = FormFieldProps & {
+export type FormSelectProps<T extends OptionValue> = FormFieldProps<T> & {
   options: Option<T>[]
 }
 

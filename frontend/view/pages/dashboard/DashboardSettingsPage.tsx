@@ -4,6 +4,7 @@ import UserConfigRepository from '../../../src/Domain/Admin/UserConfigRepository
 import { Form, FormSelect, FormText, useFormValue } from '../../components/form'
 import { Case, Switch } from '../../components/general'
 import { useApp, useI18n } from '../../hooks'
+import { Option } from '../../components/form/FormSelect.tsx'
 
 export function DashboardSettingsPage () {
   const $t = useI18n('pages.dashboard.settings')
@@ -35,6 +36,25 @@ export function DashboardSettingsPage () {
     return $t('error')
   }
 
+  const options: Option<string>[] = [
+    {
+      value: DriverType.memory,
+      label: $t('fields.type.drivers.memory')
+    },
+    {
+      value: DriverType.json,
+      label: $t('fields.type.drivers.json')
+    },
+    {
+      value: DriverType.http,
+      label: $t('fields.type.drivers.http')
+    },
+    {
+      value: DriverType.supabase,
+      label: $t('fields.type.drivers.supabase')
+    },
+  ]
+
   return (
     <div className="DashboardSettingsForm">
       <h4>{$t('title')}</h4>
@@ -44,30 +64,13 @@ export function DashboardSettingsPage () {
         onResolve={onResolve}
         onReject={onReject}
         fields={<>
-          <FormSelect
+          <FormSelect<string>
             name="type"
             value={value.type}
             update={update}
             label={$t('fields.type.label')}
             description={$t('fields.type.details')}
-            options={[
-              {
-                value: DriverType.memory,
-                label: $t('fields.type.drivers.memory')
-              },
-              {
-                value: DriverType.json,
-                label: $t('fields.type.drivers.json')
-              },
-              {
-                value: DriverType.http,
-                label: $t('fields.type.drivers.http')
-              },
-              {
-                value: DriverType.supabase,
-                label: $t('fields.type.drivers.supabase')
-              },
-            ]}
+            options={options}
           />
           {/* config */}
           <div className="form-control">

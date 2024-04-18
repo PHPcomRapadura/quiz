@@ -4,11 +4,11 @@ export type FormValueWatchCallback = (current: unknown, previous: unknown) => vo
 
 export type FormValueWatch = (fieldName: string, callback: FormValueWatchCallback) => void
 
-export type FormFieldProps = {
+export type FormFieldProps<T> = {
   id?: string
   name: string
   label: string
-  value?: unknown
+  value?: T
   description?: string
   placeholder?: string
   update?: FormValueUpdate
