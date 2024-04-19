@@ -12,7 +12,7 @@ export function FormInput<T> (props: FormInputProps<T>) {
     placeholder,
     description,
     fieldValue,
-  } = useFormComponent<string>(props)
+  } = useFormComponent<T>(props)
 
   const { type = 'text' } = props
 
@@ -30,7 +30,7 @@ export function FormInput<T> (props: FormInputProps<T>) {
         id={fieldId}
         name={fieldName}
         placeholder={placeholder}
-        value={fieldValue}
+        value={fieldValue as string | number}
         onChange={onChange}
       />
       {description && (<small className="form-text text-muted">{description}</small>)}
