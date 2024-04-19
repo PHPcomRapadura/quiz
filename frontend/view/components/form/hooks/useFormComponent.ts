@@ -2,7 +2,7 @@ import { ChangeEvent, useEffect, useId, useState } from 'react'
 
 import { FormElement, FormFieldProps } from '../index.tsx'
 
-export function useFormComponent<T> (props: FormFieldProps) {
+export function useFormComponent<T> (props: FormFieldProps<T>) {
   const {
     id,
     name,
