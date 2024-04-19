@@ -68,7 +68,7 @@ export function SignInPage () {
             <If condition={type === 'password'}>
               <FormPassword
                 name="password"
-                value={value.password}
+                value={value.password as string}
                 update={update}
                 label={$t('fields.password.label')}
                 placeholder={$t('fields.password.placeholder')}
