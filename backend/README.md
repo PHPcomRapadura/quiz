@@ -104,3 +104,8 @@ no composer.json que todos os componentes instalados são do Symfony 7.
 #### 🚀 Rodando nossa aplicação com o Docker
 
 A documentação oficial do Symfony no direciona para esta página [aqui](https://symfony.com/doc/current/setup/docker.html).
+
+
+```bash
+composer require symfony/maker-bundle --dev
+```
