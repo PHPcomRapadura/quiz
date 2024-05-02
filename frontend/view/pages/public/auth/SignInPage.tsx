@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 
-import { isDevelopmentMode } from '../../../../config/env.ts'
+import { getDevelopmentMode } from '../../../../config/env.ts'
 import { Session } from '../../../../src/Domain/Auth/Auth.ts'
 import { DriverType } from '../../../../src/Domain/Contracts.ts'
 
@@ -20,9 +20,10 @@ export function SignInPage () {
   const { loading } = useLoading()
 
   const type = session.driver.type === DriverType.supabase ? 'otp' : 'password'
-  const initial = {
-    username: isDevelopmentMode() ? 'arretado@phpcomrapadura.org' : '',
-    password: isDevelopmentMode() ? '***************' : ''
+  const isDevelopment = !!getDevelopmentMode()
+  const initial: SignInData = {
+    username: isDevelopment ? 'arretado@phpcomrapadura.org' : '',
+    password: isDevelopment ? '***************' : ''
   }
   const {
     value,

@@ -14,7 +14,8 @@ import InMemoryUserConfigRepository from '../src/Infrastructure/Memory/InMemoryU
 import SupabaseAuthRepository from '../src/Infrastructure/Supabase/SupabaseAuthRepository.ts'
 import SupabaseGameRepository from '../src/Infrastructure/Supabase/SupabaseGameRepository.ts'
 
-import { getInheritDriver, getSessionDriver, isDevelopmentMode } from './env.ts'
+import { getInheritDriver, getSessionDriver, getDevelopmentMode } from './env.ts'
+import HttpGameRepository from '../src/Infrastructure/Http/HttpGameRepository.ts'
 
 const binds: DriverResolver = {
   [DriverType.json]: {
@@ -22,7 +23,7 @@ const binds: DriverResolver = {
   },
   [DriverType.http]: {
     AuthRepository: () => HttpAuthRepository.build(),
-    GameRepository: () => new InMemoryGameRepository(),
+    GameRepository: () => HttpGameRepository.build(),
   },
   [DriverType.memory]: {
     AuthRepository: () => new InMemoryAuthRepository(),
@@ -56,9 +57,10 @@ export default function () {
   container.register('AuthService', { useClass: AuthService })
 
   let authDriver: Driver = getInheritDriver()
-  if (isDevelopmentMode()) {
+  const type = getDevelopmentMode()
+  if (type) {
     authDriver = {
-      type: DriverType.memory,
+      type: type,
       config: {}
     }
   }
