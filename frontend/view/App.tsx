@@ -22,7 +22,7 @@ import { WaitOneTimePassword } from './pages/public/auth/WaitOneTimePassword.tsx
 
 import { DashboardGamesPage } from './pages/dashboard/DashboardGamesPage.tsx'
 import { DashboardSettingsPage } from './pages/dashboard/DashboardSettingsPage.tsx'
-import { DashboardMyAccountPage } from './pages/dashboard/DahboardMyAccountPage.tsx'
+import { DashboardMyAccountPage } from './pages/dashboard/DashboardMyAccountPage.tsx'
 
 export default function App () {
   return (
