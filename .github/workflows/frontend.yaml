@@ -14,18 +14,17 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      
+
       - name: Setup caching
         uses: actions/setup-node@v4
         with:
           cache: npm
           cache-dependency-path: frontend/package-lock.json
-      
+
       - name: Build
         working-directory: ./frontend
         env:
-          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
-          VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
+          VITE_BASE_PATH: /quiz
         run: |
           npm install
           npm run test
@@ -35,6 +34,6 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: frontend/dist
-      
+
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4

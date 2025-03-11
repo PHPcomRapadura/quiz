@@ -1,7 +1,7 @@
 import GameRepository from '../../Domain/Game/GameRepository.ts'
 import Game from '../../Domain/Game/Game.ts'
 import games from './games.ts'
-import InMemoryRepository from '../Driver/Memory/InMemoryRepository.ts'
+import InMemoryRepository from '../Driver/InMemory/InMemoryRepository.ts'
 
 export default class InMemoryGameRepository extends InMemoryRepository implements GameRepository {
   private games: Game[]

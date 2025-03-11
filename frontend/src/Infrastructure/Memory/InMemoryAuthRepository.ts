@@ -1,6 +1,6 @@
 import AuthRepository from '../../Domain/Auth/AuthRepository.ts'
 import { Credential, Session } from '../../Domain/Auth/Auth.ts'
-import InMemoryRepository from '../Driver/Memory/InMemoryRepository.ts'
+import InMemoryRepository from '../Driver/InMemory/InMemoryRepository.ts'
 import { DriverType } from '../../Domain/Contracts.ts'
 import { credentialParser } from '../../Application/Auth'
 
