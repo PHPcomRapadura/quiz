@@ -1,0 +1,6 @@
+[submodule "backend/symfony"]
+	path = backend/symfony
+	url = git@github.com:PHPcomRapadura/symfony-com-rapadura.git
+[submodule "backend/hyperf"]
+	path = backend/hyperf
+	url = git@github.com:PHPcomRapadura/hyperf-com-rapadura.git
